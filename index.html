@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VeloDash — Fotoyu Upload Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #08080f;
+    --bg-card: #0f0f1a;
+    --bg-surface: #13131f;
+    --border: rgba(124,58,237,0.15);
+    --border-bright: rgba(124,58,237,0.4);
+    --accent: #7c3aed;
+    --accent-lt: #9333ea;
+    --accent-glow: rgba(124,58,237,0.25);
+    --green: #22c55e;
+    --green-dim: rgba(34,197,94,0.15);
+    --red: #ef4444;
+    --text-pri: #f0efff;
+    --text-sec: #8b8aaa;
+    --text-dim: #4a4968;
+    --mono: 'IBM Plex Mono', monospace;
+    --display: 'Syne', sans-serif;
+    --body: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-pri);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; line-height: 1.1; }
+
+  .mono { font-family: var(--mono); }
+
+  /* ── UTILITIES ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  .tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent-lt);
+    background: rgba(124,58,237,0.1);
+    border: 1px solid var(--border-bright);
+    padding: 4px 12px; border-radius: 100px;
+    margin-bottom: 20px;
+  }
+  .tag::before { content: '⬡'; font-size: 8px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(8,8,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px; max-width: 1100px; margin: 0 auto;
+  }
+  .nav-logo {
+    font-family: var(--display); font-size: 20px; font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #fff 0%, var(--accent-lt) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .nav-logo span { color: var(--accent-lt); -webkit-text-fill-color: var(--accent-lt); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--text-sec); text-decoration: none; font-size: 14px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text-pri); }
+  .btn-nav {
+    background: var(--accent); color: white; border: none;
+    padding: 8px 20px; border-radius: 8px; font-family: var(--body);
+    font-size: 14px; font-weight: 500; cursor: pointer;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+  }
+  .btn-nav:hover { background: var(--accent-lt); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 0 80px;
+    position: relative; overflow: hidden;
+  }
+
+  /* Background grid */
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%);
+  }
+
+  /* Glow orb */
+  .hero-orb {
+    position: absolute; top: 15%; left: 55%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%);
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 12px; color: var(--accent-lt);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 32px; height: 1px;
+    background: var(--accent-lt);
+  }
+
+  h1.hero-title {
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 0.95;
+    margin-bottom: 28px;
+  }
+  h1.hero-title .line1 { color: var(--text-pri); }
+  h1.hero-title .line2 {
+    background: linear-gradient(135deg, var(--accent-lt) 0%, #c084fc 50%, #e879f9 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+  }
+
+  .hero-desc {
+    font-size: 18px; color: var(--text-sec); max-width: 520px;
+    margin-bottom: 40px; font-weight: 300; line-height: 1.7;
+  }
+
+  .hero-cta {
+    display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+    margin-bottom: 64px;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: white; text-decoration: none;
+    padding: 14px 28px; border-radius: 10px;
+    font-family: var(--display); font-size: 15px; font-weight: 700;
+    letter-spacing: 0.02em;
+    box-shadow: 0 0 40px rgba(124,58,237,0.4), 0 4px 16px rgba(0,0,0,0.4);
+    transition: all 0.2s; position: relative; overflow: hidden;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+  }
+  .btn-primary:hover {
+    background: var(--accent-lt);
+    box-shadow: 0 0 60px rgba(124,58,237,0.6), 0 8px 24px rgba(0,0,0,0.4);
+    transform: translateY(-2px);
+  }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--text-sec); text-decoration: none;
+    font-size: 14px; transition: color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--text-pri); }
+  .btn-secondary .arrow { transition: transform 0.2s; }
+  .btn-secondary:hover .arrow { transform: translateX(4px); }
+
+  /* Stats */
+  .hero-stats {
+    display: flex; gap: 40px; flex-wrap: wrap;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: var(--mono); font-size: 28px; font-weight: 500;
+    color: var(--text-pri);
+    background: linear-gradient(135deg, #fff 0%, var(--accent-lt) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .stat-label { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+
+  /* Terminal mockup */
+  .hero-terminal {
+    position: absolute; right: -40px; top: 50%;
+    transform: translateY(-50%);
+    width: 420px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-bright);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(124,58,237,0.1);
+    z-index: 2;
+  }
+  .terminal-bar {
+    background: var(--bg-surface);
+    padding: 12px 16px;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot.r { background: #ef4444; } .dot.y { background: #f59e0b; } .dot.g { background: #22c55e; }
+  .terminal-title { font-family: var(--mono); font-size: 11px; color: var(--text-dim); margin-left: auto; }
+  .terminal-body { padding: 16px; font-family: var(--mono); font-size: 11.5px; line-height: 1.8; }
+  .log-line { display: flex; gap: 10px; }
+  .log-time { color: var(--text-dim); flex-shrink: 0; }
+  .log-ok { color: var(--green); }
+  .log-info { color: var(--accent-lt); }
+  .log-warn { color: #f59e0b; }
+  .log-dim { color: var(--text-dim); }
+
+  .blink {
+    display: inline-block; width: 7px; height: 13px;
+    background: var(--accent-lt); vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ── SECTION BASE ── */
+  section { padding: 100px 0; }
+  .section-header { text-align: center; margin-bottom: 64px; }
+  .section-header h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800; letter-spacing: -1px; margin-bottom: 16px;
+  }
+  .section-header p { color: var(--text-sec); font-size: 16px; max-width: 480px; margin: 0 auto; }
+
+  /* ── FEATURES ── */
+  .features { background: var(--bg); }
+
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 20px; overflow: hidden;
+  }
+  .feature-item {
+    background: var(--bg-card);
+    padding: 36px 32px;
+    transition: background 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .feature-item:hover { background: var(--bg-surface); }
+  .feature-item::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .feature-item:hover::before { opacity: 1; }
+
+  .feature-icon {
+    width: 48px; height: 48px;
+    background: rgba(124,58,237,0.12);
+    border: 1px solid var(--border-bright);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 20px;
+  }
+  .feature-title {
+    font-family: var(--display); font-size: 17px; font-weight: 700;
+    margin-bottom: 10px; color: var(--text-pri);
+  }
+  .feature-desc { font-size: 14px; color: var(--text-sec); line-height: 1.65; }
+
+  /* ── PRICING ── */
+  .pricing { background: var(--bg-surface); position: relative; overflow: hidden; }
+  .pricing::before {
+    content: '';
+    position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 400px;
+    background: radial-gradient(ellipse, rgba(124,58,237,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .pricing-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    max-width: 760px; margin: 0 auto;
+  }
+  .pricing-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px; padding: 40px 36px;
+    position: relative; transition: border-color 0.3s, transform 0.3s;
+  }
+  .pricing-card:hover { transform: translateY(-4px); }
+  .pricing-card.featured {
+    border-color: var(--accent);
+    box-shadow: 0 0 60px rgba(124,58,237,0.2), inset 0 0 60px rgba(124,58,237,0.03);
+  }
+  .pricing-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: white;
+    font-family: var(--mono); font-size: 10px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 4px 16px; border-radius: 100px;
+    white-space: nowrap;
+  }
+  .pricing-tier {
+    font-family: var(--mono); font-size: 12px; color: var(--accent-lt);
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px;
+  }
+  .pricing-price {
+    font-family: var(--display); font-size: 42px; font-weight: 800;
+    color: var(--text-pri); margin-bottom: 4px; letter-spacing: -1px;
+  }
+  .pricing-price sub { font-size: 14px; font-weight: 400; color: var(--text-sec); }
+  .pricing-note { font-size: 13px; color: var(--text-dim); margin-bottom: 32px; }
+  .pricing-divider { height: 1px; background: var(--border); margin-bottom: 28px; }
+  .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+  .pricing-features li {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 14px; color: var(--text-sec);
+  }
+  .pricing-features li .check { color: var(--green); flex-shrink: 0; margin-top: 2px; }
+  .pricing-features li .x { color: var(--text-dim); flex-shrink: 0; margin-top: 2px; }
+  .btn-pricing {
+    width: 100%; padding: 14px;
+    border-radius: 10px; font-family: var(--display);
+    font-size: 15px; font-weight: 700; letter-spacing: 0.02em;
+    text-align: center; text-decoration: none; display: block;
+    transition: all 0.2s; cursor: pointer; border: none;
+  }
+  .btn-pricing.outlined {
+    background: transparent;
+    border: 1px solid var(--border-bright);
+    color: var(--text-pri);
+  }
+  .btn-pricing.outlined:hover { background: rgba(124,58,237,0.1); }
+  .btn-pricing.solid {
+    background: var(--accent); color: white;
+    box-shadow: 0 4px 24px rgba(124,58,237,0.4);
+  }
+  .btn-pricing.solid:hover { background: var(--accent-lt); box-shadow: 0 8px 32px rgba(124,58,237,0.5); transform: translateY(-1px); }
+
+  /* ── COMPARISON TABLE ── */
+  .comparison { background: var(--bg); }
+
+  .compare-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 14px;
+  }
+  .compare-table thead tr {
+    border-bottom: 2px solid var(--border-bright);
+  }
+  .compare-table th {
+    padding: 20px 24px; text-align: left;
+    font-family: var(--display); font-weight: 700; font-size: 15px;
+  }
+  .compare-table th.col-feature { color: var(--text-dim); font-size: 12px; font-family: var(--mono); letter-spacing: 0.1em; text-transform: uppercase; width: 40%; }
+  .compare-table th.col-lite { color: var(--text-sec); }
+  .compare-table th.col-pro { color: var(--accent-lt); }
+  .compare-table th.col-pro span {
+    background: rgba(124,58,237,0.15); border: 1px solid var(--border-bright);
+    padding: 2px 10px; border-radius: 100px; font-size: 13px;
+  }
+  .compare-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  .compare-table tbody tr:hover { background: rgba(124,58,237,0.04); }
+  .compare-table td {
+    padding: 16px 24px; color: var(--text-sec);
+  }
+  .compare-table td.feature-name { color: var(--text-pri); font-weight: 500; }
+  .compare-table td .yes { color: var(--green); font-size: 18px; }
+  .compare-table td .no { color: var(--text-dim); font-size: 18px; }
+  .compare-table td .val { color: var(--text-pri); font-family: var(--mono); font-size: 13px; }
+
+  /* ── FAQ ── */
+  .faq { background: var(--bg-surface); }
+
+  .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+  .faq-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .faq-item:hover { border-color: var(--border-bright); }
+  .faq-q {
+    width: 100%; background: none; border: none; cursor: pointer;
+    padding: 24px 28px; display: flex; justify-content: space-between; align-items: center;
+    color: var(--text-pri); font-family: var(--display);
+    font-size: 16px; font-weight: 600; text-align: left; gap: 16px;
+  }
+  .faq-icon {
+    width: 28px; height: 28px; flex-shrink: 0;
+    background: rgba(124,58,237,0.12); border: 1px solid var(--border-bright);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    color: var(--accent-lt); font-size: 16px; font-weight: 300;
+    transition: transform 0.3s, background 0.2s;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); background: rgba(124,58,237,0.25); }
+  .faq-a {
+    padding: 0 28px; max-height: 0; overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+    color: var(--text-sec); font-size: 14px; line-height: 1.75;
+  }
+  .faq-item.open .faq-a { max-height: 200px; padding: 0 28px 24px; }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    background: var(--bg);
+    padding: 80px 0;
+  }
+  .cta-box {
+    background: linear-gradient(135deg, rgba(124,58,237,0.15) 0%, rgba(147,51,234,0.08) 100%);
+    border: 1px solid var(--border-bright);
+    border-radius: 24px; padding: 64px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-box::before {
+    content: '';
+    position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+    width: 400px; height: 300px;
+    background: radial-gradient(ellipse, rgba(124,58,237,0.3) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta-box h2 {
+    font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -1px;
+    margin-bottom: 16px; position: relative;
+  }
+  .cta-box p { color: var(--text-sec); margin-bottom: 36px; font-size: 16px; position: relative; }
+  .cta-box .btn-primary { position: relative; margin: 0 auto; display: inline-flex; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg-card);
+    border-top: 1px solid var(--border);
+    padding: 40px 0;
+  }
+  .footer-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 20px;
+  }
+  .footer-logo {
+    font-family: var(--display); font-size: 18px; font-weight: 800;
+    background: linear-gradient(135deg, #fff 0%, var(--accent-lt) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .footer-copy { color: var(--text-dim); font-size: 13px; }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { color: var(--text-dim); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--text-sec); }
+
+  /* ── ANIMATIONS ── */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero-terminal { display: none; }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
+    .compare-table { font-size: 13px; }
+    .compare-table th, .compare-table td { padding: 14px 16px; }
+    .cta-box { padding: 40px 24px; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .features-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 24px; }
+    .footer-inner { flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Velo<span>Dash</span></div>
+    <ul class="nav-links">
+      <li><a href="#fitur">Fitur</a></li>
+      <li><a href="#harga">Harga</a></li>
+      <li><a href="#perbandingan">Perbandingan</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="#beli" class="btn-nav">Beli Sekarang →</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Fotoyu Upload Assistant</div>
+      <h1 class="hero-title">
+        <span class="line1">Upload ribuan foto</span>
+        <span class="line2">otomatis & cepat.</span>
+      </h1>
+      <p class="hero-desc">
+        VeloDash mengotomasi seluruh proses upload ke Fotoyu — dari inject file, isi form, pilih FotoTree, sampai klik Unggah. Kamu cukup duduk dan pantau.
+      </p>
+      <div class="hero-cta">
+        <a href="#beli" class="btn-primary">
+          ⚡ Mulai Sekarang
+        </a>
+        <a href="#fitur" class="btn-secondary">
+          Lihat fitur <span class="arrow">→</span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">12x</div>
+          <div class="stat-label">Tab paralel</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">1000+</div>
+          <div class="stat-label">Foto per batch</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">Win & Mac</div>
+          <div class="stat-label">Platform</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">0 klik</div>
+          <div class="stat-label">Setelah start</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Terminal mockup -->
+    <div class="hero-terminal">
+      <div class="terminal-bar">
+        <div class="dot r"></div>
+        <div class="dot y"></div>
+        <div class="dot g"></div>
+        <div class="terminal-title">velodash — upload log</div>
+      </div>
+      <div class="terminal-body">
+        <div class="log-line"><span class="log-time">08:03:11</span><span class="log-info">Session tersimpan — skip login ✓</span></div>
+        <div class="log-line"><span class="log-time">08:03:12</span><span class="log-dim">[Tab 1] Batch baru: 1000 foto</span></div>
+        <div class="log-line"><span class="log-time">08:03:14</span><span class="log-dim">[Tab 2] Batch baru: 1000 foto</span></div>
+        <div class="log-line"><span class="log-time">08:03:15</span><span class="log-dim">[Tab 3] Batch baru: 1000 foto</span></div>
+        <div class="log-line"><span class="log-time">08:03:21</span><span class="log-info">[Tab 1] FotoTree: exact match ✓</span></div>
+        <div class="log-line"><span class="log-time">08:03:21</span><span class="log-info">[Tab 1] Klik Unggah BERHASIL</span></div>
+        <div class="log-line"><span class="log-time">08:05:44</span><span class="log-ok">[Tab 1] Redirect /profile/ — sukses ✓</span></div>
+        <div class="log-line"><span class="log-time">08:05:44</span><span class="log-ok">[Tab 2] Redirect /profile/ — sukses ✓</span></div>
+        <div class="log-line"><span class="log-time">08:05:45</span><span class="log-ok">[Tab 3] Redirect /profile/ — sukses ✓</span></div>
+        <div class="log-line"><span class="log-time">08:05:45</span><span class="log-dim">Progress: 3000/11172 foto</span></div>
+        <div class="log-line"><span class="log-time">08:05:45</span><span class="log-dim">─────────────────────────</span></div>
+        <div class="log-line"><span class="log-time">08:05:46</span><span class="log-info">[Tab 1] Batch baru: 1000 foto</span></div>
+        <div class="log-line"><span class="log-time log-dim">08:05:47</span><span class="log-dim">  <span class="blink"></span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURES ── -->
+<section class="features" id="fitur">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag">Fitur</div>
+      <h2>Semua yang kamu butuhkan<br>untuk upload massal</h2>
+      <p>Dibangun khusus untuk seller Fotoyu yang serius — bukan sekedar script biasa.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-item reveal">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Multi-Tab Paralel</div>
+        <div class="feature-desc">Upload hingga 12 tab secara bersamaan dalam 1 Chrome window. Ribuan foto terupload dalam hitungan menit.</div>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon">🤖</div>
+        <div class="feature-title">Auto-Fill Form</div>
+        <div class="feature-desc">Harga, FotoTree, deskripsi, dan tanggal diisi otomatis. FotoTree dipilih dengan smart matching — exact & subset.</div>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon">🔁</div>
+        <div class="feature-title">Resume Foto Gagal</div>
+        <div class="feature-desc">Foto yang gagal dicatat ke failed.txt. Klik Resume Failed untuk mengulang hanya foto yang belum sukses.</div>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon">🔑</div>
+        <div class="feature-title">Session Tersimpan</div>
+        <div class="feature-desc">Login sekali, diingat selamanya. Tidak perlu input password setiap sesi — aman tersimpan di device kamu.</div>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Laporan Upload</div>
+        <div class="feature-desc">Setiap sesi menghasilkan laporan lengkap: berhasil, duplikat, gagal, kecepatan, durasi — export ke TXT atau CSV.</div>
+      </div>
+      <div class="feature-item reveal">
+        <div class="feature-icon">💻</div>
+        <div class="feature-title">Windows & Mac</div>
+        <div class="feature-desc">Satu lisensi, dua platform. Build native untuk Windows (.exe) dan macOS Apple Silicon (.app).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ── -->
+<section class="pricing" id="harga">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag">Harga</div>
+      <h2>Pilih paket yang sesuai</h2>
+      <p>Bayar sekali, pakai selamanya. Atau berlangganan bulanan — pilihan ada di tanganmu.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <!-- LITE -->
+      <div class="pricing-card reveal">
+        <div class="pricing-tier">LITE</div>
+        <div class="pricing-price">Segera<sub> hadir</sub></div>
+        <div class="pricing-note">Harga akan diumumkan saat launch</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> Upload foto (JPG/PNG)</li>
+          <li><span class="check">✓</span> 1 akun Fotoyu</li>
+          <li><span class="check">✓</span> Maks. 3 tab paralel</li>
+          <li><span class="check">✓</span> Mode STABLE & BALANCED</li>
+          <li><span class="check">✓</span> Laporan .txt</li>
+          <li><span class="check">✓</span> Resume foto gagal</li>
+          <li><span class="x">✗</span> Upload video</li>
+          <li><span class="x">✗</span> Photo Splitter</li>
+          <li><span class="x">✗</span> Laporan CSV</li>
+        </ul>
+        <a href="#beli" class="btn-pricing outlined">Notifikasi Saya</a>
+      </div>
+
+      <!-- PRO -->
+      <div class="pricing-card featured reveal">
+        <div class="pricing-badge">Paling Populer</div>
+        <div class="pricing-tier">PRO</div>
+        <div class="pricing-price">Segera<sub> hadir</sub></div>
+        <div class="pricing-note">Harga akan diumumkan saat launch</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> Upload foto + video</li>
+          <li><span class="check">✓</span> Unlimited akun</li>
+          <li><span class="check">✓</span> Maks. 12 tab paralel</li>
+          <li><span class="check">✓</span> Mode BOOST (kecepatan max)</li>
+          <li><span class="check">✓</span> Laporan .txt + .csv</li>
+          <li><span class="check">✓</span> Resume foto gagal</li>
+          <li><span class="check">✓</span> Upload video</li>
+          <li><span class="check">✓</span> Photo Splitter</li>
+          <li><span class="check">✓</span> Priority support</li>
+        </ul>
+        <a href="#beli" class="btn-pricing solid">Notifikasi Saya</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── COMPARISON TABLE ── -->
+<section class="comparison" id="perbandingan">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag">Perbandingan</div>
+      <h2>LITE vs PRO — detail lengkap</h2>
+    </div>
+    <div class="reveal" style="overflow-x:auto; border:1px solid var(--border); border-radius:16px;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th class="col-feature">Fitur</th>
+            <th class="col-lite">LITE</th>
+            <th class="col-pro"><span>PRO</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="feature-name">Mode upload</td>
+            <td>Foto only</td>
+            <td><span class="val">Foto + Video</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Jumlah akun Fotoyu</td>
+            <td><span class="val">1 akun</span></td>
+            <td><span class="val">Unlimited</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Tab paralel (maks)</td>
+            <td><span class="val">3 tab</span></td>
+            <td><span class="val">12 tab</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Upload Logic</td>
+            <td><span class="val">STABLE, BALANCED</span></td>
+            <td><span class="val">STABLE, BALANCED, BOOST</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Custom preset</td>
+            <td><span class="no">✗</span></td>
+            <td><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Photo Splitter</td>
+            <td><span class="no">✗</span></td>
+            <td><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Laporan export</td>
+            <td><span class="val">.txt</span></td>
+            <td><span class="val">.txt + .csv</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Resume foto gagal</td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Session tersimpan</td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Windows & Mac</td>
+            <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Customer support</td>
+            <td><span class="val">Community</span></td>
+            <td><span class="val">Priority (WA/email)</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag">FAQ</div>
+      <h2>Pertanyaan yang sering ditanyakan</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Apakah VeloDash aman untuk akun Fotoyu saya?
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          Ya. VeloDash menggunakan browser Chrome yang sama seperti kamu buka manual — tidak ada injection API yang tidak resmi. Upload dilakukan persis seperti user biasa mengklik tombol. Session login disimpan aman di device kamu, tidak dikirim ke server manapun.
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Berapa foto yang bisa diupload dalam satu sesi?
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          Tidak ada batas dari VeloDash. Dengan PRO (12 tab × 1000 foto/batch), kamu bisa upload 12.000 foto per putaran. Batas sebenarnya tergantung kebijakan Fotoyu dan kecepatan internet kamu.
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Apakah bisa digunakan di lebih dari satu komputer?
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          1 lisensi = 1 perangkat. Jika ingin pindah device, hubungi support untuk reset aktivasi. Untuk kebutuhan multi-device, silakan beli lisensi tambahan.
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Apa bedanya VeloDash dengan AutoYu V3?
+          <div class="faq-icon">+</div>
+        </button>
+        <div class="faq-a">
+          VeloDash dibangun dari nol dengan teknologi Playwright yang lebih modern, mendukung upload paralel multi-tab dalam satu window, timeout adaptif sesuai jumlah foto, dan tersedia untuk Windows & Mac. Interface lebih bersih, dan laporan upload lebih detail.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ── -->
+<section class="cta-banner" id="beli">
+  <div class="container">
+    <div class="cta-box reveal">
+      <div class="tag" style="margin:0 auto 20px;">Early Access</div>
+      <h2>Siap upload lebih cepat?</h2>
+      <p>Daftar notifikasi sekarang dan dapatkan info pertama saat VeloDash resmi diluncurkan.</p>
+      <a href="#" class="btn-primary" style="font-size:16px; padding:16px 36px;">
+        ⚡ Notifikasi Saya
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">VeloDash</div>
+      <div class="footer-copy">© 2026 VeloDash. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#">Syarat & Ketentuan</a>
+        <a href="#">Kebijakan Privasi</a>
+        <a href="#">Kontak</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // FAQ toggle
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // Stagger children if grid
+        const children = e.target.querySelectorAll('.reveal');
+        children.forEach((c, i) => {
+          setTimeout(() => c.classList.add('visible'), i * 80);
+        });
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Terminal typewriter animation on load
+  const logLines = document.querySelectorAll('.terminal-body .log-line');
+  logLines.forEach((line, i) => {
+    line.style.opacity = '0';
+    line.style.transform = 'translateX(-8px)';
+    line.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    setTimeout(() => {
+      line.style.opacity = '1';
+      line.style.transform = 'none';
+    }, 800 + i * 180);
+  });
+</script>
+</body>
+</html>
