@@ -347,6 +347,13 @@
   }
   .pricing-features li .check { color: var(--green); flex-shrink: 0; margin-top: 2px; }
   .pricing-features li .x { color: var(--text-dim); flex-shrink: 0; margin-top: 2px; }
+  .lock-badge {
+    display: inline-block; margin-left: 8px; padding: 1px 8px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.03em;
+    color: var(--accent-lt); background: var(--accent-glow);
+    border: 1px solid var(--border-bright); border-radius: 999px;
+    white-space: nowrap;
+  }
   .btn-pricing {
     width: 100%; padding: 14px;
     border-radius: 10px; font-family: var(--display);
@@ -516,7 +523,7 @@
       <li><a href="#perbandingan">Perbandingan</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
-    <a href="#beli" class="btn-nav">Beli Sekarang →</a>
+    <a href="#harga" class="btn-nav">Beli Sekarang →</a>
   </div>
 </nav>
 
@@ -533,7 +540,7 @@
         VeloDash mengotomasi seluruh proses upload ke Fotoyu — dari inject file, isi form, pilih FotoTree, sampai klik Unggah. Kamu cukup duduk dan pantau.
       </p>
       <div class="hero-cta">
-        <a href="#beli" class="btn-primary">
+        <a href="#harga" class="btn-primary">
           ⚡ Mulai Sekarang
         </a>
         <a href="#fitur" class="btn-secondary">
@@ -643,8 +650,8 @@
       <!-- LITE -->
       <div class="pricing-card reveal">
         <div class="pricing-tier">LITE</div>
-        <div class="pricing-price">Segera<sub> hadir</sub></div>
-        <div class="pricing-note">Harga akan diumumkan saat launch</div>
+        <div class="pricing-price">Rp 79rb<sub> /bulan</sub></div>
+        <div class="pricing-note">atau Rp 499rb/tahun • Rp 1.199rb lifetime</div>
         <div class="pricing-divider"></div>
         <ul class="pricing-features">
           <li><span class="check">✓</span> Upload foto (JPG/PNG)</li>
@@ -653,19 +660,20 @@
           <li><span class="check">✓</span> Mode STABLE & BALANCED</li>
           <li><span class="check">✓</span> Laporan .txt</li>
           <li><span class="check">✓</span> Resume foto gagal</li>
-          <li><span class="x">✗</span> Upload video</li>
+          <li><span class="x">✗</span> Upload video <span class="lock-badge">🔒 WAJIB PRO</span></li>
+          <li><span class="x">✗</span> Multi-akun Fotoyu <span class="lock-badge">🔒 WAJIB PRO</span></li>
           <li><span class="x">✗</span> Photo Splitter</li>
           <li><span class="x">✗</span> Laporan CSV</li>
         </ul>
-        <a href="#beli" class="btn-pricing outlined">Notifikasi Saya</a>
+        <a href="https://velodash.lemonsqueezy.com/checkout/buy/4a249421-3c0d-4171-b774-82e6abb34c06" class="btn-pricing outlined">Beli Sekarang</a>
       </div>
 
       <!-- PRO -->
       <div class="pricing-card featured reveal">
         <div class="pricing-badge">Paling Populer</div>
         <div class="pricing-tier">PRO</div>
-        <div class="pricing-price">Segera<sub> hadir</sub></div>
-        <div class="pricing-note">Harga akan diumumkan saat launch</div>
+        <div class="pricing-price">Rp 169rb<sub> /bulan</sub></div>
+        <div class="pricing-note">atau Rp 999rb/tahun • Rp 2.799rb lifetime</div>
         <div class="pricing-divider"></div>
         <ul class="pricing-features">
           <li><span class="check">✓</span> Upload foto + video</li>
@@ -678,7 +686,7 @@
           <li><span class="check">✓</span> Photo Splitter</li>
           <li><span class="check">✓</span> Priority support</li>
         </ul>
-        <a href="#beli" class="btn-pricing solid">Notifikasi Saya</a>
+        <a href="https://velodash.lemonsqueezy.com/checkout/buy/b56969e3-c494-4b19-a4e8-2bcbe483970b" class="btn-pricing solid">Beli Sekarang</a>
       </div>
 
     </div>
@@ -795,7 +803,7 @@
           <div class="faq-icon">+</div>
         </button>
         <div class="faq-a">
-          1 lisensi = 1 perangkat. Jika ingin pindah device, hubungi support untuk reset aktivasi. Untuk kebutuhan multi-device, silakan beli lisensi tambahan.
+          1 lisensi = 1 perangkat aktif. Mau pindah ke device baru? Klik "Lepaskan Device Ini" di aplikasi lama, lalu aktivasi ulang di device baru — bisa dilakukan sendiri kapan saja. Kalau device lama sudah tidak bisa diakses, hubungi support untuk reset manual.
         </div>
       </div>
       <div class="faq-item reveal">
@@ -815,11 +823,11 @@
 <section class="cta-banner" id="beli">
   <div class="container">
     <div class="cta-box reveal">
-      <div class="tag" style="margin:0 auto 20px;">Early Access</div>
+      <div class="tag" style="margin:0 auto 20px;">Tersedia Sekarang</div>
       <h2>Siap upload lebih cepat?</h2>
-      <p>Daftar notifikasi sekarang dan dapatkan info pertama saat VeloDash resmi diluncurkan.</p>
-      <a href="#" class="btn-primary" style="font-size:16px; padding:16px 36px;">
-        ⚡ Notifikasi Saya
+      <p>Pilih paket LITE atau PRO dan mulai upload otomatis ke Fotoyu hari ini juga.</p>
+      <a href="#harga" class="btn-primary" style="font-size:16px; padding:16px 36px;">
+        ⚡ Beli Sekarang
       </a>
     </div>
   </div>
