@@ -5,26 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VeloDash — Fotoyu Upload Assistant</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+  /* Aurora/Nord — identik dengan palet app desktop VeloDash (app.py), jadi
+     landing page & product terasa satu keluarga. Dipakai bareng untuk
+     Veloscope nanti juga. */
   :root {
-    --bg: #08080f;
-    --bg-card: #0f0f1a;
-    --bg-surface: #13131f;
-    --border: rgba(124,58,237,0.15);
-    --border-bright: rgba(124,58,237,0.4);
-    --accent: #7c3aed;
-    --accent-lt: #9333ea;
-    --accent-glow: rgba(124,58,237,0.25);
-    --green: #22c55e;
-    --green-dim: rgba(34,197,94,0.15);
-    --red: #ef4444;
-    --text-pri: #f0efff;
-    --text-sec: #8b8aaa;
-    --text-dim: #4a4968;
+    --bg: #1b2333;
+    --bg-card: #243045;
+    --bg-surface: #2e3d55;
+    --border: rgba(136,192,208,0.15);
+    --border-bright: rgba(136,192,208,0.4);
+    --accent: #88c0d0;
+    --accent-lt: #5fd2ff;
+    --accent-glow: rgba(136,192,208,0.25);
+    --green: #a3be8c;
+    --green-dim: rgba(163,190,140,0.15);
+    --red: #bf616a;
+    --text-pri: #eceff4;
+    --text-sec: #afc0d5;
+    --text-dim: #4c566a;
     --mono: 'IBM Plex Mono', monospace;
-    --display: 'Syne', sans-serif;
-    --body: 'DM Sans', sans-serif;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -64,7 +67,7 @@
     font-family: var(--mono); font-size: 11px; font-weight: 500;
     letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--accent-lt);
-    background: rgba(124,58,237,0.1);
+    background: rgba(136,192,208,0.1);
     border: 1px solid var(--border-bright);
     padding: 4px 12px; border-radius: 100px;
     margin-bottom: 20px;
@@ -117,8 +120,8 @@
     content: '';
     position: absolute; inset: 0;
     background-image:
-      linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px);
+      linear-gradient(rgba(136,192,208,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(136,192,208,0.04) 1px, transparent 1px);
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%);
   }
@@ -127,12 +130,12 @@
   .hero-orb {
     position: absolute; top: 15%; left: 55%;
     width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(124,58,237,0.18) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(136,192,208,0.18) 0%, transparent 70%);
     transform: translateX(-50%);
     pointer-events: none;
   }
 
-  .hero-content { position: relative; z-index: 2; }
+  .hero-content { position: relative; z-index: 2; max-width: 620px; }
 
   .hero-eyebrow {
     font-family: var(--mono); font-size: 12px; color: var(--accent-lt);
@@ -154,7 +157,7 @@
   }
   h1.hero-title .line1 { color: var(--text-pri); }
   h1.hero-title .line2 {
-    background: linear-gradient(135deg, var(--accent-lt) 0%, #c084fc 50%, #e879f9 100%);
+    background: linear-gradient(135deg, var(--accent-lt) 0%, var(--accent) 55%, var(--green) 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text;
     display: block;
@@ -175,7 +178,7 @@
     padding: 14px 28px; border-radius: 10px;
     font-family: var(--display); font-size: 15px; font-weight: 700;
     letter-spacing: 0.02em;
-    box-shadow: 0 0 40px rgba(124,58,237,0.4), 0 4px 16px rgba(0,0,0,0.4);
+    box-shadow: 0 0 40px rgba(136,192,208,0.4), 0 4px 16px rgba(0,0,0,0.4);
     transition: all 0.2s; position: relative; overflow: hidden;
   }
   .btn-primary::after {
@@ -185,7 +188,7 @@
   }
   .btn-primary:hover {
     background: var(--accent-lt);
-    box-shadow: 0 0 60px rgba(124,58,237,0.6), 0 8px 24px rgba(0,0,0,0.4);
+    box-shadow: 0 0 60px rgba(136,192,208,0.6), 0 8px 24px rgba(0,0,0,0.4);
     transform: translateY(-2px);
   }
   .btn-secondary {
@@ -222,7 +225,7 @@
     border: 1px solid var(--border-bright);
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(124,58,237,0.1);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(136,192,208,0.1);
     z-index: 2;
   }
   .terminal-bar {
@@ -284,7 +287,7 @@
 
   .feature-icon {
     width: 48px; height: 48px;
-    background: rgba(124,58,237,0.12);
+    background: rgba(136,192,208,0.12);
     border: 1px solid var(--border-bright);
     border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
@@ -302,7 +305,7 @@
     content: '';
     position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
     width: 800px; height: 400px;
-    background: radial-gradient(ellipse, rgba(124,58,237,0.12) 0%, transparent 70%);
+    background: radial-gradient(ellipse, rgba(136,192,208,0.12) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -319,7 +322,7 @@
   .pricing-card:hover { transform: translateY(-4px); }
   .pricing-card.featured {
     border-color: var(--accent);
-    box-shadow: 0 0 60px rgba(124,58,237,0.2), inset 0 0 60px rgba(124,58,237,0.03);
+    box-shadow: 0 0 60px rgba(136,192,208,0.2), inset 0 0 60px rgba(136,192,208,0.03);
   }
   .pricing-badge {
     position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
@@ -366,12 +369,12 @@
     border: 1px solid var(--border-bright);
     color: var(--text-pri);
   }
-  .btn-pricing.outlined:hover { background: rgba(124,58,237,0.1); }
+  .btn-pricing.outlined:hover { background: rgba(136,192,208,0.1); }
   .btn-pricing.solid {
     background: var(--accent); color: white;
-    box-shadow: 0 4px 24px rgba(124,58,237,0.4);
+    box-shadow: 0 4px 24px rgba(136,192,208,0.4);
   }
-  .btn-pricing.solid:hover { background: var(--accent-lt); box-shadow: 0 8px 32px rgba(124,58,237,0.5); transform: translateY(-1px); }
+  .btn-pricing.solid:hover { background: var(--accent-lt); box-shadow: 0 8px 32px rgba(136,192,208,0.5); transform: translateY(-1px); }
 
   /* ── COMPARISON TABLE ── */
   .comparison { background: var(--bg); }
@@ -391,14 +394,14 @@
   .compare-table th.col-lite { color: var(--text-sec); }
   .compare-table th.col-pro { color: var(--accent-lt); }
   .compare-table th.col-pro span {
-    background: rgba(124,58,237,0.15); border: 1px solid var(--border-bright);
+    background: rgba(136,192,208,0.15); border: 1px solid var(--border-bright);
     padding: 2px 10px; border-radius: 100px; font-size: 13px;
   }
   .compare-table tbody tr {
     border-bottom: 1px solid var(--border);
     transition: background 0.15s;
   }
-  .compare-table tbody tr:hover { background: rgba(124,58,237,0.04); }
+  .compare-table tbody tr:hover { background: rgba(136,192,208,0.04); }
   .compare-table td {
     padding: 16px 24px; color: var(--text-sec);
   }
@@ -426,12 +429,12 @@
   }
   .faq-icon {
     width: 28px; height: 28px; flex-shrink: 0;
-    background: rgba(124,58,237,0.12); border: 1px solid var(--border-bright);
+    background: rgba(136,192,208,0.12); border: 1px solid var(--border-bright);
     border-radius: 50%; display: flex; align-items: center; justify-content: center;
     color: var(--accent-lt); font-size: 16px; font-weight: 300;
     transition: transform 0.3s, background 0.2s;
   }
-  .faq-item.open .faq-icon { transform: rotate(45deg); background: rgba(124,58,237,0.25); }
+  .faq-item.open .faq-icon { transform: rotate(45deg); background: rgba(136,192,208,0.25); }
   .faq-a {
     padding: 0 28px; max-height: 0; overflow: hidden;
     transition: max-height 0.35s ease, padding 0.35s ease;
@@ -445,7 +448,7 @@
     padding: 80px 0;
   }
   .cta-box {
-    background: linear-gradient(135deg, rgba(124,58,237,0.15) 0%, rgba(147,51,234,0.08) 100%);
+    background: linear-gradient(135deg, rgba(136,192,208,0.15) 0%, rgba(95,210,255,0.08) 100%);
     border: 1px solid var(--border-bright);
     border-radius: 24px; padding: 64px;
     text-align: center;
@@ -455,7 +458,7 @@
     content: '';
     position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
     width: 400px; height: 300px;
-    background: radial-gradient(ellipse, rgba(124,58,237,0.3) 0%, transparent 70%);
+    background: radial-gradient(ellipse, rgba(136,192,208,0.3) 0%, transparent 70%);
     pointer-events: none;
   }
   .cta-box h2 {
@@ -494,8 +497,10 @@
   .reveal.visible { opacity: 1; transform: none; }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
+  @media (max-width: 1080px) {
     .hero-terminal { display: none; }
+  }
+  @media (max-width: 900px) {
     .features-grid { grid-template-columns: repeat(2, 1fr); }
     .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
     .compare-table { font-size: 13px; }
@@ -549,11 +554,11 @@
       </div>
       <div class="hero-stats">
         <div class="stat-item">
-          <div class="stat-num">12x</div>
+          <div class="stat-num">20x</div>
           <div class="stat-label">Tab paralel</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num">1000+</div>
+          <div class="stat-num">2000</div>
           <div class="stat-label">Foto per batch</div>
         </div>
         <div class="stat-item">
@@ -606,7 +611,7 @@
       <div class="feature-item reveal">
         <div class="feature-icon">⚡</div>
         <div class="feature-title">Multi-Tab Paralel</div>
-        <div class="feature-desc">Upload hingga 12 tab secara bersamaan dalam 1 Chrome window. Ribuan foto terupload dalam hitungan menit.</div>
+        <div class="feature-desc">Upload hingga 20 tab secara bersamaan dalam 1 Chrome window — batasnya bisa kamu atur sendiri biar RAM device tetap aman. Ribuan foto terupload dalam hitungan menit.</div>
       </div>
       <div class="feature-item reveal">
         <div class="feature-icon">🤖</div>
@@ -626,7 +631,7 @@
       <div class="feature-item reveal">
         <div class="feature-icon">📊</div>
         <div class="feature-title">Laporan Upload</div>
-        <div class="feature-desc">Setiap sesi menghasilkan laporan lengkap: berhasil, duplikat, gagal, kecepatan, durasi — export ke TXT atau CSV.</div>
+        <div class="feature-desc">Setiap sesi menghasilkan laporan lengkap: berhasil, duplikat, gagal, kecepatan, durasi — export ke file TXT.</div>
       </div>
       <div class="feature-item reveal">
         <div class="feature-icon">💻</div>
@@ -654,16 +659,14 @@
         <div class="pricing-note">atau Rp 499rb/tahun • Rp 1.199rb lifetime</div>
         <div class="pricing-divider"></div>
         <ul class="pricing-features">
-          <li><span class="check">✓</span> Upload foto (JPG/PNG)</li>
+          <li><span class="check">✓</span> Upload foto (JPG/PNG), maks. 2000/batch</li>
           <li><span class="check">✓</span> 1 akun Fotoyu</li>
-          <li><span class="check">✓</span> Maks. 3 tab paralel</li>
+          <li><span class="check">✓</span> Maks. 2 tab paralel</li>
           <li><span class="check">✓</span> Mode STABLE & BALANCED</li>
           <li><span class="check">✓</span> Laporan .txt</li>
           <li><span class="check">✓</span> Resume foto gagal</li>
           <li><span class="x">✗</span> Upload video <span class="lock-badge">🔒 WAJIB PRO</span></li>
           <li><span class="x">✗</span> Multi-akun Fotoyu <span class="lock-badge">🔒 WAJIB PRO</span></li>
-          <li><span class="x">✗</span> Photo Splitter</li>
-          <li><span class="x">✗</span> Laporan CSV</li>
         </ul>
         <a href="https://velodash.lemonsqueezy.com/checkout/buy/4a249421-3c0d-4171-b774-82e6abb34c06" class="btn-pricing outlined">Beli Sekarang</a>
       </div>
@@ -676,15 +679,12 @@
         <div class="pricing-note">atau Rp 999rb/tahun • Rp 2.799rb lifetime</div>
         <div class="pricing-divider"></div>
         <ul class="pricing-features">
-          <li><span class="check">✓</span> Upload foto + video</li>
+          <li><span class="check">✓</span> Upload foto + video (foto 2000/batch, video 50/batch)</li>
           <li><span class="check">✓</span> Unlimited akun</li>
-          <li><span class="check">✓</span> Maks. 12 tab paralel</li>
+          <li><span class="check">✓</span> Maks. 20 tab paralel (bisa disesuaikan biar RAM aman)</li>
           <li><span class="check">✓</span> Mode BOOST (kecepatan max)</li>
-          <li><span class="check">✓</span> Laporan .txt + .csv</li>
+          <li><span class="check">✓</span> Laporan .txt</li>
           <li><span class="check">✓</span> Resume foto gagal</li>
-          <li><span class="check">✓</span> Upload video</li>
-          <li><span class="check">✓</span> Photo Splitter</li>
-          <li><span class="check">✓</span> Priority support</li>
         </ul>
         <a href="https://velodash.lemonsqueezy.com/checkout/buy/b56969e3-c494-4b19-a4e8-2bcbe483970b" class="btn-pricing solid">Beli Sekarang</a>
       </div>
@@ -722,8 +722,13 @@
           </tr>
           <tr>
             <td class="feature-name">Tab paralel (maks)</td>
-            <td><span class="val">3 tab</span></td>
-            <td><span class="val">12 tab</span></td>
+            <td><span class="val">2 tab</span></td>
+            <td><span class="val">20 tab (custom)</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Maks foto/video per batch</td>
+            <td><span class="val">2000 foto</span></td>
+            <td><span class="val">2000 foto / 50 video</span></td>
           </tr>
           <tr>
             <td class="feature-name">Upload Logic</td>
@@ -732,18 +737,13 @@
           </tr>
           <tr>
             <td class="feature-name">Custom preset</td>
-            <td><span class="no">✗</span></td>
             <td><span class="yes">✓</span></td>
-          </tr>
-          <tr>
-            <td class="feature-name">Photo Splitter</td>
-            <td><span class="no">✗</span></td>
             <td><span class="yes">✓</span></td>
           </tr>
           <tr>
             <td class="feature-name">Laporan export</td>
             <td><span class="val">.txt</span></td>
-            <td><span class="val">.txt + .csv</span></td>
+            <td><span class="val">.txt</span></td>
           </tr>
           <tr>
             <td class="feature-name">Resume foto gagal</td>
@@ -762,8 +762,8 @@
           </tr>
           <tr>
             <td class="feature-name">Customer support</td>
-            <td><span class="val">Community</span></td>
-            <td><span class="val">Priority (WA/email)</span></td>
+            <td><span class="val">Email / WA</span></td>
+            <td><span class="val">Email / WA</span></td>
           </tr>
         </tbody>
       </table>
@@ -794,7 +794,7 @@
           <div class="faq-icon">+</div>
         </button>
         <div class="faq-a">
-          Tidak ada batas dari VeloDash. Dengan PRO (12 tab × 1000 foto/batch), kamu bisa upload 12.000 foto per putaran. Batas sebenarnya tergantung kebijakan Fotoyu dan kecepatan internet kamu.
+          Maks. 2000 foto atau 50 video per batch (mengikuti limit Fotoyu). Dengan PRO, batch ini bisa dijalankan di banyak tab sekaligus (hingga 20, disesuaikan dengan RAM device kamu) — jadi total per putaran bisa jauh lebih besar dari 1 batch.
         </div>
       </div>
       <div class="faq-item reveal">
@@ -808,11 +808,11 @@
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" onclick="toggleFaq(this)">
-          Apa bedanya VeloDash dengan AutoYu V3?
+          Berapa banyak tab yang aman dijalankan bersamaan?
           <div class="faq-icon">+</div>
         </button>
         <div class="faq-a">
-          VeloDash dibangun dari nol dengan teknologi Playwright yang lebih modern, mendukung upload paralel multi-tab dalam satu window, timeout adaptif sesuai jumlah foto, dan tersedia untuk Windows & Mac. Interface lebih bersih, dan laporan upload lebih detail.
+          Tergantung RAM device dan kecepatan internet kamu. VeloDash punya pengaturan "Batas Tab Aman" yang bisa kamu turunkan sendiri kalau upload mulai macet/stuck di koneksi lambat — jadi kamu yang kontrol keseimbangan kecepatan vs stabilitas.
         </div>
       </div>
     </div>
