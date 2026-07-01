@@ -86,13 +86,23 @@
     padding: 16px 24px; max-width: 1100px; margin: 0 auto;
   }
   .nav-logo {
-    font-family: var(--display); font-size: 20px; font-weight: 800;
-    letter-spacing: -0.5px;
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--display); font-size: 19px; font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+  .nav-logo-icon { width: 26px; height: 26px; display: block; }
+  .nav-logo-text {
     background: linear-gradient(135deg, #fff 0%, var(--accent-lt) 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  .nav-logo span { color: var(--accent-lt); -webkit-text-fill-color: var(--accent-lt); }
+  .nav-product-tag {
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    color: var(--accent-lt); -webkit-text-fill-color: var(--accent-lt);
+    background: var(--accent-glow);
+    border: 1px solid var(--border-bright); border-radius: 999px;
+    padding: 3px 10px; letter-spacing: 0.03em;
+  }
   .nav-links { display: flex; gap: 32px; list-style: none; }
   .nav-links a {
     color: var(--text-sec); text-decoration: none; font-size: 14px;
@@ -521,7 +531,11 @@
 <!-- ── NAV ── -->
 <nav>
   <div class="nav-inner">
-    <div class="nav-logo">Velo<span>Dash</span></div>
+    <div class="nav-logo">
+      <img src="assets/velodash-icon.png" class="nav-logo-icon" alt="VeloCorp">
+      <span class="nav-logo-text">VeloCorp</span>
+      <span class="nav-product-tag">VeloDash</span>
+    </div>
     <ul class="nav-links">
       <li><a href="#fitur">Fitur</a></li>
       <li><a href="#harga">Harga</a></li>
@@ -536,7 +550,7 @@
 <section class="hero">
   <div class="container">
     <div class="hero-content">
-      <div class="hero-eyebrow">Fotoyu Upload Assistant</div>
+      <div class="hero-eyebrow">VeloDash — Fotoyu Upload Assistant</div>
       <h1 class="hero-title">
         <span class="line1">Upload ribuan foto</span>
         <span class="line2">otomatis & cepat.</span>
@@ -837,8 +851,8 @@
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-logo">VeloDash</div>
-      <div class="footer-copy">© 2026 VeloDash. All rights reserved.</div>
+      <div class="footer-logo">VeloCorp <span class="nav-product-tag">VeloDash</span></div>
+      <div class="footer-copy">© 2026 VeloCorp. All rights reserved.</div>
       <div class="footer-links">
         <a href="#">Syarat & Ketentuan</a>
         <a href="#">Kebijakan Privasi</a>
