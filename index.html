@@ -311,6 +311,19 @@
   }
   .feature-desc { font-size: 14px; color: var(--text-sec); line-height: 1.65; }
 
+  /* ── HOW IT WORKS (STEPS) ── */
+  .steps-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 20px; overflow: hidden;
+  }
+  .step-num {
+    position: absolute; top: 28px; right: 28px;
+    font-family: var(--mono); font-size: 13px; font-weight: 500;
+    color: var(--text-dim);
+  }
+
   /* ── PRICING ── */
   .pricing { background: var(--bg-surface); position: relative; overflow: hidden; }
   .pricing::before {
@@ -514,6 +527,7 @@
   }
   @media (max-width: 900px) {
     .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
     .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
     .compare-table { font-size: 13px; }
     .compare-table th, .compare-table td { padding: 14px 16px; }
@@ -522,6 +536,7 @@
   }
   @media (max-width: 600px) {
     .features-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr; }
     .hero-stats { gap: 24px; }
     .footer-inner { flex-direction: column; text-align: center; }
     .footer-links { justify-content: center; }
@@ -540,6 +555,7 @@
     </div>
     <ul class="nav-links">
       <li><a href="#fitur">Fitur</a></li>
+      <li><a href="#cara-kerja">Cara Kerja</a></li>
       <li><a href="#harga">Harga</a></li>
       <li><a href="#perbandingan">Perbandingan</a></li>
       <li><a href="#faq">FAQ</a></li>
@@ -653,6 +669,43 @@
         <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
         <div class="feature-title">Windows & Mac</div>
         <div class="feature-desc">Satu lisensi, dua platform. Build native untuk Windows (.exe) dan macOS Apple Silicon (.app).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CARA KERJA ── -->
+<section class="steps" id="cara-kerja">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag">Cara Kerja</div>
+      <h2>4 langkah, ribuan foto terupload</h2>
+      <p>Tidak perlu setting rumit. Isi sekali, klik start, VeloDash yang kerja.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="feature-item reveal">
+        <div class="step-num">01</div>
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg></div>
+        <div class="feature-title">Pilih Folder & Akun</div>
+        <div class="feature-desc">Pilih folder berisi foto/video, lalu pilih akun Fotoyu yang mau dipakai upload.</div>
+      </div>
+      <div class="feature-item reveal">
+        <div class="step-num">02</div>
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg></div>
+        <div class="feature-title">Isi Harga & FotoTree</div>
+        <div class="feature-desc">Isi harga, FotoTree/lokasi, dan deskripsi sekali — atau pakai preset yang sudah kamu simpan.</div>
+      </div>
+      <div class="feature-item reveal">
+        <div class="step-num">03</div>
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></div>
+        <div class="feature-title">Klik Start Upload</div>
+        <div class="feature-desc">VeloDash buka Chrome, isi form, dan klik Unggah otomatis di banyak tab sekaligus.</div>
+      </div>
+      <div class="feature-item reveal">
+        <div class="step-num">04</div>
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+        <div class="feature-title">Pantau & Cek Laporan</div>
+        <div class="feature-desc">Log real-time selama proses jalan, laporan lengkap (sukses/gagal/durasi) begitu selesai.</div>
       </div>
     </div>
   </div>
@@ -856,9 +909,9 @@
       <div class="footer-logo">VeloCorp <span class="nav-product-tag">VeloDash</span></div>
       <div class="footer-copy">© 2026 VeloCorp. All rights reserved.</div>
       <div class="footer-links">
-        <a href="#">Syarat & Ketentuan</a>
-        <a href="#">Kebijakan Privasi</a>
-        <a href="#">Kontak</a>
+        <a href="terms.html">Syarat & Ketentuan</a>
+        <a href="privacy.html">Kebijakan Privasi</a>
+        <a href="https://wa.me/6287776686733" target="_blank">Kontak</a>
       </div>
     </div>
   </div>

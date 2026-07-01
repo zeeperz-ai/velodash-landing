@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kebijakan Privasi — VeloDash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1b2333;
+    --bg-card: #243045;
+    --border: rgba(136,192,208,0.15);
+    --accent-lt: #5fd2ff;
+    --text-pri: #eceff4;
+    --text-sec: #afc0d5;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text-pri); font-family: var(--body);
+    line-height: 1.7; font-size: 16px;
+  }
+  .container { max-width: 760px; margin: 0 auto; padding: 60px 24px 100px; }
+  a.back { color: var(--accent-lt); text-decoration: none; font-size: 14px; }
+  a.back:hover { text-decoration: underline; }
+  h1 { font-family: var(--display); font-size: 32px; margin: 24px 0 8px; }
+  .updated { color: var(--text-sec); font-size: 13px; margin-bottom: 40px; }
+  h2 { font-family: var(--display); font-size: 19px; margin: 36px 0 12px; color: var(--accent-lt); }
+  p, li { color: var(--text-sec); margin-bottom: 12px; }
+  ul { padding-left: 20px; }
+  strong { color: var(--text-pri); }
+  a { color: var(--accent-lt); }
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="index.html" class="back">← Kembali ke VeloDash</a>
+  <h1>Kebijakan Privasi</h1>
+  <div class="updated">Terakhir diperbarui: 1 Juli 2026</div>
+
+  <p>VeloDash (produk dari <strong>VeloCorp</strong>) adalah aplikasi desktop yang membantu upload foto/video ke Fotoyu.com secara otomatis. Halaman ini menjelaskan data apa yang disimpan dan bagaimana data itu digunakan.</p>
+
+  <h2>Data yang disimpan di device kamu</h2>
+  <ul>
+    <li><strong>Kredensial akun Fotoyu</strong> (email/username + password) — disimpan lokal di device kamu dalam format JSON biasa, tidak dikirim ke server VeloCorp. Model lisensi VeloDash adalah 1 lisensi = 1 device, jadi keamanan login Windows/Mac kamu adalah lapisan proteksi utama.</li>
+    <li><strong>Session login Fotoyu</strong> (cookies & localStorage) — disimpan lokal supaya kamu tidak perlu login ulang tiap upload.</li>
+    <li><strong>Pengaturan aplikasi</strong> (harga, FotoTree, preset, dll) — disimpan lokal di folder data aplikasi.</li>
+  </ul>
+
+  <h2>Data yang dikirim ke server</h2>
+  <ul>
+    <li><strong>Validasi lisensi</strong> — license key dan ID device (hasil hash, bukan data pribadi mentah) dikirim ke LemonSqueezy (penyedia payment & lisensi kami) untuk memverifikasi lisensi aktif.</li>
+    <li><strong>Upload foto/video</strong> — dikirim langsung dari browser Chromium di device kamu ke Fotoyu.com, persis seperti kamu upload manual. VeloCorp tidak pernah menerima atau menyimpan salinan foto/video kamu.</li>
+  </ul>
+
+  <h2>Yang TIDAK kami lakukan</h2>
+  <ul>
+    <li>Tidak ada tracking/analytics pihak ketiga yang memantau aktivitas upload kamu.</li>
+    <li>Tidak ada penjualan atau pembagian data ke pihak ketiga di luar yang disebutkan di atas.</li>
+    <li>Tidak ada akses ke foto/video kamu selain yang kamu pilih untuk diupload sendiri.</li>
+  </ul>
+
+  <h2>Pihak ketiga yang terlibat</h2>
+  <ul>
+    <li><strong>LemonSqueezy</strong> — pemrosesan pembayaran & validasi lisensi.</li>
+    <li><strong>Fotoyu.com</strong> — platform tujuan upload, mengikuti kebijakan privasi mereka sendiri untuk data yang kamu upload ke sana.</li>
+  </ul>
+
+  <h2>Pertanyaan</h2>
+  <p>Ada pertanyaan soal privasi datamu? Hubungi kami via <a href="https://wa.me/6287776686733" target="_blank">WhatsApp</a>.</p>
+</div>
+</body>
+</html>
