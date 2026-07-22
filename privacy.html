@@ -38,21 +38,21 @@
 <div class="container">
   <a href="index.html" class="back">← Kembali ke VeloDash</a>
   <h1>Kebijakan Privasi</h1>
-  <div class="updated">Terakhir diperbarui: 1 Juli 2026</div>
+  <div class="updated">Terakhir diperbarui: 22 Juli 2026</div>
 
   <p>VeloDash (produk dari <strong>VeloCorp</strong>) adalah aplikasi desktop yang membantu upload foto/video ke Fotoyu.com secara otomatis. Halaman ini menjelaskan data apa yang disimpan dan bagaimana data itu digunakan.</p>
 
   <h2>Data yang disimpan di device kamu</h2>
   <ul>
-    <li><strong>Kredensial akun Fotoyu</strong> (email/username + password) — disimpan lokal di device kamu dalam format JSON biasa, tidak dikirim ke server VeloCorp. Model lisensi VeloDash adalah 1 lisensi = 1 device, jadi keamanan login Windows/Mac kamu adalah lapisan proteksi utama.</li>
-    <li><strong>Session login Fotoyu</strong> (cookies & localStorage) — disimpan lokal supaya kamu tidak perlu login ulang tiap upload.</li>
+    <li><strong>Kredensial akun Fotoyu</strong> (email/username + password) — disimpan lokal di device kamu, tidak dikirim ke server VeloCorp. Keamanan login Windows/Mac kamu adalah lapisan proteksi utama.</li>
+    <li><strong>Token login Fotoyu</strong> — disimpan lokal supaya kamu tidak perlu login ulang tiap upload.</li>
     <li><strong>Pengaturan aplikasi</strong> (harga, FotoTree, preset, dll) — disimpan lokal di folder data aplikasi.</li>
   </ul>
 
   <h2>Data yang dikirim ke server</h2>
   <ul>
-    <li><strong>Validasi lisensi</strong> — license key dan ID device (hasil hash, bukan data pribadi mentah) dikirim ke LemonSqueezy (penyedia payment & lisensi kami) untuk memverifikasi lisensi aktif.</li>
-    <li><strong>Upload foto/video</strong> — dikirim langsung dari browser Chromium di device kamu ke Fotoyu.com, persis seperti kamu upload manual. VeloCorp tidak pernah menerima atau menyimpan salinan foto/video kamu.</li>
+    <li><strong>Validasi lisensi</strong> — serial number dan ID device (hasil hash, bukan data pribadi mentah) dikirim ke server lisensi kami untuk memverifikasi lisensi aktif dan jumlah device.</li>
+    <li><strong>Upload foto/video</strong> — dikirim langsung dari device kamu ke Fotoyu.com lewat jalur resmi, persis seperti kamu upload manual. VeloCorp tidak pernah menerima atau menyimpan salinan foto/video kamu.</li>
   </ul>
 
   <h2>Yang TIDAK kami lakukan</h2>
@@ -64,7 +64,7 @@
 
   <h2>Pihak ketiga yang terlibat</h2>
   <ul>
-    <li><strong>LemonSqueezy</strong> — pemrosesan pembayaran & validasi lisensi.</li>
+    <li><strong>Server lisensi VeloDash</strong> — memverifikasi serial number & jumlah device aktif. Pembayaran saat ini diproses manual (transfer, dikoordinasikan via WhatsApp).</li>
     <li><strong>Fotoyu.com</strong> — platform tujuan upload, mengikuti kebijakan privasi mereka sendiri untuk data yang kamu upload ke sana.</li>
   </ul>
 
