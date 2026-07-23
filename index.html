@@ -1014,6 +1014,12 @@
       <a href="#cara-beli" class="btn-pricing solid" style="width:auto; padding:12px 22px; white-space:nowrap;">Cara Mulai</a>
     </div>
 
+    <!-- Banner promo peluncuran — auto-hilang setelah tanggal berakhir (lihat script #promo-guard) -->
+    <div class="promo-only reveal" data-promo-until="2026-08-14" style="max-width:760px; margin:0 auto 24px; background:var(--accent-glow); border:1px solid var(--border-bright); border-radius:14px; padding:14px 22px; text-align:center;">
+      <span style="font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-lt); font-weight:700;">🎉 Promo Peluncuran — Diskon 40%</span>
+      <span style="display:block; font-size:13px; color:var(--text-sec); margin-top:4px;">Berlaku untuk pembelian s/d <b style="color:var(--text-pri);">14 Agustus 2026</b>. Sebutkan kode <b style="color:var(--accent-lt);">LAUNCH40</b> saat chat admin — diskon langsung diterapkan.</span>
+    </div>
+
     <div class="pricing-grid">
 
       <!-- LITE -->
@@ -1290,6 +1296,25 @@
       line.style.transform = 'none';
     }, 800 + i * 180);
   });
+
+  // #promo-guard — matikan promo otomatis setelah tanggal berakhir.
+  // 1) Sembunyikan semua elemen .promo-only.
+  // 2) Bersihkan pesan promo di link WhatsApp (kode LAUNCH40 + "-40%") jadi normal.
+  (function promoGuard() {
+    const PROMO_UNTIL = new Date('2026-08-14T23:59:59+07:00');
+    if (new Date() <= PROMO_UNTIL) return;   // masih promo — biarkan
+    document.querySelectorAll('.promo-only').forEach(el => el.remove());
+    document.querySelectorAll('a[href*="wa.me"]').forEach(a => {
+      try {
+        const u = new URL(a.href);
+        let t = u.searchParams.get('text') || '';
+        // Buang embel-embel promo, sisakan niat beli yang normal.
+        t = t.replace(/\s*\(promo peluncuran[^)]*\)/i, '');
+        u.searchParams.set('text', t.trim());
+        a.href = u.toString();
+      } catch (_) {}
+    });
+  })();
 </script>
 </body>
 </html>
