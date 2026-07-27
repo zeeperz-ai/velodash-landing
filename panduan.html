@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panduan VeloDash — dari install sampai analitik</title>
+<meta name="description" content="Panduan langkah demi langkah memakai VeloDash: install, aktivasi lisensi, login Fotoyu, atur harga & FotoTree, upload batch, sampai baca Dashboard dan Analytics.">
+<link rel="icon" href="assets/velodash-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Palet Aurora/Nord — sama persis dengan index.html & app desktop. */
+  :root {
+    --bg: #1b2333;
+    --bg-card: #243045;
+    --bg-surface: #2e3d55;
+    --border: rgba(136,192,208,0.15);
+    --border-bright: rgba(136,192,208,0.4);
+    --accent: #88c0d0;
+    --accent-lt: #5fd2ff;
+    --accent-glow: rgba(136,192,208,0.25);
+    --green: #a3be8c;
+    --amber: #ebcb8b;
+    --red: #bf616a;
+    --text-pri: #eceff4;
+    --text-sec: #afc0d5;
+    --text-dim: #4c566a;
+    --mono: 'IBM Plex Mono', monospace;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+  body {
+    background: var(--bg); color: var(--text-pri);
+    font-family: var(--body); font-size: 16px; line-height: 1.6;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 { font-family: var(--display); font-weight: 700; line-height: 1.15; }
+  a { color: var(--accent-lt); }
+
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  .tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent-lt); background: rgba(136,192,208,0.1);
+    border: 1px solid var(--border-bright);
+    padding: 4px 12px; border-radius: 100px; margin-bottom: 20px;
+  }
+  .tag::before { content: '⬡'; font-size: 8px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(8,8,15,0.85); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px; max-width: 1180px; margin: 0 auto;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--display); font-size: 19px; font-weight: 700;
+    letter-spacing: -0.3px; text-decoration: none; color: var(--text-pri);
+  }
+  .nav-logo-icon { width: 26px; height: 26px; display: block; }
+  .nav-logo-text {
+    background: linear-gradient(135deg, #fff 0%, var(--accent-lt) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .nav-product-tag {
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    color: var(--accent-lt); -webkit-text-fill-color: var(--accent-lt);
+    background: var(--accent-glow); border: 1px solid var(--border-bright);
+    border-radius: 999px; padding: 3px 10px; letter-spacing: 0.03em;
+  }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: var(--text-sec); text-decoration: none; font-size: 14px; transition: color .2s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text-pri); }
+  .btn-nav {
+    background: var(--accent); color: #10151f; border: none;
+    padding: 8px 20px; border-radius: 8px; font-size: 14px; font-weight: 600;
+    text-decoration: none; transition: background .2s, transform .15s;
+  }
+  .btn-nav:hover { background: var(--accent-lt); transform: translateY(-1px); }
+
+  /* ── HEADER ── */
+  .page-head { padding: 130px 0 40px; }
+  .page-head h1 { font-size: clamp(30px, 5vw, 46px); margin-bottom: 14px; }
+  .page-head p { color: var(--text-sec); max-width: 680px; }
+  .head-meta {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px;
+  }
+  .chip {
+    font-family: var(--mono); font-size: 12px; color: var(--text-sec);
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 999px; padding: 6px 14px;
+  }
+
+  /* ── LAYOUT ── */
+  .layout {
+    display: grid; grid-template-columns: 250px 1fr; gap: 48px;
+    padding-bottom: 80px; align-items: start;
+  }
+  .toc { position: sticky; top: 90px; }
+  .toc-title {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--text-dim); margin-bottom: 14px;
+  }
+  .toc ol { list-style: none; counter-reset: toc; }
+  .toc li { counter-increment: toc; }
+  .toc a {
+    display: block; padding: 7px 0 7px 34px; position: relative;
+    color: var(--text-sec); text-decoration: none; font-size: 14px;
+    border-left: 2px solid transparent; transition: color .2s, border-color .2s;
+  }
+  .toc a::before {
+    content: counter(toc, decimal-leading-zero);
+    position: absolute; left: 12px; font-family: var(--mono);
+    font-size: 11px; color: var(--text-dim);
+  }
+  .toc a:hover, .toc a.active { color: var(--accent-lt); border-left-color: var(--accent-lt); }
+  .toc a.active::before { color: var(--accent-lt); }
+  .toc-help {
+    margin-top: 22px; padding: 14px 16px; font-size: 13px; line-height: 1.6;
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+    color: var(--text-sec);
+  }
+
+  /* ── STEP ── */
+  .step { padding-bottom: 56px; margin-bottom: 8px; }
+  .step + .step { border-top: 1px solid var(--border); padding-top: 44px; }
+  .step-num {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .14em;
+    color: var(--accent-lt); display: block; margin-bottom: 8px;
+  }
+  .step h2 { font-size: clamp(22px, 3vw, 28px); margin-bottom: 10px; }
+  .step > p { color: var(--text-sec); margin-bottom: 20px; max-width: 720px; }
+
+  .shot {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 14px; overflow: hidden; margin: 20px 0 22px;
+  }
+  .shot img { display: block; width: 100%; height: auto; }
+  .shot.inline { max-width: 420px; }
+  .shot figcaption {
+    font-size: 12.5px; color: var(--text-dim); padding: 10px 16px;
+    border-top: 1px solid var(--border); font-family: var(--mono);
+  }
+
+  .fields { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 18px 0; }
+  .fields li {
+    display: grid; grid-template-columns: 190px 1fr; gap: 16px;
+    font-size: 14.5px; color: var(--text-sec);
+    padding-bottom: 12px; border-bottom: 1px dashed rgba(136,192,208,0.12);
+  }
+  .fields li:last-child { border-bottom: none; padding-bottom: 0; }
+  .fields b { color: var(--text-pri); font-weight: 600; }
+
+  .bullets { margin: 16px 0 0 0; padding-left: 20px; color: var(--text-sec); font-size: 14.5px; line-height: 1.85; }
+  .bullets li::marker { color: var(--accent); }
+  .bullets b { color: var(--text-pri); }
+
+  .note {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: rgba(136,192,208,0.08); border: 1px solid var(--border-bright);
+    border-left: 3px solid var(--accent-lt);
+    border-radius: 10px; padding: 14px 18px; margin: 20px 0;
+    font-size: 14px; color: var(--text-sec); line-height: 1.7;
+  }
+  .note.warn { background: rgba(235,203,139,0.08); border-color: rgba(235,203,139,0.35); border-left-color: var(--amber); }
+  .note.pro  { background: rgba(163,190,140,0.08); border-color: rgba(163,190,140,0.35); border-left-color: var(--green); }
+  .note-ico { flex: none; font-size: 15px; line-height: 1.5; }
+  .note b { color: var(--text-pri); }
+
+  .kbd, code {
+    font-family: var(--mono); font-size: 13px;
+    background: var(--bg-surface); border: 1px solid var(--border);
+    border-radius: 6px; padding: 1px 7px; color: var(--text-pri);
+  }
+
+  .split { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 20px 0; }
+  .mini {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px 18px;
+  }
+  .mini h4 { font-size: 15px; margin-bottom: 6px; color: var(--text-pri); }
+  .mini p { font-size: 13.5px; color: var(--text-sec); line-height: 1.65; }
+  .mini .badge {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--accent-lt); display: block; margin-bottom: 8px;
+  }
+
+  /* ── FAQ / TROUBLESHOOT ── */
+  .tr-item { border: 1px solid var(--border); border-radius: 12px; background: var(--bg-card); margin-bottom: 12px; overflow: hidden; }
+  .tr-q {
+    width: 100%; text-align: left; background: none; border: none; cursor: pointer;
+    color: var(--text-pri); font-family: var(--body); font-size: 15px; font-weight: 500;
+    padding: 16px 20px; display: flex; justify-content: space-between; gap: 16px; align-items: center;
+  }
+  .tr-q::after { content: '+'; color: var(--accent-lt); font-size: 20px; line-height: 1; }
+  .tr-item.open .tr-q::after { content: '−'; }
+  .tr-a { display: none; padding: 0 20px 18px; color: var(--text-sec); font-size: 14px; line-height: 1.8; }
+  .tr-item.open .tr-a { display: block; }
+
+  /* ── CTA + FOOTER ── */
+  .cta-box {
+    background: linear-gradient(135deg, rgba(136,192,208,0.14), rgba(95,210,255,0.06));
+    border: 1px solid var(--border-bright); border-radius: 20px;
+    padding: 40px 32px; text-align: center; margin: 20px 0 70px;
+  }
+  .cta-box h2 { font-size: 26px; margin-bottom: 10px; }
+  .cta-box p { color: var(--text-sec); margin-bottom: 22px; }
+  .btn-primary {
+    display: inline-block; background: var(--accent-lt); color: #10151f;
+    padding: 14px 32px; border-radius: 10px; font-weight: 600;
+    text-decoration: none; transition: transform .15s, box-shadow .2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(95,210,255,0.25); }
+
+  footer { border-top: 1px solid var(--border); padding: 30px 0; }
+  .footer-inner { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+  .footer-logo { font-family: var(--display); font-weight: 700; display: flex; align-items: center; gap: 10px; }
+  .footer-copy, .footer-links a { font-size: 13px; color: var(--text-dim); text-decoration: none; }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a:hover { color: var(--accent-lt); }
+
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; gap: 24px; }
+    .toc { position: static; }
+    .toc ol { display: flex; flex-wrap: wrap; gap: 6px; }
+    .toc a { border-left: none; border: 1px solid var(--border); border-radius: 999px; padding: 6px 14px 6px 30px; }
+    .toc a::before { left: 12px; }
+    .toc a.active { border-color: var(--accent-lt); }
+    .nav-links { display: none; }
+    .fields li { grid-template-columns: 1fr; gap: 4px; }
+  }
+  @media (max-width: 480px) {
+    .nav-inner { padding: 12px 16px; }
+    .nav-logo { font-size: 17px; gap: 8px; }
+    .btn-nav { padding: 7px 14px; font-size: 13px; white-space: nowrap; }
+    .container { padding: 0 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/velodash-icon.png" class="nav-logo-icon" alt="VeloCorp">
+      <span class="nav-logo-text">VeloCorp</span>
+      <span class="nav-product-tag">VeloDash</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#fitur">Fitur</a></li>
+      <li><a href="panduan.html" class="active">Panduan</a></li>
+      <li><a href="index.html#harga">Harga</a></li>
+      <li><a href="index.html#perbandingan">Perbandingan</a></li>
+      <li><a href="index.html#faq">FAQ</a></li>
+    </ul>
+    <a href="index.html#harga" class="btn-nav">Lihat Harga →</a>
+  </div>
+</nav>
+
+<!-- ── HEADER ── -->
+<header class="page-head">
+  <div class="container">
+    <div class="tag">Panduan Pemakaian</div>
+    <h1>Dari install sampai baca analitik</h1>
+    <p>Semua langkah di bawah pakai tangkapan layar aplikasi VeloDash yang sebenarnya — bukan ilustrasi. Ikuti sekali dari atas, setelah itu kamu tinggal ulangi langkah 5–7 tiap event.</p>
+    <div class="head-meta">
+      <span class="chip">Windows &amp; macOS</span>
+      <span class="chip">± 10 menit setup pertama</span>
+      <span class="chip">Panduan yang sama ada di dalam app (menu Panduan)</span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+<div class="layout">
+
+  <!-- ── TOC ── -->
+  <aside class="toc">
+    <div class="toc-title">Daftar Langkah</div>
+    <ol>
+      <li><a href="#install">Install aplikasi</a></li>
+      <li><a href="#aktivasi">Aktivasi / trial</a></li>
+      <li><a href="#akun">Login akun Fotoyu</a></li>
+      <li><a href="#harga">Harga &amp; FotoTree</a></li>
+      <li><a href="#folder">Pilih folder sumber</a></li>
+      <li><a href="#mulai">Mulai upload batch</a></li>
+      <li><a href="#performa">Atur mode performa</a></li>
+      <li><a href="#riwayat">Cek riwayat &amp; gagal</a></li>
+      <li><a href="#dashboard">Dashboard pendapatan</a></li>
+      <li><a href="#tree">Tree Analyzer</a></li>
+      <li><a href="#analytics">Analytics penjualan</a></li>
+      <li><a href="#kendala">Kendala umum</a></li>
+    </ol>
+    <div class="toc-help">
+      Butuh bantuan langsung?<br>
+      <a href="https://wa.me/6287776686733" target="_blank">Chat admin via WhatsApp →</a>
+    </div>
+  </aside>
+
+  <!-- ── KONTEN ── -->
+  <main>
+
+    <!-- 01 -->
+    <section class="step" id="install">
+      <span class="step-num">LANGKAH 01 · PERSIAPAN</span>
+      <h2>Install VeloDash</h2>
+      <p>VeloDash adalah aplikasi desktop — tidak perlu Chrome, tidak perlu extension. Sekali install, jalan sendiri.</p>
+
+      <div class="split">
+        <div class="mini">
+          <span class="badge">Windows 10 / 11</span>
+          <h4>Jalankan installer</h4>
+          <p>Buka file <code>VeloDash-Setup.exe</code> → <b>Next</b> sampai selesai. VeloDash muncul di Start Menu.</p>
+        </div>
+        <div class="mini">
+          <span class="badge">macOS (Apple Silicon)</span>
+          <h4>Seret ke Applications</h4>
+          <p>Buka file <code>.dmg</code>, seret ikon <b>VeloDash</b> ke folder <b>Applications</b>, lalu buka dari Launchpad.</p>
+        </div>
+      </div>
+
+      <div class="note warn">
+        <span class="note-ico">⚠</span>
+        <div>
+          <b>Muncul peringatan saat pertama dibuka?</b> Itu normal untuk aplikasi baru yang belum dikenal sistem.<br>
+          <b>Windows:</b> kalau muncul “Windows protected your PC”, klik <b>More info</b> → <b>Run anyway</b>.<br>
+          <b>macOS:</b> kalau muncul “tidak dapat dibuka”, klik kanan ikon VeloDash → <b>Open</b> → <b>Open</b>. Atau buka <b>System Settings → Privacy &amp; Security</b> → tombol <b>Open Anyway</b>.
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 -->
+    <section class="step" id="aktivasi">
+      <span class="step-num">LANGKAH 02 · LISENSI</span>
+      <h2>Aktivasi serial, atau coba trial dulu</h2>
+      <p>Begitu aplikasi dibuka pertama kali, kamu diminta mengaktifkan lisensi. Ada tiga pilihan di layar ini.</p>
+
+      <figure class="shot inline">
+        <img src="assets/panduan/01-aktivasi.png" alt="Dialog aktivasi VeloDash: input serial number, tombol trial 1 hari, dan tombol beli via WhatsApp" loading="lazy">
+        <figcaption>Layar aktivasi — muncul otomatis saat app pertama dibuka</figcaption>
+      </figure>
+
+      <ul class="bullets">
+        <li><b>Punya serial?</b> Tempel di kolom <code>XXXX-XXXX-XXXX-XXXX</code> lalu klik <b>Aktivasi</b>. Serial dikirim admin lewat WhatsApp setelah pembayaran.</li>
+        <li><b>Belum yakin?</b> Klik <b>Coba Gratis — Trial 1 Hari</b>. Trial dibatasi: foto saja (maks 500), tanpa video, dan Dashboard/Analytics hanya preview 7 hari terakhir.</li>
+        <li><b>Mau beli sekarang?</b> Klik tombol promo — WhatsApp terbuka dengan pesan yang sudah terisi otomatis, tinggal kirim.</li>
+      </ul>
+
+      <div class="note">
+        <span class="note-ico">ℹ</span>
+        <div>Satu serial terikat ke perangkat yang kamu aktifkan. Kalau ganti laptop, minta admin melepas seat lama — gratis, tinggal chat.</div>
+      </div>
+    </section>
+
+    <!-- 03 -->
+    <section class="step" id="akun">
+      <span class="step-num">LANGKAH 03 · AKUN</span>
+      <h2>Login akun Fotoyu</h2>
+      <p>VeloDash upload atas nama akun Fotoyu-mu, jadi login dulu. Buka menu <b>Accounts</b> di sidebar kiri, klik <b>+ Tambah akun</b>.</p>
+
+      <figure class="shot inline">
+        <img src="assets/panduan/02-login.png" alt="Form login Fotoyu di VeloDash: kolom username dan password" loading="lazy">
+        <figcaption>Pakai <b>username</b> Fotoyu, bukan alamat email</figcaption>
+      </figure>
+
+      <ul class="bullets">
+        <li>Isi <b>username</b> dan <b>password</b> Fotoyu, klik <b>Masuk</b>.</li>
+        <li>Kalau akunmu pakai verifikasi dua langkah, akan muncul kolom <b>kode OTP</b> — isi kodenya.</li>
+        <li>Password <b>tidak disimpan</b>. Yang tersimpan hanya token login, dan hanya di perangkatmu.</li>
+      </ul>
+
+      <figure class="shot">
+        <img src="assets/panduan/03-accounts.png" alt="Halaman Accounts VeloDash berisi daftar akun tersimpan dengan tombol Pakai dan Hapus" loading="lazy">
+        <figcaption>Simpan banyak akun sekaligus — klik <b>Pakai</b> untuk berpindah</figcaption>
+      </figure>
+
+      <div class="note pro">
+        <span class="note-ico">✓</span>
+        <div>Akun yang sudah pernah login tetap tersimpan, jadi besok buka app langsung siap upload — tak perlu login ulang. Pindah akun cukup satu klik <b>Pakai</b>.</div>
+      </div>
+    </section>
+
+    <!-- 04 -->
+    <section class="step" id="harga">
+      <span class="step-num">LANGKAH 04 · KONFIGURASI</span>
+      <h2>Isi harga, FotoTree, dan tanggal</h2>
+      <p>Masuk ke menu <b>Upload</b>. Bagian atas adalah <b>Upload config</b> — isi sekali di awal event, berlaku untuk seluruh batch.</p>
+
+      <figure class="shot">
+        <img src="assets/panduan/04-upload.png" alt="Halaman Upload VeloDash: upload config, source folder, preview, dan tombol start batch upload" loading="lazy">
+        <figcaption>Halaman Upload — satu layar untuk seluruh proses</figcaption>
+      </figure>
+
+      <ul class="fields">
+        <li><b>Base price</b><span>Harga jual per foto. Panel di bawahnya langsung menghitung <b>Net Creator</b> (yang kamu terima) setelah fee Fotoyu — jadi kamu tahu angka bersihnya sebelum upload.</span></li>
+        <li><b>FotoTree</b><span>Ketik nama event, lalu <b>pilih dari daftar saran</b> yang muncul. Jangan diketik manual tanpa memilih — foto bisa tidak masuk ke event yang benar.</span></li>
+        <li><b>Location</b><span>Terisi otomatis mengikuti FotoTree yang dipilih. Tidak perlu diubah.</span></li>
+        <li><b>Tanggal custom</b><span>Nyalakan kalau mau semua foto memakai tanggal &amp; jam tertentu. Kalau dimatikan, VeloDash membaca tanggal asli tiap foto dari EXIF kamera.</span></li>
+        <li><b>Description</b><span>Opsional. Boleh dikosongkan.</span></li>
+        <li><b>Preset</b><span>Sudah pas? Klik <b>Simpan preset</b> di kanan atas. Event berikutnya tinggal pilih preset — harga, FotoTree, dan deskripsi terisi sendiri.</span></li>
+      </ul>
+
+      <div class="note warn">
+        <span class="note-ico">⚠</span>
+        <div><b>Kesalahan paling sering:</b> FotoTree diketik tapi tidak diklik dari daftar saran. Pastikan nama event sudah tampil sebagai pilihan terpilih sebelum mulai upload.</div>
+      </div>
+    </section>
+
+    <!-- 05 -->
+    <section class="step" id="folder">
+      <span class="step-num">LANGKAH 05 · SUMBER FILE</span>
+      <h2>Pilih folder foto atau video</h2>
+      <p>Di kotak <b>Source folder</b>, pilih dulu jenis isinya, lalu tunjuk foldernya.</p>
+
+      <div class="split">
+        <div class="mini"><span class="badge">Tab Foto</span><h4>Foto saja</h4><p>Hanya file gambar yang di-scan. Paling umum dipakai.</p></div>
+        <div class="mini"><span class="badge">Tab Video</span><h4>Video saja</h4><p>Khusus rekaman video. Tersedia di paket Lite &amp; Pro.</p></div>
+        <div class="mini"><span class="badge">Tab Foto + Video</span><h4>Campur</h4><p>Satu folder berisi dua-duanya, diproses sekaligus.</p></div>
+      </div>
+
+      <ul class="bullets">
+        <li>Klik <b>Change</b> untuk memilih folder. <b>Semua sub-folder ikut ter-scan</b> — tidak perlu dijadikan satu folder dulu.</li>
+        <li>Di kanan muncul jumlah file yang terbaca, plus <b>estimasi waktu</b> berdasarkan kecepatan upload terakhirmu.</li>
+        <li>Nyalakan <b>Auto-upload</b> kalau kamu sedang di lokasi dan kartu memori terus disalin ke folder itu — foto baru langsung diunggah begitu masuk folder, tanpa klik apa pun.</li>
+        <li>Toggle <b>Preview</b> di kanan menampilkan thumbnail. Matikan saat file ribuan supaya lebih ringan.</li>
+        <li>Khusus mode Video, muncul baris <b>Rotasi video</b>. Biarkan di <i>Ikut video asli</i> kalau hasilnya sudah benar.</li>
+      </ul>
+
+      <div class="note warn">
+        <span class="note-ico">!</span>
+        <div><b>Video portrait ke-upload jadi landscape (miring)?</b> Sebagian action cam dan HP tidak menulis metadata rotasi, jadi rekaman portrait terbaca melintang. Pilih <b>Portrait — putar kanan 90°</b> (atau <i>putar kiri 90°</i> kalau arahnya terbalik) di baris Rotasi video, lalu upload ulang. Pilihan ini tersimpan otomatis untuk batch berikutnya.</div>
+      </div>
+    </section>
+
+    <!-- 06 -->
+    <section class="step" id="mulai">
+      <span class="step-num">LANGKAH 06 · JALANKAN</span>
+      <h2>Mulai upload batch</h2>
+      <p>Klik tombol besar <b>Start batch upload</b> di bawah. Tombolnya menampilkan jumlah file yang akan diproses, jadi kamu bisa cek dulu angkanya sebelum menekan.</p>
+
+      <ul class="fields">
+        <li><b>Selesai / Upload</b><span>Berapa file sudah beres dan berapa yang sedang berjalan saat ini.</span></li>
+        <li><b>Dup</b><span>File yang sudah pernah diunggah sebelumnya — dilewati otomatis, tidak dobel.</span></li>
+        <li><b>Gagal</b><span>File yang bermasalah. Dicoba ulang otomatis di akhir batch.</span></li>
+        <li><b>Kecepatan &amp; ETA</b><span>Laju upload sekarang dan perkiraan sisa waktu.</span></li>
+        <li><b>Pause / Stop</b><span><b>Pause</b> menahan sementara lalu bisa dilanjut. <b>Stop</b> menghentikan batch — progres yang sudah jalan tetap tersimpan.</span></li>
+      </ul>
+
+      <div class="note pro">
+        <span class="note-ico">✓</span>
+        <div>Kamu boleh menutup jendela aplikasi selama upload jalan jika opsi <b>system tray</b> di Settings dinyalakan — proses lanjut di belakang layar.</div>
+      </div>
+    </section>
+
+    <!-- 07 -->
+    <section class="step" id="performa">
+      <span class="step-num">LANGKAH 07 · PERFORMA</span>
+      <h2>Sesuaikan kecepatan dengan koneksimu</h2>
+      <p>Buka menu <b>Settings</b>. VeloDash sudah membaca jumlah CPU core perangkatmu dan menyarankan satu mode — tapi kamu bisa ganti kapan saja.</p>
+
+      <figure class="shot">
+        <img src="assets/panduan/05-settings.png" alt="Halaman Settings VeloDash: mode performa Hemat, Seimbang, Ngebut, pengaturan manual, dan perilaku" loading="lazy">
+        <figcaption>Settings — mode performa, ketajaman foto, dan auto-retry</figcaption>
+      </figure>
+
+      <div class="split">
+        <div class="mini"><span class="badge">Hemat</span><h4>Internet lambat</h4><p>Pilih ini kalau laptop ringan, koneksi seret, atau sering kena timeout.</p></div>
+        <div class="mini"><span class="badge">Seimbang</span><h4>Aman untuk umum</h4><p>Pilihan default. Cocok untuk hampir semua koneksi.</p></div>
+        <div class="mini"><span class="badge">Ngebut</span><h4>Internet kencang</h4><p>Untuk CPU kuat + koneksi cepat. Cek laporan — kalau timeout naik, turunkan lagi.</p></div>
+      </div>
+
+      <ul class="bullets">
+        <li><b>Auto-retry file gagal</b> — biarkan menyala. File yang gagal diulang otomatis di akhir batch.</li>
+        <li><b>Ketajaman foto</b> — “Ringan” disarankan; mempertajam foto saat dikompres tanpa terlihat berlebihan.</li>
+        <li><b>Notifikasi suara</b> — bunyi saat batch selesai, berguna kalau kamu mengerjakan hal lain.</li>
+      </ul>
+    </section>
+
+    <!-- 08 -->
+    <section class="step" id="riwayat">
+      <span class="step-num">LANGKAH 08 · RIWAYAT</span>
+      <h2>Cek hasil &amp; file yang gagal</h2>
+      <p>Menu <b>History</b> menyimpan tiap batch yang pernah dijalankan: jumlah sukses, duplikat, gagal, durasi, dan akun yang dipakai.</p>
+
+      <figure class="shot">
+        <img src="assets/panduan/09-history.png" alt="Halaman History VeloDash berisi daftar job upload dengan status dan detail error" loading="lazy">
+        <figcaption>History — buka satu baris untuk melihat detail file yang gagal</figcaption>
+      </figure>
+
+      <ul class="bullets">
+        <li>Klik satu baris untuk membuka daftar file yang bermasalah beserta alasannya.</li>
+        <li>Tombol <b>Export</b> menyimpan laporan agar bisa dicek belakangan atau dikirim ke admin saat minta bantuan.</li>
+      </ul>
+    </section>
+
+    <!-- 09 -->
+    <section class="step" id="dashboard">
+      <span class="step-num">LANGKAH 09 · PENDAPATAN</span>
+      <h2>Dashboard — lihat uang masuk</h2>
+      <p>Menu <b>Dashboard</b> menarik data penjualan dari akun Fotoyu-mu dan merangkumnya jadi satu layar: total pendapatan, jumlah foto terjual, harga rata-rata, tren harian, event paling laku, dan transaksi terbaru.</p>
+
+      <figure class="shot">
+        <img src="assets/panduan/06-dashboard.png" alt="Dashboard Performa VeloDash: kartu ringkasan pendapatan, grafik tren, ranking event, dan transaksi terbaru" loading="lazy">
+        <figcaption>Dashboard Performa — angka pada contoh ini diambil dari akun sungguhan</figcaption>
+      </figure>
+
+      <ul class="bullets">
+        <li>Filter rentang waktu di kanan atas untuk membandingkan minggu atau bulan.</li>
+        <li>Tabel <b>ranking event</b> menunjukkan FotoTree mana yang paling menghasilkan — pakai ini untuk memutuskan event berikutnya.</li>
+      </ul>
+
+      <div class="note">
+        <span class="note-ico">ℹ</span>
+        <div>Dashboard, Tree Analyzer, dan Analytics termasuk paket <b>Pro</b>. Paket <b>Lite</b> fokus ke uploader saja; saat <b>Trial</b> ketiganya bisa dilihat tapi terbatas 7 hari terakhir.</div>
+      </div>
+    </section>
+
+    <!-- 10 -->
+    <section class="step" id="tree">
+      <span class="step-num">LANGKAH 10 · RISET</span>
+      <h2>Tree Analyzer — intip potensi sebuah event</h2>
+      <p>Sebelum berangkat ke sebuah event, cek dulu seberapa ramai pasarnya. Ketik nama event di kolom pencarian, klik <b>Detail</b>, dan VeloDash memindai FotoTree tersebut.</p>
+
+      <figure class="shot">
+        <img src="assets/panduan/07-tree.png" alt="FotoTree Analyzer VeloDash: hasil pencarian event dengan jumlah foto tersedia" loading="lazy">
+        <figcaption>Tree Analyzer — hasil scan tersimpan, bisa dibuka lagi lewat <b>Riwayat</b></figcaption>
+      </figure>
+
+      <ul class="bullets">
+        <li>Hasil scan menampilkan jumlah foto di event itu dan <b>ranking seller</b> berdasarkan foto terjual.</li>
+        <li>Riwayat scan tersimpan, jadi kamu bisa membandingkan event yang satu dengan yang lain kapan saja.</li>
+      </ul>
+    </section>
+
+    <!-- 11 -->
+    <section class="step" id="analytics">
+      <span class="step-num">LANGKAH 11 · ANALITIK</span>
+      <h2>Analytics — foto mana yang laku</h2>
+      <p>Menu <b>Analytics</b> membedah galerimu per tanggal: berapa foto total, berapa yang masih tersedia, dan mana yang perlu ditindaklanjuti.</p>
+
+      <figure class="shot">
+        <img src="assets/panduan/08-analytics.jpg" alt="Halaman Analytics VeloDash: grid foto per tanggal dengan jumlah total dan tersedia" loading="lazy">
+        <figcaption>Analytics — klik satu tanggal untuk menganalisis galerinya</figcaption>
+      </figure>
+
+      <ul class="bullets">
+        <li><b>Perbarui Daftar</b> menarik data terbaru dari Fotoyu.</li>
+        <li><b>Analisa Semua yang Belum Dicek</b> memproses seluruh tanggal sekaligus — jalankan sambil ditinggal.</li>
+      </ul>
+    </section>
+
+    <!-- 12 -->
+    <section class="step" id="kendala">
+      <span class="step-num">LANGKAH 12 · BANTUAN</span>
+      <h2>Kendala umum</h2>
+      <p>Sebagian besar masalah selesai dengan langkah di bawah. Kalau tetap mentok, chat admin — biasanya dibalas cepat.</p>
+
+      <div class="tr-item">
+        <button class="tr-q" onclick="toggleTr(this)">Foto tidak masuk ke event yang benar</button>
+        <div class="tr-a">Hampir selalu karena FotoTree diketik tapi tidak dipilih dari daftar saran. Kosongkan kolom FotoTree, ketik ulang beberapa huruf, tunggu daftar muncul, lalu <b>klik salah satu pilihan</b>.</div>
+      </div>
+      <div class="tr-item">
+        <button class="tr-q" onclick="toggleTr(this)">Upload sering gagal atau timeout</button>
+        <div class="tr-a">Buka <b>Settings</b> → turunkan mode performa ke <b>Seimbang</b> atau <b>Hemat</b>. Mode Ngebut mengirim banyak file bersamaan; kalau koneksi tidak kuat, justru lebih banyak yang gagal. File gagal tetap diulang otomatis di akhir batch.</div>
+      </div>
+      <div class="tr-item">
+        <button class="tr-q" onclick="toggleTr(this)">Banyak file berstatus “Dup”</button>
+        <div class="tr-a">Itu bukan error. Artinya file tersebut sudah pernah diunggah dari perangkat ini, jadi dilewati supaya tidak dobel di galerimu.</div>
+      </div>
+      <div class="tr-item">
+        <button class="tr-q" onclick="toggleTr(this)">Ganti laptop / serial ditolak</button>
+        <div class="tr-a">Satu serial terikat ke perangkat yang diaktifkan. Chat admin untuk melepas seat lama, lalu aktivasi ulang di perangkat baru. Tidak ada biaya tambahan.</div>
+      </div>
+      <div class="tr-item">
+        <button class="tr-q" onclick="toggleTr(this)">Dashboard / Analytics minta login</button>
+        <div class="tr-a">Fitur ini butuh sesi akun Fotoyu yang aktif. Buka menu <b>Accounts</b>, pastikan salah satu akun berstatus <b>Aktif</b> — kalau tidak, klik <b>Pakai</b> atau login ulang.</div>
+      </div>
+      <div class="tr-item">
+        <button class="tr-q" onclick="toggleTr(this)">Aplikasi ditolak Windows SmartScreen / macOS Gatekeeper</button>
+        <div class="tr-a"><b>Windows:</b> klik <b>More info</b> → <b>Run anyway</b>. <b>macOS:</b> klik kanan ikon VeloDash → <b>Open</b> → <b>Open</b>, atau buka <b>System Settings → Privacy &amp; Security</b> lalu klik <b>Open Anyway</b>. Ini muncul karena aplikasi masih baru, bukan karena berbahaya.</div>
+      </div>
+    </section>
+
+    <div class="cta-box">
+      <h2>Masih ada yang mengganjal?</h2>
+      <p>Kirim tangkapan layar kendalamu ke admin — dibantu sampai jalan.</p>
+      <a href="https://wa.me/6287776686733?text=Halo%20admin%2C%20saya%20butuh%20bantuan%20pemakaian%20VeloDash." target="_blank" class="btn-primary">💬 Chat Admin di WhatsApp</a>
+    </div>
+
+  </main>
+</div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">VeloCorp <span class="nav-product-tag">VeloDash</span></div>
+      <div class="footer-copy">© 2026 VeloCorp. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="index.html">Beranda</a>
+        <a href="terms.html">Syarat &amp; Ketentuan</a>
+        <a href="privacy.html">Kebijakan Privasi</a>
+        <a href="https://wa.me/6287776686733" target="_blank">Kontak</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleTr(btn) {
+    btn.parentElement.classList.toggle('open');
+  }
+
+  // Sorot item TOC sesuai langkah yang sedang dibaca.
+  const links = [...document.querySelectorAll('.toc a')];
+  const sections = links
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const i = sections.indexOf(e.target);
+      links.forEach((a, n) => a.classList.toggle('active', n === i));
+    });
+  }, { rootMargin: '-90px 0px -70% 0px', threshold: 0 });
+
+  sections.forEach(s => spy.observe(s));
+</script>
+</body>
+</html>
