@@ -66,7 +66,9 @@
     display: flex; align-items: center; gap: 10px;
     font-family: var(--display); font-size: 19px; font-weight: 700;
     letter-spacing: -0.3px; text-decoration: none; color: var(--text-pri);
+    transition: opacity .2s;
   }
+  .nav-logo:hover { opacity: .75; }
   .nav-logo-icon { width: 26px; height: 26px; display: block; }
   .nav-logo-text {
     background: linear-gradient(135deg, #fff 0%, var(--accent-lt) 100%);
@@ -114,18 +116,18 @@
   }
   .toc ol { list-style: none; counter-reset: toc; }
   .toc li { counter-increment: toc; }
-  .toc a {
+  .toc ol a {
     display: block; padding: 7px 0 7px 34px; position: relative;
     color: var(--text-sec); text-decoration: none; font-size: 14px;
     border-left: 2px solid transparent; transition: color .2s, border-color .2s;
   }
-  .toc a::before {
+  .toc ol a::before {
     content: counter(toc, decimal-leading-zero);
     position: absolute; left: 12px; font-family: var(--mono);
     font-size: 11px; color: var(--text-dim);
   }
-  .toc a:hover, .toc a.active { color: var(--accent-lt); border-left-color: var(--accent-lt); }
-  .toc a.active::before { color: var(--accent-lt); }
+  .toc ol a:hover, .toc ol a.active { color: var(--accent-lt); border-left-color: var(--accent-lt); }
+  .toc ol a.active::before { color: var(--accent-lt); }
   .toc-help {
     margin-top: 22px; padding: 14px 16px; font-size: 13px; line-height: 1.6;
     background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
@@ -196,6 +198,36 @@
     text-transform: uppercase; color: var(--accent-lt); display: block; margin-bottom: 8px;
   }
 
+  /* ── RANTAI TETHERING (kamera → software → folder → VeloDash) ── */
+  .chain { display: flex; align-items: stretch; flex-wrap: wrap; gap: 8px; margin: 20px 0 6px; }
+  .chain-box {
+    flex: 1 1 130px; background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 13px 14px; text-align: center;
+  }
+  .chain-box.us { border-color: var(--accent-lt); background: rgba(136,192,208,0.08); }
+  .chain-box b { display: block; font-size: 13.5px; color: var(--text-pri); margin-bottom: 3px; }
+  .chain-box span { font-size: 11.5px; color: var(--text-dim); line-height: 1.5; }
+  .chain-arrow { align-self: center; color: var(--text-dim); font-size: 16px; flex: none; }
+
+  /* ── TABEL SOFTWARE PER MEREK KAMERA ── */
+  .camtable { width: 100%; border-collapse: collapse; margin: 18px 0 6px; font-size: 14px; }
+  .camtable th, .camtable td {
+    text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--border);
+    vertical-align: top; line-height: 1.6;
+  }
+  .camtable th {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent-lt); font-weight: 500; border-bottom-color: var(--border-bright);
+  }
+  .camtable td:first-child { color: var(--text-pri); font-weight: 600; width: 108px; }
+  .camtable td { color: var(--text-sec); }
+  .camtable tr:last-child td { border-bottom: none; }
+  .camtable code {
+    font-family: var(--mono); font-size: 12px; color: var(--text-pri);
+    background: rgba(255,255,255,0.05); border-radius: 5px; padding: 1px 5px;
+  }
+  .camtable-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
   /* ── FAQ / TROUBLESHOOT ── */
   .tr-item { border: 1px solid var(--border); border-radius: 12px; background: var(--bg-card); margin-bottom: 12px; overflow: hidden; }
   .tr-q {
@@ -225,7 +257,12 @@
 
   footer { border-top: 1px solid var(--border); padding: 30px 0; }
   .footer-inner { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
-  .footer-logo { font-family: var(--display); font-weight: 700; display: flex; align-items: center; gap: 10px; }
+  .footer-logo {
+    font-family: var(--display); font-weight: 700; font-size: 18px;
+    display: inline-flex; align-items: center; gap: 10px;
+    text-decoration: none; color: var(--text-pri); transition: opacity .2s;
+  }
+  .footer-logo:hover { opacity: .75; }
   .footer-copy, .footer-links a { font-size: 13px; color: var(--text-dim); text-decoration: none; }
   .footer-links { display: flex; gap: 20px; }
   .footer-links a:hover { color: var(--accent-lt); }
@@ -234,11 +271,23 @@
     .layout { grid-template-columns: 1fr; gap: 24px; }
     .toc { position: static; }
     .toc ol { display: flex; flex-wrap: wrap; gap: 6px; }
-    .toc a { border-left: none; border: 1px solid var(--border); border-radius: 999px; padding: 6px 14px 6px 30px; }
-    .toc a::before { left: 12px; }
-    .toc a.active { border-color: var(--accent-lt); }
+    .toc ol a { border-left: none; border: 1px solid var(--border); border-radius: 999px; padding: 6px 14px 6px 30px; }
+    .toc ol a::before { left: 12px; }
+    .toc ol a.active { border-color: var(--accent-lt); }
     .nav-links { display: none; }
     .fields li { grid-template-columns: 1fr; gap: 4px; }
+
+    /* Tabel 3 kolom terlalu sesak di layar sempit -> tumpuk jadi kartu per merek. */
+    .camtable, .camtable tbody, .camtable tr, .camtable td { display: block; width: 100%; }
+    .camtable thead { display: none; }
+    .camtable tr {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 14px 16px; margin-bottom: 10px;
+    }
+    .camtable td { border-bottom: none; padding: 0; }
+    .camtable td:first-child { font-size: 15px; margin-bottom: 2px; width: auto; }
+    .camtable td:nth-child(2) { color: var(--accent-lt); font-size: 13.5px; margin-bottom: 8px; }
+    .camtable td:nth-child(3) { font-size: 13.5px; }
   }
   @media (max-width: 480px) {
     .nav-inner { padding: 12px 16px; }
@@ -253,10 +302,9 @@
 <!-- ── NAV ── -->
 <nav>
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="assets/velodash-icon.png" class="nav-logo-icon" alt="VeloCorp">
-      <span class="nav-logo-text">VeloCorp</span>
-      <span class="nav-product-tag">VeloDash</span>
+    <a href="index.html" class="nav-logo" aria-label="VeloDash — ke beranda">
+      <img src="assets/velodash-icon.png" class="nav-logo-icon" alt="">
+      <span class="nav-logo-text">VeloDash</span>
     </a>
     <ul class="nav-links">
       <li><a href="index.html#fitur">Fitur</a></li>
@@ -295,6 +343,7 @@
       <li><a href="#akun">Login akun Fotoyu</a></li>
       <li><a href="#harga">Harga &amp; FotoTree</a></li>
       <li><a href="#folder">Pilih folder sumber</a></li>
+      <li><a href="#tethering">Tethering kamera</a></li>
       <li><a href="#mulai">Mulai upload batch</a></li>
       <li><a href="#performa">Atur mode performa</a></li>
       <li><a href="#riwayat">Cek riwayat &amp; gagal</a></li>
@@ -433,7 +482,7 @@
       <ul class="bullets">
         <li>Klik <b>Change</b> untuk memilih folder. <b>Semua sub-folder ikut ter-scan</b> — tidak perlu dijadikan satu folder dulu.</li>
         <li>Di kanan muncul jumlah file yang terbaca, plus <b>estimasi waktu</b> berdasarkan kecepatan upload terakhirmu.</li>
-        <li>Nyalakan <b>Auto-upload</b> kalau kamu sedang di lokasi dan kartu memori terus disalin ke folder itu — foto baru langsung diunggah begitu masuk folder, tanpa klik apa pun.</li>
+        <li>Nyalakan <b>Auto-upload</b> kalau kamu sedang di lokasi — foto baru langsung diunggah begitu masuk folder, tanpa klik apa pun. Kalau kamera dicolok ke laptop, baca dulu <a href="#tethering">Langkah 06 · Tethering</a>.</li>
         <li>Toggle <b>Preview</b> di kanan menampilkan thumbnail. Matikan saat file ribuan supaya lebih ringan.</li>
         <li>Khusus mode Video, muncul baris <b>Rotasi video</b>. Biarkan di <i>Ikut video asli</i> kalau hasilnya sudah benar.</li>
       </ul>
@@ -445,8 +494,103 @@
     </section>
 
     <!-- 06 -->
+    <section class="step" id="tethering">
+      <span class="step-num">LANGKAH 06 · TETHERING (OPSIONAL)</span>
+      <h2>Motret, langsung ke-upload</h2>
+      <p>Kamera dicolok ke laptop, dan setiap jepretan naik ke Fotoyu sendiri tanpa kamu sentuh apa pun. Ini cara paling cepat menjual foto saat event masih berlangsung.</p>
+
+      <div class="note">
+        <span class="note-ico">i</span>
+        <div><b>Yang perlu dipahami dulu:</b> VeloDash tidak berbicara langsung ke kamera. VeloDash hanya mengawasi <b>satu folder</b> di laptop. Yang memindahkan foto dari kamera ke folder itu adalah software tethering bawaan merek kameramu. Jadi kamu butuh dua aplikasi yang jalan bersamaan.</div>
+      </div>
+
+      <div class="chain">
+        <div class="chain-box"><b>Kamera</b><span>Mode USB diset ke tethering</span></div>
+        <span class="chain-arrow">→</span>
+        <div class="chain-box"><b>Software merek</b><span>Gratis, dari pabrikan kamera</span></div>
+        <span class="chain-arrow">→</span>
+        <div class="chain-box"><b>Folder di laptop</b><span>Folder kosong khusus event</span></div>
+        <span class="chain-arrow">→</span>
+        <div class="chain-box us"><b>VeloDash</b><span>Pantau folder → unggah</span></div>
+      </div>
+
+      <div class="note warn">
+        <span class="note-ico">⚠</span>
+        <div><b>Kamera wajib diset menyimpan JPEG.</b> File RAW (<code>.RW2</code>, <code>.ARW</code>, <code>.CR3</code>, <code>.NEF</code>, <code>.RAF</code>, <code>.DNG</code>) <b>tidak diunggah</b> dan dilewati tanpa pesan error — kamu akan melihat foto masuk ke folder tapi VeloDash diam saja, dan mengira aplikasinya rusak. Pilih <b>JPEG (Fine)</b>, atau <b>RAW+JPEG</b> kalau kamu tetap butuh RAW-nya untuk diolah nanti.</div>
+      </div>
+
+      <h3 style="font-size:16px;margin:26px 0 0;color:var(--text-pri);">Software tethering sesuai merek kamera</h3>
+      <p style="font-size:14px;margin-top:6px;">Semuanya gratis dan tersedia untuk Windows maupun macOS. Yang perlu kamu cari di masing-masing software cuma satu: <b>pengaturan folder tujuan penyimpanan</b>.</p>
+
+      <div class="camtable-wrap">
+      <table class="camtable">
+        <thead>
+          <tr><th>Merek</th><th>Software gratis</th><th>Cara set folder tujuan</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Panasonic LUMIX</td>
+            <td><b>LUMIX Tether</b></td>
+            <td>Di kamera: menu USB → pilih <code>PC (Tether)</code>. Folder tujuan diatur di jendela pengaturan LUMIX Tether.</td>
+          </tr>
+          <tr>
+            <td>Sony</td>
+            <td><b>Imaging Edge Desktop</b> → aplikasi <b>Remote</b></td>
+            <td>Di kamera: <code>Setup → PC Remote Settings → Still Img. Save Dest.</code> pilih simpan ke komputer. Foldernya ditentukan di aplikasi Remote.</td>
+          </tr>
+          <tr>
+            <td>Canon</td>
+            <td><b>EOS Utility</b></td>
+            <td>Buka <code>Preferences → Destination Folder</code>. Default-nya folder Pictures per tanggal — ganti ke folder eventmu.</td>
+          </tr>
+          <tr>
+            <td>Nikon</td>
+            <td><b>NX Tether</b></td>
+            <td>Tentukan nama file dan folder penyimpanan di pengaturan NX Tether sebelum mulai memotret.</td>
+          </tr>
+          <tr>
+            <td>Fujifilm</td>
+            <td><b>X Acquire</b></td>
+            <td>Folder tujuan ditanyakan saat pertama kali dijalankan. Mau ganti? Klik ikon X Acquire di menu bar (Mac) atau taskbar (Windows).</td>
+          </tr>
+          <tr>
+            <td>Merek lain</td>
+            <td><b>Lightroom Classic</b> atau <b>Capture One</b></td>
+            <td>Pakai fitur <i>Tethered Capture</i>, arahkan folder tujuannya ke folder yang dipantau VeloDash.</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="note">
+        <span class="note-ico">i</span>
+        <div>Cek dulu apakah <b>model kameramu</b> masuk daftar dukungan software-nya, dan apakah <b>versi sistem operasimu</b> masih didukung — pabrikan kamera biasanya telat menyesuaikan diri dengan macOS versi terbaru. Kalau di Mac bermasalah, jangan buang waktu: pakai Windows, jalur itu paling jarang rewel.</div>
+      </div>
+
+      <h3 style="font-size:16px;margin:26px 0 0;color:var(--text-pri);">Urutan menyalakannya</h3>
+      <ul class="bullets">
+        <li>Buat <b>folder kosong baru</b> khusus event ini, misalnya <code>Desktop/EVENT-LIVE</code>. Jangan pakai folder yang sudah berisi foto lama.</li>
+        <li>Colok kamera ke laptop, set mode USB-nya ke tethering, lalu jalankan software merek kamera dan arahkan folder tujuannya ke folder tadi.</li>
+        <li><b>Tes dulu dengan satu jepretan.</b> Pastikan file <code>.JPG</code> benar-benar muncul di folder itu sebelum lanjut.</li>
+        <li>Buka VeloDash → <b>Source folder</b> arahkan ke folder yang sama → isi <b>FotoTree</b>, harga, dan deskripsi.</li>
+        <li>Centang <b>🔄 Auto-upload</b>, lalu klik <b>Start batch upload</b>. Log akan menampilkan <i>Auto-upload aktif — pantau folder untuk foto baru dari kamera</i>.</li>
+        <li>Sudah beres. Motret saja. Status <b>● Pantau folder…</b> artinya VeloDash sedang menunggu foto baru — bukan macet.</li>
+      </ul>
+
+      <div class="note pro">
+        <span class="note-ico">✓</span>
+        <div><b>Jeda dari jepret sampai tayang di Fotoyu: sekitar 7–12 detik.</b> VeloDash sengaja menunggu file diam beberapa detik dulu supaya tidak mengunggah foto yang belum selesai ditulis. Tethering adalah kondisi terbaik untuk fitur ini — foto datang satu per satu, jadi jedanya selalu aman.</div>
+      </div>
+
+      <div class="note warn">
+        <span class="note-ico">⚠</span>
+        <div><b>Kalau kamu justru menyalin dari kartu memori</b> (bukan tethering), salin dulu ke folder lain sampai benar-benar selesai, baru <b>pindahkan</b> ke folder yang dipantau. Menyalin ratusan foto langsung ke folder pantau berisiko terunggah setengah jadi. Perlu diingat juga: di mode auto-upload, file yang gagal <b>tidak</b> dicoba ulang otomatis — pakai tombol <b>↻ Ulangi gagal</b> setelah batch selesai.</div>
+      </div>
+    </section>
+
+    <!-- 07 -->
     <section class="step" id="mulai">
-      <span class="step-num">LANGKAH 06 · JALANKAN</span>
+      <span class="step-num">LANGKAH 07 · JALANKAN</span>
       <h2>Mulai upload batch</h2>
       <p>Klik tombol besar <b>Start batch upload</b> di bawah. Tombolnya menampilkan jumlah file yang akan diproses, jadi kamu bisa cek dulu angkanya sebelum menekan.</p>
 
@@ -464,9 +608,9 @@
       </div>
     </section>
 
-    <!-- 07 -->
+    <!-- 08 -->
     <section class="step" id="performa">
-      <span class="step-num">LANGKAH 07 · PERFORMA</span>
+      <span class="step-num">LANGKAH 08 · PERFORMA</span>
       <h2>Sesuaikan kecepatan dengan koneksimu</h2>
       <p>Buka menu <b>Settings</b>. VeloDash sudah membaca jumlah CPU core perangkatmu dan menyarankan satu mode — tapi kamu bisa ganti kapan saja.</p>
 
@@ -488,9 +632,9 @@
       </ul>
     </section>
 
-    <!-- 08 -->
+    <!-- 09 -->
     <section class="step" id="riwayat">
-      <span class="step-num">LANGKAH 08 · RIWAYAT</span>
+      <span class="step-num">LANGKAH 09 · RIWAYAT</span>
       <h2>Cek hasil &amp; file yang gagal</h2>
       <p>Menu <b>History</b> menyimpan tiap batch yang pernah dijalankan: jumlah sukses, duplikat, gagal, durasi, dan akun yang dipakai.</p>
 
@@ -505,9 +649,9 @@
       </ul>
     </section>
 
-    <!-- 09 -->
+    <!-- 10 -->
     <section class="step" id="dashboard">
-      <span class="step-num">LANGKAH 09 · PENDAPATAN</span>
+      <span class="step-num">LANGKAH 10 · PENDAPATAN</span>
       <h2>Dashboard — lihat uang masuk</h2>
       <p>Menu <b>Dashboard</b> menarik data penjualan dari akun Fotoyu-mu dan merangkumnya jadi satu layar: total pendapatan, jumlah foto terjual, harga rata-rata, tren harian, event paling laku, dan transaksi terbaru.</p>
 
@@ -527,9 +671,9 @@
       </div>
     </section>
 
-    <!-- 10 -->
+    <!-- 11 -->
     <section class="step" id="tree">
-      <span class="step-num">LANGKAH 10 · RISET</span>
+      <span class="step-num">LANGKAH 11 · RISET</span>
       <h2>Tree Analyzer — intip potensi sebuah event</h2>
       <p>Sebelum berangkat ke sebuah event, cek dulu seberapa ramai pasarnya. Ketik nama event di kolom pencarian, klik <b>Detail</b>, dan VeloDash memindai FotoTree tersebut.</p>
 
@@ -544,9 +688,9 @@
       </ul>
     </section>
 
-    <!-- 11 -->
+    <!-- 12 -->
     <section class="step" id="analytics">
-      <span class="step-num">LANGKAH 11 · ANALITIK</span>
+      <span class="step-num">LANGKAH 12 · ANALITIK</span>
       <h2>Analytics — foto mana yang laku</h2>
       <p>Menu <b>Analytics</b> membedah galerimu per tanggal: berapa foto total, berapa yang masih tersedia, dan mana yang perlu ditindaklanjuti.</p>
 
@@ -561,9 +705,9 @@
       </ul>
     </section>
 
-    <!-- 12 -->
+    <!-- 13 -->
     <section class="step" id="kendala">
-      <span class="step-num">LANGKAH 12 · BANTUAN</span>
+      <span class="step-num">LANGKAH 13 · BANTUAN</span>
       <h2>Kendala umum</h2>
       <p>Sebagian besar masalah selesai dengan langkah di bawah. Kalau tetap mentok, chat admin — biasanya dibalas cepat.</p>
 
@@ -607,8 +751,8 @@
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-logo">VeloCorp <span class="nav-product-tag">VeloDash</span></div>
-      <div class="footer-copy">© 2026 VeloCorp. All rights reserved.</div>
+      <a href="index.html" class="footer-logo">VeloDash</a>
+      <div class="footer-copy">© 2026 VeloDash. All rights reserved.</div>
       <div class="footer-links">
         <a href="index.html">Beranda</a>
         <a href="terms.html">Syarat &amp; Ketentuan</a>

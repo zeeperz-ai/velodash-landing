@@ -89,7 +89,9 @@
     display: flex; align-items: center; gap: 10px;
     font-family: var(--display); font-size: 19px; font-weight: 700;
     letter-spacing: -0.3px;
+    text-decoration: none; color: inherit; transition: opacity 0.2s;
   }
+  .nav-logo:hover { opacity: 0.75; }
   .nav-logo-icon { width: 26px; height: 26px; display: block; }
   .nav-logo-text {
     background: linear-gradient(135deg, #fff 0%, var(--accent-lt) 100%);
@@ -559,7 +561,9 @@
     background: linear-gradient(135deg, #fff 0%, var(--accent-lt) 100%);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text;
+    text-decoration: none; transition: opacity 0.2s;
   }
+  .footer-logo:hover { opacity: 0.75; }
   .footer-copy { color: var(--text-dim); font-size: 13px; }
   .footer-links { display: flex; gap: 24px; }
   .footer-links a { color: var(--text-dim); text-decoration: none; font-size: 13px; transition: color 0.2s; }
@@ -599,11 +603,10 @@
 <!-- ── NAV ── -->
 <nav>
   <div class="nav-inner">
-    <div class="nav-logo">
-      <img src="assets/velodash-icon.png" class="nav-logo-icon" alt="VeloCorp">
-      <span class="nav-logo-text">VeloCorp</span>
-      <span class="nav-product-tag">VeloDash</span>
-    </div>
+    <a href="#top" class="nav-logo" aria-label="VeloDash — ke atas halaman">
+      <img src="assets/velodash-icon.png" class="nav-logo-icon" alt="">
+      <span class="nav-logo-text">VeloDash</span>
+    </a>
     <ul class="nav-links">
       <li><a href="#fitur">Fitur</a></li>
       <li><a href="#cara-kerja">Cara Kerja</a></li>
@@ -1336,8 +1339,8 @@
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-logo">VeloCorp <span class="nav-product-tag">VeloDash</span></div>
-      <div class="footer-copy">© 2026 VeloCorp. All rights reserved.</div>
+      <a href="#top" class="footer-logo">VeloDash</a>
+      <div class="footer-copy">© 2026 VeloDash. All rights reserved.</div>
       <div class="footer-links">
         <a href="terms.html">Syarat & Ketentuan</a>
         <a href="privacy.html">Kebijakan Privasi</a>
