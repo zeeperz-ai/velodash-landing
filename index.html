@@ -336,7 +336,7 @@
 
   .pricing-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-    max-width: 760px; margin: 0 auto;
+    max-width: 880px; margin: 0 auto;
   }
   .plan-toggle {
     display: inline-flex; gap: 4px; padding: 4px;
@@ -352,14 +352,47 @@
   }
   .plan-opt:hover { color: var(--text-pri); }
   .plan-opt[aria-selected="true"] { background: var(--accent); color: #0d1117; }
+  .save-pill {
+    display: inline-block; margin-left: 7px; padding: 2px 7px;
+    font-family: var(--mono); font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.05em; border-radius: 999px;
+    color: var(--green); background: var(--green-dim);
+  }
+  .plan-opt[aria-selected="true"] .save-pill { color: #24331c; background: rgba(255,255,255,0.6); }
   .plan-sub {
     font-size: 12px; color: var(--text-dim); margin: -18px 0 26px;
     text-align: center;
   }
+  .pricing-lead { font-size: 13px; color: var(--text-sec); margin: -6px 0 18px; min-height: 34px; }
+  .seat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 26px; }
+  .seat {
+    background: rgba(0,0,0,0.18); border: 1px solid var(--border);
+    border-radius: 14px; padding: 13px 14px 15px;
+  }
+  .seat-label {
+    font-family: var(--mono); font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-lt);
+  }
+  .seat-label span {
+    display: block; margin-top: 3px; letter-spacing: 0.03em;
+    text-transform: none; color: var(--text-dim);
+  }
+  .seat-old { display: flex; align-items: center; gap: 6px; margin-top: 12px; }
+  .seat-old s { font-size: 13px; color: var(--text-dim); }
+  .off-pill {
+    font-family: var(--mono); font-size: 9.5px; font-weight: 700;
+    letter-spacing: 0.03em; color: var(--green); background: var(--green-dim);
+    border: 1px solid rgba(163,190,140,0.35); border-radius: 999px; padding: 1px 6px;
+  }
+  .seat-price {
+    font-family: var(--display); font-size: 23px; font-weight: 800;
+    color: var(--text-pri); letter-spacing: -0.6px; line-height: 1.15; margin-top: 2px;
+  }
+  .seat-per { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
   .pricing-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 20px; padding: 40px 36px;
+    border-radius: 20px; padding: 34px 26px;
     position: relative; transition: border-color 0.3s, transform 0.3s;
   }
   .pricing-card:hover { transform: translateY(-4px); }
@@ -378,11 +411,6 @@
   .pricing-tier {
     font-family: var(--mono); font-size: 12px; color: var(--accent-lt);
     letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px;
-  }
-  .price-was {
-    font-family: var(--display); font-size: 19px; font-weight: 700;
-    color: var(--text-dim); text-decoration: line-through;
-    margin-bottom: 2px; letter-spacing: -0.4px;
   }
   .pricing-price {
     font-family: var(--display); font-size: 42px; font-weight: 800;
@@ -1044,30 +1072,42 @@
       <span style="display:block; font-size:13px; color:var(--text-sec); margin-top:4px;">Berlaku untuk pembelian s/d <b style="color:var(--text-pri);">14 Agustus 2026</b>. Harga promo sudah tampil di kartu bawah. Sebutkan kode <b style="color:var(--accent-lt);">LAUNCH17</b> saat chat admin — diskon langsung diterapkan.</span>
     </div>
 
-    <!-- Toggle Individu / Team -->
+    <!-- Toggle durasi: 1 Bulan / Tahunan -->
     <div class="plan-toggle-wrap reveal">
-      <div class="plan-toggle" role="tablist" aria-label="Pilih tipe lisensi">
-        <button type="button" class="plan-opt" role="tab" data-plan="individu" aria-selected="true">Individu</button>
-        <button type="button" class="plan-opt" role="tab" data-plan="team" aria-selected="false">Team</button>
+      <div class="plan-toggle" role="tablist" aria-label="Pilih durasi langganan">
+        <button type="button" class="plan-opt" role="tab" data-plan="bulan" aria-selected="false">1 Bulan</button>
+        <button type="button" class="plan-opt" role="tab" data-plan="tahun" aria-selected="true">Tahunan<span class="save-pill">Hemat</span></button>
       </div>
     </div>
-    <p class="plan-sub" data-i="Untuk satu fotografer — 1 device aktif." data-t="Untuk tim event — 5 device aktif, satu lisensi dipakai bareng.">Untuk satu fotografer — 1 device aktif.</p>
+    <p class="plan-sub" data-m="Dibayar sekali untuk 30 hari pemakaian." data-y="Dibayar sekali untuk 12 bulan — jauh lebih murah per bulannya.">Dibayar sekali untuk 12 bulan — jauh lebih murah per bulannya.</p>
 
     <div class="pricing-grid">
 
       <!-- LITE -->
       <div class="pricing-card reveal">
         <div class="pricing-tier">LITE</div>
-        <div class="price-was promo-only" data-i="Rp 179rb" data-t="Rp 679rb">Rp 179rb</div>
-        <div class="pricing-price"><span data-i="Rp 149rb" data-t="Rp 559rb" data-i-was="Rp 179rb" data-t-was="Rp 679rb">Rp 149rb</span><sub> /30 hari</sub></div>
-        <div class="pricing-note">atau <span data-i="Rp 749rb" data-t="Rp 1.449rb" data-i-was="Rp 899rb" data-t-was="Rp 1.749rb">Rp 749rb</span> / tahun<span class="promo-only"> · normal <s data-i="Rp 899rb" data-t="Rp 1.749rb">Rp 899rb</s></span></div>
+        <div class="pricing-lead">Mesin uploader-nya saja — foto + video tanpa batas jumlah.</div>
+        <div class="seat-grid">
+          <div class="seat">
+            <div class="seat-label">Individu<span>1 device aktif</span></div>
+            <div class="seat-old promo-only"><s data-m="Rp 149rb" data-y="Rp 749rb">Rp 749rb</s><span class="off-pill">−17%</span></div>
+            <div class="seat-price" data-m="Rp 123rb" data-y="Rp 619rb" data-m-was="Rp 149rb" data-y-was="Rp 749rb">Rp 619rb</div>
+            <div class="seat-per" data-m="/ 30 hari" data-y="/ tahun">/ tahun</div>
+          </div>
+          <div class="seat">
+            <div class="seat-label">Team<span>5 device aktif</span></div>
+            <div class="seat-old promo-only"><s data-m="Rp 559rb" data-y="Rp 1.449rb">Rp 1.449rb</s><span class="off-pill">−17%</span></div>
+            <div class="seat-price" data-m="Rp 459rb" data-y="Rp 1.199rb" data-m-was="Rp 559rb" data-y-was="Rp 1.449rb">Rp 1.199rb</div>
+            <div class="seat-per" data-m="/ 30 hari" data-y="/ tahun">/ tahun</div>
+          </div>
+        </div>
         <div class="pricing-divider"></div>
         <ul class="pricing-features">
           <li><span class="check">✓</span><span>Upload foto + video, tanpa batas jumlah</span></li>
           <li><span class="check">✓</span><span>Engine direct (tanpa browser) — cepat &amp; ringan</span></li>
           <li><span class="check">✓</span><span>FotoTree otomatis, harga &amp; deskripsi preset</span></li>
           <li><span class="check">✓</span><span>Auto-upload pantau folder kamera</span></li>
-          <li><span class="check">✓</span><span data-i="1 device aktif" data-t="5 device aktif">1 device aktif</span></li>
+          <li><span class="check">✓</span><span>Anti-duplikat — file yang sudah naik dilewati</span></li>
           <li style="opacity:.5;"><span class="x">✗</span><span>Tanpa Dashboard, Tree Analyzer &amp; Analytics</span></li>
         </ul>
         <a href="#cara-beli" class="btn-pricing outlined">Beli via WhatsApp</a>
@@ -1077,9 +1117,21 @@
       <div class="pricing-card featured reveal">
         <div class="pricing-badge">Paling Lengkap</div>
         <div class="pricing-tier">PRO</div>
-        <div class="price-was promo-only" data-i="Rp 299rb" data-t="Rp 919rb">Rp 299rb</div>
-        <div class="pricing-price"><span data-i="Rp 249rb" data-t="Rp 759rb" data-i-was="Rp 299rb" data-t-was="Rp 919rb">Rp 249rb</span><sub> /30 hari</sub></div>
-        <div class="pricing-note">atau <span data-i="Rp 949rb" data-t="Rp 1.649rb" data-i-was="Rp 1.149rb" data-t-was="Rp 1.999rb">Rp 949rb</span> / tahun<span class="promo-only"> · normal <s data-i="Rp 1.149rb" data-t="Rp 1.999rb">Rp 1.149rb</s></span></div>
+        <div class="pricing-lead">Uploader + menu riset &amp; analitik yang tidak ada di uploader lain.</div>
+        <div class="seat-grid">
+          <div class="seat">
+            <div class="seat-label">Individu<span>1 device aktif</span></div>
+            <div class="seat-old promo-only"><s data-m="Rp 249rb" data-y="Rp 949rb">Rp 949rb</s><span class="off-pill">−17%</span></div>
+            <div class="seat-price" data-m="Rp 205rb" data-y="Rp 779rb" data-m-was="Rp 249rb" data-y-was="Rp 949rb">Rp 779rb</div>
+            <div class="seat-per" data-m="/ 30 hari" data-y="/ tahun">/ tahun</div>
+          </div>
+          <div class="seat">
+            <div class="seat-label">Team<span>5 device aktif</span></div>
+            <div class="seat-old promo-only"><s data-m="Rp 759rb" data-y="Rp 1.649rb">Rp 1.649rb</s><span class="off-pill">−17%</span></div>
+            <div class="seat-price" data-m="Rp 629rb" data-y="Rp 1.359rb" data-m-was="Rp 759rb" data-y-was="Rp 1.649rb">Rp 1.359rb</div>
+            <div class="seat-per" data-m="/ 30 hari" data-y="/ tahun">/ tahun</div>
+          </div>
+        </div>
         <div class="pricing-divider"></div>
         <ul class="pricing-features">
           <li><span class="check">✓</span><span>Semua fitur paket Lite</span></li>
@@ -1087,7 +1139,7 @@
           <li><span class="check">✓</span><span><b>FotoTree Analyzer</b> riset event tanpa batas</span></li>
           <li><span class="check">✓</span><span><b>Analytics</b> audit foto Roboyu &amp; akurasi deteksi</span></li>
           <li><span class="check">✓</span><span>Rentang data penuh (bukan preview)</span></li>
-          <li><span class="check">✓</span><span data-i="Prioritas bantuan aktivasi" data-t="Prioritas bantuan aktivasi untuk semua anggota tim">Prioritas bantuan aktivasi</span></li>
+          <li><span class="check">✓</span><span>Prioritas bantuan aktivasi</span></li>
         </ul>
         <a href="#cara-beli" class="btn-pricing solid">Beli via WhatsApp</a>
       </div>
@@ -1336,21 +1388,21 @@
   const PROMO_UNTIL = new Date('2026-08-14T23:59:59+07:00');
   const PROMO_ON = new Date() <= PROMO_UNTIL;
 
-  // Toggle Individu / Team — tukar semua teks ber-data-i / data-t.
+  // Toggle durasi 1 Bulan / Tahunan — tukar semua teks ber-data-m / data-y.
   // Saat promo habis, elemen pakai varian data-*-was (harga normal) kalau ada.
   (function planToggle() {
     const opts = document.querySelectorAll('.plan-opt');
     if (!opts.length) return;
     const apply = plan => {
-      const suf = plan === 'team' ? 't' : 'i';
-      document.querySelectorAll('[data-i][data-t]').forEach(el => {
+      const suf = plan === 'bulan' ? 'm' : 'y';
+      document.querySelectorAll('[data-m][data-y]').forEach(el => {
         const normal = el.getAttribute('data-' + suf + '-was');
         el.textContent = (PROMO_ON || !normal) ? el.getAttribute('data-' + suf) : normal;
       });
       opts.forEach(o => o.setAttribute('aria-selected', String(o.dataset.plan === plan)));
     };
     opts.forEach(o => o.addEventListener('click', () => apply(o.dataset.plan)));
-    apply('individu');
+    apply('tahun');
   })();
 
   // #promo-guard — matikan promo otomatis setelah tanggal berakhir.
