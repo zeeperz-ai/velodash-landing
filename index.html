@@ -379,6 +379,11 @@
     font-family: var(--mono); font-size: 12px; color: var(--accent-lt);
     letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px;
   }
+  .price-was {
+    font-family: var(--display); font-size: 19px; font-weight: 700;
+    color: var(--text-dim); text-decoration: line-through;
+    margin-bottom: 2px; letter-spacing: -0.4px;
+  }
   .pricing-price {
     font-family: var(--display); font-size: 42px; font-weight: 800;
     color: var(--text-pri); margin-bottom: 4px; letter-spacing: -1px;
@@ -1035,8 +1040,8 @@
 
     <!-- Banner promo peluncuran — auto-hilang setelah tanggal berakhir (lihat script #promo-guard) -->
     <div class="promo-only reveal" data-promo-until="2026-08-14" style="max-width:760px; margin:0 auto 24px; background:var(--accent-glow); border:1px solid var(--border-bright); border-radius:14px; padding:14px 22px; text-align:center;">
-      <span style="font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-lt); font-weight:700;">🎉 Promo Peluncuran — Diskon 40%</span>
-      <span style="display:block; font-size:13px; color:var(--text-sec); margin-top:4px;">Berlaku untuk pembelian s/d <b style="color:var(--text-pri);">14 Agustus 2026</b>. Sebutkan kode <b style="color:var(--accent-lt);">LAUNCH40</b> saat chat admin — diskon langsung diterapkan.</span>
+      <span style="font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-lt); font-weight:700;">🎉 Promo Peluncuran — Diskon 17%</span>
+      <span style="display:block; font-size:13px; color:var(--text-sec); margin-top:4px;">Berlaku untuk pembelian s/d <b style="color:var(--text-pri);">14 Agustus 2026</b>. Harga promo sudah tampil di kartu bawah. Sebutkan kode <b style="color:var(--accent-lt);">LAUNCH17</b> saat chat admin — diskon langsung diterapkan.</span>
     </div>
 
     <!-- Toggle Individu / Team -->
@@ -1053,8 +1058,9 @@
       <!-- LITE -->
       <div class="pricing-card reveal">
         <div class="pricing-tier">LITE</div>
-        <div class="pricing-price"><span data-i="Rp 149rb" data-t="Rp 559rb">Rp 149rb</span><sub> /30 hari</sub></div>
-        <div class="pricing-note" data-i="atau Rp 749rb / tahun · harga peluncuran" data-t="atau Rp 1.449rb / tahun · harga peluncuran">atau Rp 749rb / tahun · harga peluncuran</div>
+        <div class="price-was promo-only" data-i="Rp 179rb" data-t="Rp 679rb">Rp 179rb</div>
+        <div class="pricing-price"><span data-i="Rp 149rb" data-t="Rp 559rb" data-i-was="Rp 179rb" data-t-was="Rp 679rb">Rp 149rb</span><sub> /30 hari</sub></div>
+        <div class="pricing-note">atau <span data-i="Rp 749rb" data-t="Rp 1.449rb" data-i-was="Rp 899rb" data-t-was="Rp 1.749rb">Rp 749rb</span> / tahun<span class="promo-only"> · normal <s data-i="Rp 899rb" data-t="Rp 1.749rb">Rp 899rb</s></span></div>
         <div class="pricing-divider"></div>
         <ul class="pricing-features">
           <li><span class="check">✓</span><span>Upload foto + video, tanpa batas jumlah</span></li>
@@ -1071,8 +1077,9 @@
       <div class="pricing-card featured reveal">
         <div class="pricing-badge">Paling Lengkap</div>
         <div class="pricing-tier">PRO</div>
-        <div class="pricing-price"><span data-i="Rp 249rb" data-t="Rp 759rb">Rp 249rb</span><sub> /30 hari</sub></div>
-        <div class="pricing-note" data-i="atau Rp 949rb / tahun · harga peluncuran" data-t="atau Rp 1.649rb / tahun · harga peluncuran">atau Rp 949rb / tahun · harga peluncuran</div>
+        <div class="price-was promo-only" data-i="Rp 299rb" data-t="Rp 919rb">Rp 299rb</div>
+        <div class="pricing-price"><span data-i="Rp 249rb" data-t="Rp 759rb" data-i-was="Rp 299rb" data-t-was="Rp 919rb">Rp 249rb</span><sub> /30 hari</sub></div>
+        <div class="pricing-note">atau <span data-i="Rp 949rb" data-t="Rp 1.649rb" data-i-was="Rp 1.149rb" data-t-was="Rp 1.999rb">Rp 949rb</span> / tahun<span class="promo-only"> · normal <s data-i="Rp 1.149rb" data-t="Rp 1.999rb">Rp 1.149rb</s></span></div>
         <div class="pricing-divider"></div>
         <ul class="pricing-features">
           <li><span class="check">✓</span><span>Semua fitur paket Lite</span></li>
@@ -1266,7 +1273,7 @@
       <div class="tag" style="margin:0 auto 20px;">Tersedia Sekarang</div>
       <h2>Siap upload lebih cepat?</h2>
       <p>Mulai dari Trial gratis di aplikasi, atau langsung aktivasi paket lewat WhatsApp. Dibantu admin sampai jalan.</p>
-      <a href="https://wa.me/6287776686733?text=Halo%20admin%2C%20saya%20mau%20beli%20VeloDash%20(promo%20peluncuran%20-40%25%2C%20kode%20LAUNCH40).%20Paket%3A%20(Lite%2FPro)%2C%20tipe%3A%20(Individu%2FTeam)%2C%20durasi%3A%20(30%20hari%2Ftahunan)." target="_blank" class="btn-primary" style="font-size:16px; padding:16px 36px;">
+      <a href="https://wa.me/6287776686733?text=Halo%20admin%2C%20saya%20mau%20beli%20VeloDash%20(promo%20peluncuran%20-17%25%2C%20kode%20LAUNCH17).%20Paket%3A%20(Lite%2FPro)%2C%20tipe%3A%20(Individu%2FTeam)%2C%20durasi%3A%20(30%20hari%2Ftahunan)." target="_blank" class="btn-primary" style="font-size:16px; padding:16px 36px;">
         💬 Chat Admin di WhatsApp
       </a>
     </div>
@@ -1325,26 +1332,32 @@
     }, 800 + i * 180);
   });
 
+  // Satu sumber kebenaran untuk masa promo — dipakai toggle harga & promo-guard.
+  const PROMO_UNTIL = new Date('2026-08-14T23:59:59+07:00');
+  const PROMO_ON = new Date() <= PROMO_UNTIL;
+
   // Toggle Individu / Team — tukar semua teks ber-data-i / data-t.
+  // Saat promo habis, elemen pakai varian data-*-was (harga normal) kalau ada.
   (function planToggle() {
     const opts = document.querySelectorAll('.plan-opt');
     if (!opts.length) return;
     const apply = plan => {
-      const key = plan === 'team' ? 'data-t' : 'data-i';
+      const suf = plan === 'team' ? 't' : 'i';
       document.querySelectorAll('[data-i][data-t]').forEach(el => {
-        el.textContent = el.getAttribute(key);
+        const normal = el.getAttribute('data-' + suf + '-was');
+        el.textContent = (PROMO_ON || !normal) ? el.getAttribute('data-' + suf) : normal;
       });
       opts.forEach(o => o.setAttribute('aria-selected', String(o.dataset.plan === plan)));
     };
     opts.forEach(o => o.addEventListener('click', () => apply(o.dataset.plan)));
+    apply('individu');
   })();
 
   // #promo-guard — matikan promo otomatis setelah tanggal berakhir.
   // 1) Sembunyikan semua elemen .promo-only.
-  // 2) Bersihkan pesan promo di link WhatsApp (kode LAUNCH40 + "-40%") jadi normal.
+  // 2) Bersihkan pesan promo di link WhatsApp (kode LAUNCH17 + "-17%") jadi normal.
   (function promoGuard() {
-    const PROMO_UNTIL = new Date('2026-08-14T23:59:59+07:00');
-    if (new Date() <= PROMO_UNTIL) return;   // masih promo — biarkan
+    if (PROMO_ON) return;   // masih promo — biarkan
     document.querySelectorAll('.promo-only').forEach(el => el.remove());
     document.querySelectorAll('a[href*="wa.me"]').forEach(a => {
       try {
