@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VeloDash — Upload & Studio Analytics untuk Fotoyu</title>
+<meta name="description" content="VeloDash: upload foto & video ke Fotoyu secara massal, plus dashboard penjualan dan analitik FotoTree. Aplikasi desktop untuk Windows & macOS.">
+<link rel="canonical" href="https://velodash.my.id/">
+<link rel="icon" href="assets/velodash-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://velodash.my.id/">
+<meta property="og:title" content="VeloDash — Upload & Studio Analytics untuk Fotoyu">
+<meta property="og:description" content="Upload massal ke Fotoyu + dashboard penjualan dan analitik FotoTree. Windows & macOS.">
+<meta property="og:image" content="https://velodash.my.id/assets/velodash-icon.png">
+<meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -616,7 +625,7 @@
       <li><a href="#perbandingan">Perbandingan</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
-    <a href="#harga" class="btn-nav">Lihat Harga →</a>
+    <a href="#download" class="btn-nav">Download →</a>
   </div>
 </nav>
 
@@ -785,7 +794,7 @@
           <h3 style="font-size:18px; color:var(--text-pri);">Install &amp; buka VeloDash</h3>
         </div>
         <ul style="margin:0; padding-left:18px; color:var(--text-sec); font-size:14px; line-height:1.8;">
-          <li>Download installer untuk <b>Windows</b> atau <b>macOS</b>, lalu jalankan seperti biasa.</li>
+          <li><a href="#download" style="color:var(--accent-lt);">Download installer</a> untuk <b>Windows</b> atau <b>macOS</b>, lalu jalankan seperti biasa.</li>
           <li>Buka aplikasi. Kamu bisa langsung pilih <b>Trial 1 hari gratis</b>, atau masukkan serial number untuk aktivasi penuh.</li>
         </ul>
       </div>
@@ -1317,6 +1326,51 @@
         <div class="feature-title">Aktivasi di App</div>
         <div class="feature-desc">Buka VeloDash, masukkan serial, klik Aktivasi. Semua fitur langsung terbuka.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DOWNLOAD ──
+     File installer TIDAK disimpan di repo ini: GitHub Pages menolak file >100 MB,
+     sedangkan DMG-nya sudah ~97 MB. Semua binary ditaruh di GitHub Releases
+     (limit 2 GB/file, bandwidth gratis untuk repo publik). -->
+<section class="steps" id="download">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="tag">Download</div>
+      <h2>Unduh VeloDash v2.0.0</h2>
+      <p>Gratis dicoba <b>1 hari penuh</b> tanpa serial. Install, buka, pilih Trial — semua fitur terbuka.</p>
+    </div>
+
+    <div style="max-width:760px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
+
+      <div class="reveal" style="background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:26px; text-align:center;">
+        <div style="font-size:34px; line-height:1; margin-bottom:12px;">🪟</div>
+        <h3 style="font-size:19px; color:var(--text-pri); margin-bottom:6px;">Windows</h3>
+        <div style="color:var(--text-sec); font-size:13px; margin-bottom:18px;">Windows 10 / 11 · 64-bit</div>
+        <a href="https://github.com/zeeperz-ai/velodash/releases/latest/download/VeloDash-2.0.0-Windows-x64.zip" class="btn-primary" style="width:100%; box-sizing:border-box;">Download untuk Windows</a>
+      </div>
+
+      <div class="reveal" style="background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:26px; text-align:center;">
+        <div style="font-size:34px; line-height:1; margin-bottom:12px;">🍎</div>
+        <h3 style="font-size:19px; color:var(--text-pri); margin-bottom:6px;">macOS</h3>
+        <div style="color:var(--text-sec); font-size:13px; margin-bottom:18px;">Apple Silicon (M1–M4) · macOS 12+</div>
+        <a href="https://github.com/zeeperz-ai/velodash/releases/latest/download/VeloDash-2.0.0-macOS-AppleSilicon.dmg" class="btn-primary" style="width:100%; box-sizing:border-box;">Download untuk macOS</a>
+      </div>
+
+    </div>
+
+    <div class="reveal" style="max-width:760px; margin:18px auto 0; background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:18px 22px; color:var(--text-sec); font-size:13.5px; line-height:1.75;">
+      <b style="color:var(--text-pri);">Kalau muncul peringatan saat pertama dibuka — itu normal.</b><br>
+      VeloDash belum ditandatangani sertifikat berbayar Microsoft/Apple, jadi sistem
+      menampilkan peringatan "publisher tidak dikenal". Aplikasinya aman.
+      <ul style="margin:8px 0 0; padding-left:18px;">
+        <li><b>Windows:</b> di layar SmartScreen, klik <b>Info selengkapnya</b> → <b>Tetap jalankan</b>.</li>
+        <li><b>macOS:</b> buka file <code>.dmg</code>, seret ikon VeloDash ke folder <b>Applications</b>.
+            Lalu <b>klik kanan</b> aplikasinya → <b>Buka</b> (sekali saja, bukan klik dua kali).</li>
+        <li><b>Mac Intel</b> belum tersedia — untuk sementara pakai Windows, atau
+            <a href="https://wa.me/6287776686733" target="_blank" style="color:var(--accent-lt);">hubungi admin</a>.</li>
+      </ul>
     </div>
   </div>
 </section>
