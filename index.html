@@ -745,7 +745,7 @@
       <div class="feature-item reveal">
         <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
         <div class="feature-title">Windows & Mac</div>
-        <div class="feature-desc">Satu lisensi untuk perangkatmu. Build native untuk Windows dan macOS Apple Silicon, dengan login persisten yang aman tersimpan di device.</div>
+        <div class="feature-desc">Satu lisensi untuk perangkatmu. Build native untuk Windows dan macOS (chip M maupun Intel), dengan login persisten yang aman tersimpan di device.</div>
       </div>
     </div>
   </div>
@@ -1351,11 +1351,11 @@
   <div class="container">
     <div class="section-header reveal">
       <div class="tag">Download</div>
-      <h2>Unduh VeloDash v2.0.0</h2>
+      <h2>Unduh VeloDash v2.0.1</h2>
       <p>Gratis dicoba <b>1 hari penuh</b> tanpa serial. Install, buka, pilih Trial — semua fitur terbuka.</p>
     </div>
 
-    <div style="max-width:760px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px;">
+    <div style="max-width:1060px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px;">
 
       <div class="reveal dl-card soon" style="background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:26px; text-align:center;">
         <div class="dl-icon" aria-hidden="true">
@@ -1363,7 +1363,7 @@
         </div>
         <h3 style="font-size:19px; color:var(--text-pri); margin-bottom:6px;">Windows</h3>
         <div style="color:var(--text-sec); font-size:13px; margin-bottom:18px;">Windows 10 / 11 · 64-bit</div>
-        <!-- Tombol sengaja dimatikan sampai VeloDash-2.0.0-Windows-x64.zip benar-benar
+        <!-- Tombol sengaja dimatikan sampai VeloDash-2.0.1-Windows-x64.zip benar-benar
              ada di Releases. Kalau diaktifkan sebelum itu, pengunjung dapat 404. -->
         <span class="btn-primary" style="width:100%; box-sizing:border-box; display:inline-block; opacity:.45; cursor:not-allowed;">Segera hadir</span>
       </div>
@@ -1372,14 +1372,30 @@
         <div class="dl-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8.2c-1.1-.9-2.3-1.2-3.4-.9C6.9 7.7 5.5 9.4 5.5 12c0 3.4 2.2 7 3.9 7 .8 0 1.4-.5 2.6-.5s1.8.5 2.6.5c1.7 0 3.9-3.6 3.9-7 0-2.6-1.4-4.3-3.1-4.7-1.1-.3-2.3 0-3.4.9Z"></path><path d="M12 7c.2-1.3.9-2.4 2.1-3"></path></svg>
         </div>
-        <h3 style="font-size:19px; color:var(--text-pri); margin-bottom:6px;">macOS</h3>
-        <!-- macOS 15, bukan 12. Binary-nya minos 15.0 (dicek pakai otool) karena
-             wheel PySide6 & Python yang dipakai build memang setinggi itu. Di
-             macOS 14 ke bawah app-nya tidak mau jalan sama sekali. -->
-        <div style="color:var(--text-sec); font-size:13px; margin-bottom:18px;">Apple Silicon (M1–M4) · macOS 15 Sequoia+</div>
-        <a href="https://github.com/zeeperz-ai/velodash-landing/releases/latest/download/VeloDash-2.0.0-macOS-AppleSilicon.dmg" class="btn-primary" style="width:100%; box-sizing:border-box;">Download untuk macOS</a>
+        <h3 style="font-size:19px; color:var(--text-pri); margin-bottom:6px;">Mac chip M</h3>
+        <!-- Angka macOS di bawah ini BUKAN karangan. Itu nilai `minos` tertinggi
+             di antara semua binary yang ikut dibundel (cek: vtool -show-build).
+             Yang paling tinggi yang menang, dan sekarang itu PySide6 = 12.0.
+             Jangan diturunkan/dinaikkan di sini tanpa mengukur ulang binary-nya. -->
+        <div style="color:var(--text-sec); font-size:13px; margin-bottom:18px;">M1–M4 · macOS 12 Monterey+</div>
+        <a href="https://github.com/zeeperz-ai/velodash-landing/releases/latest/download/VeloDash-2.0.1-macOS-AppleSilicon.dmg" class="btn-primary" style="width:100%; box-sizing:border-box;">Download</a>
       </div>
 
+      <div class="reveal dl-card" style="background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:26px; text-align:center;">
+        <div class="dl-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8.2c-1.1-.9-2.3-1.2-3.4-.9C6.9 7.7 5.5 9.4 5.5 12c0 3.4 2.2 7 3.9 7 .8 0 1.4-.5 2.6-.5s1.8.5 2.6.5c1.7 0 3.9-3.6 3.9-7 0-2.6-1.4-4.3-3.1-4.7-1.1-.3-2.3 0-3.4.9Z"></path><path d="M12 7c.2-1.3.9-2.4 2.1-3"></path></svg>
+        </div>
+        <h3 style="font-size:19px; color:var(--text-pri); margin-bottom:6px;">Mac Intel</h3>
+        <div style="color:var(--text-sec); font-size:13px; margin-bottom:18px;">Core i5/i7/i9 · macOS 12 Monterey+</div>
+        <a href="https://github.com/zeeperz-ai/velodash-landing/releases/latest/download/VeloDash-2.0.1-macOS-Intel.dmg" class="btn-primary" style="width:100%; box-sizing:border-box;">Download</a>
+      </div>
+
+    </div>
+
+    <div class="reveal" style="max-width:1060px; margin:14px auto 0; text-align:center; color:var(--text-sec); font-size:13px;">
+      Tidak tahu Mac kamu chip M atau Intel? Klik logo Apple di pojok kiri atas →
+      <b style="color:var(--text-pri);">About This Mac</b>. Kalau tertulis <b style="color:var(--text-pri);">Chip&nbsp;Apple&nbsp;M1/M2/M3/M4</b> pilih yang chip M;
+      kalau tertulis <b style="color:var(--text-pri);">Processor&nbsp;Intel</b> pilih yang Intel.
     </div>
 
     <div class="reveal" style="max-width:760px; margin:18px auto 0; background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:18px 22px; color:var(--text-sec); font-size:13.5px; line-height:1.75;">
@@ -1390,9 +1406,8 @@
         <li><b>Windows:</b> di layar SmartScreen, klik <b>Info selengkapnya</b> → <b>Tetap jalankan</b>.</li>
         <li><b>macOS:</b> buka file <code>.dmg</code>, seret ikon VeloDash ke folder <b>Applications</b>.
             Lalu <b>klik kanan</b> aplikasinya → <b>Buka</b> (sekali saja, bukan klik dua kali).</li>
-        <li><b>Mac Intel</b>, serta <b>macOS 14 Sonoma ke bawah</b>, belum didukung —
-            aplikasinya tidak akan mau terbuka. Cek versi macOS kamu lewat menu Apple →
-            <b>About This Mac</b>. Kalau di bawah 15,
+        <li><b>macOS 11 Big Sur ke bawah</b> belum didukung — aplikasinya tidak akan mau
+            terbuka. Cek versi macOS kamu lewat menu Apple → <b>About This Mac</b>. Kalau di bawah 12,
             <a href="https://wa.me/6287776686733" target="_blank" style="color:var(--accent-lt);">hubungi admin</a> dulu
             sebelum membeli.</li>
       </ul>
