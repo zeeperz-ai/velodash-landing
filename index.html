@@ -1348,14 +1348,19 @@
         <div style="font-size:34px; line-height:1; margin-bottom:12px;">🪟</div>
         <h3 style="font-size:19px; color:var(--text-pri); margin-bottom:6px;">Windows</h3>
         <div style="color:var(--text-sec); font-size:13px; margin-bottom:18px;">Windows 10 / 11 · 64-bit</div>
-        <a href="https://github.com/zeeperz-ai/velodash/releases/latest/download/VeloDash-2.0.0-Windows-x64.zip" class="btn-primary" style="width:100%; box-sizing:border-box;">Download untuk Windows</a>
+        <!-- Tombol sengaja dimatikan sampai VeloDash-2.0.0-Windows-x64.zip benar-benar
+             ada di Releases. Kalau diaktifkan sebelum itu, pengunjung dapat 404. -->
+        <span class="btn-primary" style="width:100%; box-sizing:border-box; display:inline-block; opacity:.45; cursor:not-allowed;">Segera hadir</span>
       </div>
 
       <div class="reveal" style="background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:26px; text-align:center;">
         <div style="font-size:34px; line-height:1; margin-bottom:12px;">🍎</div>
         <h3 style="font-size:19px; color:var(--text-pri); margin-bottom:6px;">macOS</h3>
-        <div style="color:var(--text-sec); font-size:13px; margin-bottom:18px;">Apple Silicon (M1–M4) · macOS 12+</div>
-        <a href="https://github.com/zeeperz-ai/velodash/releases/latest/download/VeloDash-2.0.0-macOS-AppleSilicon.dmg" class="btn-primary" style="width:100%; box-sizing:border-box;">Download untuk macOS</a>
+        <!-- macOS 15, bukan 12. Binary-nya minos 15.0 (dicek pakai otool) karena
+             wheel PySide6 & Python yang dipakai build memang setinggi itu. Di
+             macOS 14 ke bawah app-nya tidak mau jalan sama sekali. -->
+        <div style="color:var(--text-sec); font-size:13px; margin-bottom:18px;">Apple Silicon (M1–M4) · macOS 15 Sequoia+</div>
+        <a href="https://github.com/zeeperz-ai/velodash-landing/releases/latest/download/VeloDash-2.0.0-macOS-AppleSilicon.dmg" class="btn-primary" style="width:100%; box-sizing:border-box;">Download untuk macOS</a>
       </div>
 
     </div>
@@ -1368,8 +1373,11 @@
         <li><b>Windows:</b> di layar SmartScreen, klik <b>Info selengkapnya</b> → <b>Tetap jalankan</b>.</li>
         <li><b>macOS:</b> buka file <code>.dmg</code>, seret ikon VeloDash ke folder <b>Applications</b>.
             Lalu <b>klik kanan</b> aplikasinya → <b>Buka</b> (sekali saja, bukan klik dua kali).</li>
-        <li><b>Mac Intel</b> belum tersedia — untuk sementara pakai Windows, atau
-            <a href="https://wa.me/6287776686733" target="_blank" style="color:var(--accent-lt);">hubungi admin</a>.</li>
+        <li><b>Mac Intel</b>, serta <b>macOS 14 Sonoma ke bawah</b>, belum didukung —
+            aplikasinya tidak akan mau terbuka. Cek versi macOS kamu lewat menu Apple →
+            <b>About This Mac</b>. Kalau di bawah 15,
+            <a href="https://wa.me/6287776686733" target="_blank" style="color:var(--accent-lt);">hubungi admin</a> dulu
+            sebelum membeli.</li>
       </ul>
     </div>
   </div>
