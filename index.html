@@ -676,7 +676,7 @@
           <div class="stat-label">Dashboard &amp; Analitik</div>
         </div>
         <div class="stat-item">
-          <div class="stat-num">Trial 1 hari</div>
+          <div class="stat-num">Trial 2 hari</div>
           <div class="stat-label">Coba gratis dulu</div>
         </div>
       </div>
@@ -808,7 +808,7 @@
         </div>
         <ul style="margin:0; padding-left:18px; color:var(--text-sec); font-size:14px; line-height:1.8;">
           <li><a href="#download" style="color:var(--accent-lt);">Download installer</a> untuk <b>Windows</b> atau <b>macOS</b>, lalu jalankan seperti biasa.</li>
-          <li>Buka aplikasi. Kamu bisa langsung pilih <b>Trial 1 hari gratis</b>, atau masukkan serial number untuk aktivasi penuh.</li>
+          <li>Buka aplikasi. Kamu bisa langsung pilih <b>Trial 2 hari gratis</b>, atau masukkan serial number untuk aktivasi penuh.</li>
         </ul>
       </div>
 
@@ -1079,98 +1079,64 @@
     <div class="section-header reveal">
       <div class="tag">Harga</div>
       <h2>Coba gratis, lalu pilih paketmu</h2>
-      <p>Mulai dari Trial 1 hari tanpa bayar. Aktivasi berlangganan lewat WhatsApp — proses cepat &amp; dibantu langsung admin.</p>
+      <p>Mulai dari Trial 2 hari tanpa bayar. Aktivasi berlangganan lewat WhatsApp — proses cepat &amp; dibantu langsung admin.</p>
     </div>
 
     <!-- Banner trial gratis -->
     <div class="reveal" style="max-width:760px; margin:0 auto 24px; background:var(--bg-card); border:1px solid var(--border-bright); border-radius:16px; padding:22px 28px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px;">
       <div>
-        <div style="font-family:var(--display); font-size:18px; font-weight:700; color:var(--text-pri);">Trial 1 Hari — Gratis</div>
-        <div style="font-size:13px; color:var(--text-sec); margin-top:4px;">Foto only (maks 500), Dashboard &amp; Analitik preview 7 hari, FotoTree scan 1000 foto terbaru. Langsung dari aplikasi, tanpa serial.</div>
+        <div style="font-family:var(--display); font-size:18px; font-weight:700; color:var(--text-pri);">Trial 2 Hari — Gratis</div>
+        <div style="font-size:13px; color:var(--text-sec); margin-top:4px;">Upload foto &amp; video tanpa batas jumlah. Dashboard &amp; Analitik preview 7 hari, FotoTree scan 1000 foto terbaru. Langsung dari aplikasi, tanpa serial.</div>
       </div>
       <a href="#cara-beli" class="btn-pricing solid" style="width:auto; padding:12px 22px; white-space:nowrap;">Cara Mulai</a>
     </div>
 
-    <!-- Banner promo peluncuran — auto-hilang setelah tanggal berakhir (lihat script #promo-guard) -->
-    <div class="promo-only reveal" data-promo-until="2026-08-17" style="max-width:760px; margin:0 auto 24px; background:var(--accent-glow); border:1px solid var(--border-bright); border-radius:14px; padding:14px 22px; text-align:center;">
-      <span style="font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-lt); font-weight:700;">🎉 Promo Peluncuran — Diskon 17%</span>
-      <span style="display:block; font-size:13px; color:var(--text-sec); margin-top:4px;">Berlaku untuk pembelian s/d <b style="color:var(--text-pri);">17 Agustus 2026</b>. Harga promo sudah tampil di kartu bawah. Sebutkan kode <b style="color:var(--accent-lt);">LAUNCH17</b> saat chat admin — diskon langsung diterapkan.</span>
-    </div>
-
-    <!-- Toggle durasi: 1 Bulan / Tahunan -->
+    <!-- Toggle durasi: 1 Hari / 7 Hari / 30 Hari / 1 Tahun -->
     <div class="plan-toggle-wrap reveal">
-      <div class="plan-toggle" role="tablist" aria-label="Pilih durasi langganan">
-        <button type="button" class="plan-opt" role="tab" data-plan="bulan" aria-selected="false">1 Bulan</button>
-        <button type="button" class="plan-opt" role="tab" data-plan="tahun" aria-selected="true">Tahunan<span class="save-pill">Hemat</span></button>
+      <div class="plan-toggle" role="tablist" aria-label="Pilih durasi lisensi">
+        <button type="button" class="plan-opt" role="tab" data-plan="hari" aria-selected="false">1 Hari</button>
+        <button type="button" class="plan-opt" role="tab" data-plan="minggu" aria-selected="false">7 Hari</button>
+        <button type="button" class="plan-opt" role="tab" data-plan="bulan" aria-selected="true">30 Hari</button>
+        <button type="button" class="plan-opt" role="tab" data-plan="tahun" aria-selected="false">1 Tahun<span class="save-pill">Hemat</span></button>
       </div>
     </div>
-    <p class="plan-sub" data-m="Dibayar sekali untuk 30 hari pemakaian." data-y="Dibayar sekali untuk 12 bulan — jauh lebih murah per bulannya.">Dibayar sekali untuk 12 bulan — jauh lebih murah per bulannya.</p>
+    <p class="plan-sub" data-d="Untuk satu hari turun lapangan. Sekali pakai, tanpa langganan." data-w="Untuk minggu yang padat event." data-m="Dibayar sekali untuk 30 hari pemakaian." data-y="Dibayar sekali untuk 12 bulan — jauh lebih murah per bulannya.">Dibayar sekali untuk 30 hari pemakaian.</p>
 
-    <div class="pricing-grid">
+    <div class="pricing-grid" style="max-width:520px; margin:0 auto;">
 
-      <!-- LITE -->
-      <div class="pricing-card reveal">
-        <div class="pricing-tier">LITE</div>
-        <div class="pricing-lead">Mesin uploader-nya saja — foto + video tanpa batas jumlah.</div>
+      <div class="pricing-card featured reveal">
+        <div class="pricing-badge">Semua fitur</div>
+        <div class="pricing-tier">VELODASH</div>
+        <div class="pricing-lead">Satu paket, semua fitur. Yang membedakan cuma masa aktif &amp; jumlah device.</div>
         <div class="seat-grid">
           <div class="seat">
             <div class="seat-label">Individu<span>1 device aktif</span></div>
-            <div class="seat-old promo-only"><s data-m="Rp 149rb" data-y="Rp 749rb">Rp 749rb</s><span class="off-pill">−17%</span></div>
-            <div class="seat-price" data-m="Rp 123rb" data-y="Rp 619rb" data-m-was="Rp 149rb" data-y-was="Rp 749rb">Rp 619rb</div>
-            <div class="seat-per" data-m="/ 30 hari" data-y="/ tahun">/ tahun</div>
+            <div class="seat-price" data-d="Rp 39rb" data-w="Rp 59rb" data-m="Rp 160rb" data-y="Rp 799rb">Rp 160rb</div>
+            <div class="seat-per" data-d="/ 1 hari" data-w="/ 7 hari" data-m="/ 30 hari" data-y="/ tahun">/ 30 hari</div>
           </div>
           <div class="seat">
             <div class="seat-label">Team<span>5 device aktif</span></div>
-            <div class="seat-old promo-only"><s data-m="Rp 559rb" data-y="Rp 1.449rb">Rp 1.449rb</s><span class="off-pill">−17%</span></div>
-            <div class="seat-price" data-m="Rp 459rb" data-y="Rp 1.199rb" data-m-was="Rp 559rb" data-y-was="Rp 1.449rb">Rp 1.199rb</div>
-            <div class="seat-per" data-m="/ 30 hari" data-y="/ tahun">/ tahun</div>
+            <div class="seat-price" data-d="&mdash;" data-w="&mdash;" data-m="Rp 550rb" data-y="Rp 1.800rb">Rp 550rb</div>
+            <div class="seat-per" data-d="mulai 30 hari" data-w="mulai 30 hari" data-m="/ 30 hari" data-y="/ tahun">/ 30 hari</div>
           </div>
         </div>
         <div class="pricing-divider"></div>
         <ul class="pricing-features">
-          <li><span class="check">✓</span><span>Upload foto + video, tanpa batas jumlah</span></li>
+          <li><span class="check">✓</span><span>Upload foto &amp; video, tanpa batas jumlah</span></li>
           <li><span class="check">✓</span><span>Engine direct (tanpa browser) — cepat &amp; ringan</span></li>
           <li><span class="check">✓</span><span>FotoTree otomatis, harga &amp; deskripsi preset</span></li>
-          <li><span class="check">✓</span><span>Auto-upload pantau folder kamera</span></li>
+          <li><span class="check">✓</span><span>Auto-upload pantau folder kamera + tether FTP</span></li>
           <li><span class="check">✓</span><span>Anti-duplikat — file yang sudah naik dilewati</span></li>
-          <li style="opacity:.5;"><span class="x">✗</span><span>Tanpa Dashboard, Tree Analyzer &amp; Analytics</span></li>
-        </ul>
-        <a href="#cara-beli" class="btn-pricing outlined">Beli via WhatsApp</a>
-      </div>
-
-      <!-- PRO -->
-      <div class="pricing-card featured reveal">
-        <div class="pricing-badge">Paling Lengkap</div>
-        <div class="pricing-tier">PRO</div>
-        <div class="pricing-lead">Uploader + menu riset &amp; analitik yang tidak ada di uploader lain.</div>
-        <div class="seat-grid">
-          <div class="seat">
-            <div class="seat-label">Individu<span>1 device aktif</span></div>
-            <div class="seat-old promo-only"><s data-m="Rp 249rb" data-y="Rp 1.249rb">Rp 1.249rb</s><span class="off-pill">−17%</span></div>
-            <div class="seat-price" data-m="Rp 205rb" data-y="Rp 1.029rb" data-m-was="Rp 249rb" data-y-was="Rp 1.249rb">Rp 1.029rb</div>
-            <div class="seat-per" data-m="/ 30 hari" data-y="/ tahun">/ tahun</div>
-          </div>
-          <div class="seat">
-            <div class="seat-label">Team<span>5 device aktif</span></div>
-            <div class="seat-old promo-only"><s data-m="Rp 759rb" data-y="Rp 2.499rb">Rp 2.499rb</s><span class="off-pill">−17%</span></div>
-            <div class="seat-price" data-m="Rp 629rb" data-y="Rp 2.069rb" data-m-was="Rp 759rb" data-y-was="Rp 2.499rb">Rp 2.069rb</div>
-            <div class="seat-per" data-m="/ 30 hari" data-y="/ tahun">/ tahun</div>
-          </div>
-        </div>
-        <div class="pricing-divider"></div>
-        <ul class="pricing-features">
-          <li><span class="check">✓</span><span>Semua fitur paket Lite</span></li>
           <li><span class="check">✓</span><span><b>Dashboard</b> pendapatan &amp; ranking pembeli</span></li>
           <li><span class="check">✓</span><span><b>FotoTree Analyzer</b> riset event tanpa batas</span></li>
           <li><span class="check">✓</span><span><b>Analytics</b> audit foto Roboyu &amp; akurasi deteksi</span></li>
-          <li><span class="check">✓</span><span>Rentang data penuh (bukan preview)</span></li>
-          <li><span class="check">✓</span><span>Prioritas bantuan aktivasi</span></li>
+          <li><span class="check">✓</span><span>Kirim ulang hi-res + upscale AI foto yang hilang</span></li>
         </ul>
         <a href="#cara-beli" class="btn-pricing solid">Beli via WhatsApp</a>
       </div>
 
     </div>
-    <p class="reveal" style="text-align:center; color:var(--text-dim); font-size:12px; margin-top:20px;">Harga peluncuran dalam Rupiah. Lite = uploader; Pro menambah Dashboard, Tree Analyzer &amp; Analytics. Paket Team memakai satu serial untuk 5 device. Pembayaran &amp; aktivasi dibantu manual via WhatsApp.</p>
+    <p class="reveal" style="text-align:center; color:var(--text-dim); font-size:12px; margin-top:20px;">Harga dalam Rupiah. Tidak ada fitur yang dikunci — paket harian sampai tahunan isinya sama persis. Paket Team memakai satu serial untuk 5 device. Paket 1 &amp; 7 hari khusus Individu. Pembayaran &amp; aktivasi dibantu via WhatsApp.</p>
   </div>
 </section>
 
@@ -1179,7 +1145,7 @@
   <div class="container">
     <div class="section-header reveal">
       <div class="tag">Perbandingan</div>
-      <h2>Trial vs Lite vs Pro</h2>
+      <h2>Trial vs VeloDash</h2>
     </div>
     <div class="reveal" style="overflow-x:auto; border:1px solid var(--border); border-radius:16px;">
       <table class="compare-table">
@@ -1187,20 +1153,17 @@
           <tr>
             <th class="col-feature">Fitur</th>
             <th class="col-lite">TRIAL</th>
-            <th class="col-lite">LITE</th>
-            <th class="col-pro"><span>PRO</span></th>
+            <th class="col-pro"><span>VELODASH</span></th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td class="feature-name">Mode upload</td>
-            <td>Foto only</td>
-            <td><span class="val">Foto + Video</span></td>
-            <td><span class="val">Foto + Video</span></td>
+            <td><span class="val">Foto &amp; Video</span></td>
+            <td><span class="val">Foto &amp; Video</span></td>
           </tr>
           <tr>
             <td class="feature-name">Batas jumlah upload</td>
-            <td><span class="val">Maks 500 foto</span></td>
             <td><span class="val">Tanpa batas</span></td>
             <td><span class="val">Tanpa batas</span></td>
           </tr>
@@ -1208,49 +1171,51 @@
             <td class="feature-name">Engine direct (tanpa browser)</td>
             <td><span class="yes">✓</span></td>
             <td><span class="yes">✓</span></td>
-            <td><span class="yes">✓</span></td>
           </tr>
           <tr>
             <td class="feature-name">Custom preset &amp; auto-upload</td>
             <td><span class="yes">✓</span></td>
+            <td><span class="yes">✓</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Tether FTP kamera</td>
             <td><span class="yes">✓</span></td>
             <td><span class="yes">✓</span></td>
           </tr>
           <tr>
             <td class="feature-name">Dashboard pendapatan</td>
             <td><span class="val">Preview 7 hari</span></td>
-            <td><span class="no">✗</span></td>
             <td><span class="val">Rentang penuh</span></td>
           </tr>
           <tr>
             <td class="feature-name">FotoTree Analyzer</td>
             <td><span class="val">Scan 1000 foto</span></td>
-            <td><span class="no">✗</span></td>
             <td><span class="val">Tanpa batas</span></td>
           </tr>
           <tr>
             <td class="feature-name">Analytics audit Roboyu</td>
             <td><span class="val">Preview 7 hari</span></td>
-            <td><span class="no">✗</span></td>
             <td><span class="val">Rentang penuh</span></td>
+          </tr>
+          <tr>
+            <td class="feature-name">Kirim ulang hi-res + upscale AI</td>
+            <td><span class="no">✗</span></td>
+            <td><span class="yes">✓</span></td>
           </tr>
           <tr>
             <td class="feature-name">Device aktif</td>
             <td><span class="val">1</span></td>
-            <td><span class="val">1</span></td>
-            <td><span class="val">1</span></td>
+            <td><span class="val">1 atau 5 (Team)</span></td>
           </tr>
           <tr>
-            <td class="feature-name">Windows & Mac</td>
-            <td><span class="yes">✓</span></td>
+            <td class="feature-name">Windows &amp; Mac</td>
             <td><span class="yes">✓</span></td>
             <td><span class="yes">✓</span></td>
           </tr>
           <tr>
             <td class="feature-name">Masa berlaku</td>
-            <td><span class="val">1 hari</span></td>
-            <td><span class="val">Bulanan / Tahunan</span></td>
-            <td><span class="val">Bulanan / Tahunan</span></td>
+            <td><span class="val">2 hari</span></td>
+            <td><span class="val">1 / 7 / 30 hari atau tahunan</span></td>
           </tr>
         </tbody>
       </table>
@@ -1281,25 +1246,25 @@
           <div class="faq-icon">+</div>
         </button>
         <div class="faq-a">
-          Untuk saat ini pembayaran dibantu manual via WhatsApp — kamu chat admin, pilih paket (Lite/Pro, Individu/Team, 30 hari/tahunan), lalu transfer. Setelah pembayaran diterima, admin kirim serial number. Tinggal masukkan serial di aplikasi dan klik Aktivasi. Prosesnya cepat dan dipandu langsung.
+          Untuk saat ini pembayaran dibantu manual via WhatsApp — kamu chat admin, sebutkan tipe (Individu/Team) dan durasi (1 hari, 7 hari, 30 hari, atau tahunan), lalu transfer. Setelah pembayaran diterima, admin kirim serial number. Tinggal masukkan serial di aplikasi dan klik Aktivasi. Prosesnya cepat dan dipandu langsung.
         </div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" onclick="toggleFaq(this)">
-          Apa itu Trial 1 hari dan apa batasannya?
+          Apa itu Trial 2 hari dan apa batasannya?
           <div class="faq-icon">+</div>
         </button>
         <div class="faq-a">
-          Trial gratis bisa langsung dimulai dari aplikasi tanpa serial. Selama 1 hari kamu bisa coba upload foto (maks 500), lihat Dashboard &amp; Analitik dalam preview 7 hari terakhir, dan FotoTree Analyzer (scan 1000 foto terbaru). Upload video &amp; rentang data penuh terbuka setelah upgrade.
+          Trial gratis bisa langsung dimulai dari aplikasi tanpa serial, satu kali per akun FotoYu. Selama 2 hari mesin uploadnya terbuka penuh — foto maupun video, tanpa batas jumlah. Yang dibatasi cuma menu analisanya: Dashboard &amp; Analytics menampilkan preview 7 hari terakhir, dan FotoTree Analyzer memindai 1000 foto terbaru. Rentang data penuh terbuka setelah aktivasi.
         </div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" onclick="toggleFaq(this)">
-          Apa beda paket Lite dan Pro?
+          Apa beda paket Individu dan Team?
           <div class="faq-icon">+</div>
         </button>
         <div class="faq-a">
-          Lite fokus di uploader: upload foto + video tanpa batas, engine direct, preset &amp; auto-upload. Pro menambah menu riset &amp; analitik — Dashboard pendapatan, FotoTree Analyzer, dan Analytics audit foto Roboyu. Keduanya tersedia dalam versi Individu (1 device aktif) dan Team (5 device aktif dengan satu serial). Kalau mau pindah device, hubungi admin untuk bantu reset aktivasi.
+          Isinya sama persis — tidak ada fitur yang dikunci di paket mana pun. Bedanya cuma jumlah device: Individu untuk 1 device aktif, Team untuk 5 device aktif dengan satu serial. Paket 1 hari dan 7 hari khusus Individu; Team mulai dari 30 hari. Kalau mau pindah device, hubungi admin untuk bantu reset aktivasi.
         </div>
       </div>
     </div>
@@ -1319,7 +1284,7 @@
         <div class="step-num">01</div>
         <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></div>
         <div class="feature-title">Chat Admin</div>
-        <div class="feature-desc">Klik tombol WhatsApp di bawah. Sebutkan paket yang kamu mau: Lite atau Pro, Individu atau Team, 30 hari atau tahunan.</div>
+        <div class="feature-desc">Klik tombol WhatsApp di bawah. Sebutkan tipe yang kamu mau (Individu atau Team) dan durasinya (1 hari, 7 hari, 30 hari, atau tahunan).</div>
       </div>
       <div class="feature-item reveal">
         <div class="step-num">02</div>
@@ -1420,7 +1385,7 @@
       <div class="tag" style="margin:0 auto 20px;">Tersedia Sekarang</div>
       <h2>Siap upload lebih cepat?</h2>
       <p>Mulai dari Trial gratis di aplikasi, atau langsung aktivasi paket lewat WhatsApp. Dibantu admin sampai jalan.</p>
-      <a href="https://wa.me/6287776686733?text=Halo%20admin%2C%20saya%20mau%20beli%20VeloDash%20(promo%20peluncuran%20-17%25%2C%20kode%20LAUNCH17).%20Paket%3A%20(Lite%2FPro)%2C%20tipe%3A%20(Individu%2FTeam)%2C%20durasi%3A%20(30%20hari%2Ftahunan)." target="_blank" class="btn-primary" style="font-size:16px; padding:16px 36px;">
+      <a href="https://wa.me/6287776686733?text=Halo%20admin%2C%20saya%20mau%20beli%20VeloDash.%20Tipe%3A%20(Individu%2FTeam)%2C%20durasi%3A%20(1%20hari%2F7%20hari%2F30%20hari%2Ftahunan)." target="_blank" class="btn-primary" style="font-size:16px; padding:16px 36px;">
         💬 Chat Admin di WhatsApp
       </a>
     </div>
@@ -1479,44 +1444,25 @@
     }, 800 + i * 180);
   });
 
-  // Satu sumber kebenaran untuk masa promo — dipakai toggle harga & promo-guard.
-  const PROMO_UNTIL = new Date('2026-08-17T23:59:59+07:00');
-  const PROMO_ON = new Date() <= PROMO_UNTIL;
-
-  // Toggle durasi 1 Bulan / Tahunan — tukar semua teks ber-data-m / data-y.
-  // Saat promo habis, elemen pakai varian data-*-was (harga normal) kalau ada.
+  // Toggle durasi — tukar semua teks yang punya keempat varian harga.
+  // Sumber angkanya: supabase/functions/_shared/pricing.ts. Kalau harga berubah
+  // di sana, ubah juga di sini; jangan pernah cuma salah satu.
   (function planToggle() {
+    const SUFFIX = { hari: 'd', minggu: 'w', bulan: 'm', tahun: 'y' };
     const opts = document.querySelectorAll('.plan-opt');
     if (!opts.length) return;
     const apply = plan => {
-      const suf = plan === 'bulan' ? 'm' : 'y';
+      const suf = SUFFIX[plan] || 'm';
       document.querySelectorAll('[data-m][data-y]').forEach(el => {
-        const normal = el.getAttribute('data-' + suf + '-was');
-        el.textContent = (PROMO_ON || !normal) ? el.getAttribute('data-' + suf) : normal;
+        const v = el.getAttribute('data-' + suf);
+        if (v !== null) el.innerHTML = v;
       });
       opts.forEach(o => o.setAttribute('aria-selected', String(o.dataset.plan === plan)));
     };
     opts.forEach(o => o.addEventListener('click', () => apply(o.dataset.plan)));
-    apply('tahun');
+    apply('bulan');
   })();
 
-  // #promo-guard — matikan promo otomatis setelah tanggal berakhir.
-  // 1) Sembunyikan semua elemen .promo-only.
-  // 2) Bersihkan pesan promo di link WhatsApp (kode LAUNCH17 + "-17%") jadi normal.
-  (function promoGuard() {
-    if (PROMO_ON) return;   // masih promo — biarkan
-    document.querySelectorAll('.promo-only').forEach(el => el.remove());
-    document.querySelectorAll('a[href*="wa.me"]').forEach(a => {
-      try {
-        const u = new URL(a.href);
-        let t = u.searchParams.get('text') || '';
-        // Buang embel-embel promo, sisakan niat beli yang normal.
-        t = t.replace(/\s*\(promo peluncuran[^)]*\)/i, '');
-        u.searchParams.set('text', t.trim());
-        a.href = u.toString();
-      } catch (_) {}
-    });
-  })();
 </script>
 </body>
 </html>
