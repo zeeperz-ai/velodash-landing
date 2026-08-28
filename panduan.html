@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Panduan VeloDash — dari install sampai analitik</title>
-<meta name="description" content="Panduan langkah demi langkah memakai VeloDash: install, aktivasi lisensi, login Fotoyu, atur harga & FotoTree, upload batch, sampai baca Dashboard dan Analytics.">
+<meta name="description" content="Panduan langkah demi langkah memakai VeloDash: install, aktivasi lisensi, login Fotoyu, atur harga & FotoTree, upload batch, sampai baca Ringkasan dan Foto Saya, plus kirim hi-res setelah foto laku.">
 <link rel="canonical" href="https://velodash.my.id/panduan.html">
 <link rel="icon" href="assets/velodash-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -348,9 +348,10 @@
       <li><a href="#mulai">Mulai upload batch</a></li>
       <li><a href="#performa">Atur mode performa</a></li>
       <li><a href="#riwayat">Cek riwayat &amp; gagal</a></li>
-      <li><a href="#dashboard">Dashboard pendapatan</a></li>
-      <li><a href="#tree">Tree Analyzer</a></li>
-      <li><a href="#analytics">Analytics penjualan</a></li>
+      <li><a href="#hires">Kirim Hi-Res setelah laku</a></li>
+      <li><a href="#dashboard">Ringkasan pendapatan</a></li>
+      <li><a href="#tree">Event &mdash; riset FotoTree</a></li>
+      <li><a href="#analytics">Foto Saya</a></li>
       <li><a href="#kendala">Kendala umum</a></li>
     </ol>
     <div class="toc-help">
@@ -423,7 +424,7 @@
 
       <ul class="bullets">
         <li><b>Punya serial?</b> Tempel di kolom <code>XXXX-XXXX-XXXX-XXXX</code> lalu klik <b>Aktivasi</b>. Serial dikirim admin lewat WhatsApp setelah pembayaran.</li>
-        <li><b>Belum yakin?</b> Klik <b>Coba Gratis — Trial 1 Hari</b>. Trial dibatasi: foto saja (maks 500), tanpa video, dan Dashboard/Analytics hanya preview 7 hari terakhir.</li>
+        <li><b>Belum yakin?</b> Klik <b>Coba Gratis — Trial 1 Hari</b>. Saat trial, upload foto &amp; video tanpa batas; yang dibatasi menu analisanya &mdash; Ringkasan/Foto Saya menampilkan 7 hari data terakhir.</li>
         <li><b>Mau beli sekarang?</b> Klik tombol promo — WhatsApp terbuka dengan pesan yang sudah terisi otomatis, tinggal kirim.</li>
       </ul>
 
@@ -437,7 +438,7 @@
     <section class="step" id="akun">
       <span class="step-num">LANGKAH 03 · AKUN</span>
       <h2>Login akun Fotoyu</h2>
-      <p>VeloDash upload atas nama akun Fotoyu-mu, jadi login dulu. Buka menu <b>Accounts</b> di sidebar kiri, klik <b>+ Tambah akun</b>.</p>
+      <p>VeloDash upload atas nama akun Fotoyu-mu, jadi login dulu. Buka menu <b>Akun</b> di sidebar kiri, klik <b>+ Tambah akun</b>.</p>
 
       <figure class="shot inline">
         <img src="assets/panduan/02-login.png" alt="Form login Fotoyu di VeloDash: kolom username dan password" loading="lazy">
@@ -451,7 +452,7 @@
       </ul>
 
       <figure class="shot">
-        <img src="assets/panduan/03-accounts.png" alt="Halaman Accounts VeloDash berisi daftar akun tersimpan dengan tombol Pakai dan Hapus" loading="lazy">
+        <img src="assets/panduan/03-accounts.png" alt="Menu Akun VeloDash berisi daftar akun tersimpan dengan tombol Pakai dan Hapus" loading="lazy">
         <figcaption>Simpan banyak akun sekaligus — klik <b>Pakai</b> untuk berpindah</figcaption>
       </figure>
 
@@ -632,7 +633,7 @@
     <section class="step" id="performa">
       <span class="step-num">LANGKAH 08 · PERFORMA</span>
       <h2>Sesuaikan kecepatan dengan koneksimu</h2>
-      <p>Buka menu <b>Settings</b>. VeloDash sudah membaca jumlah CPU core perangkatmu dan menyarankan satu mode — tapi kamu bisa ganti kapan saja.</p>
+      <p>Buka menu <b>Setelan</b>. VeloDash sudah membaca jumlah CPU core perangkatmu dan menyarankan satu mode — tapi kamu bisa ganti kapan saja.</p>
 
       <figure class="shot">
         <img src="assets/panduan/05-settings.png" alt="Halaman Settings VeloDash: mode performa Hemat, Seimbang, Ngebut, pengaturan manual, dan perilaku" loading="lazy">
@@ -656,11 +657,11 @@
     <section class="step" id="riwayat">
       <span class="step-num">LANGKAH 09 · RIWAYAT</span>
       <h2>Cek hasil &amp; file yang gagal</h2>
-      <p>Menu <b>History</b> menyimpan tiap batch yang pernah dijalankan: jumlah sukses, duplikat, gagal, durasi, dan akun yang dipakai.</p>
+      <p>Menu <b>Riwayat</b> menyimpan tiap batch yang pernah dijalankan: jumlah sukses, duplikat, gagal, durasi, dan akun yang dipakai.</p>
 
       <figure class="shot">
-        <img src="assets/panduan/09-history.png" alt="Halaman History VeloDash berisi daftar job upload dengan status dan detail error" loading="lazy">
-        <figcaption>History — buka satu baris untuk melihat detail file yang gagal</figcaption>
+        <img src="assets/panduan/09-history.png" alt="Halaman Riwayat VeloDash berisi daftar job upload dengan status dan detail error" loading="lazy">
+        <figcaption>Riwayat — buka satu baris untuk melihat detail file yang gagal</figcaption>
       </figure>
 
       <ul class="bullets">
@@ -670,14 +671,43 @@
     </section>
 
     <!-- 10 -->
+    <section class="step" id="hires">
+      <span class="step-num">LANGKAH 10 &middot; FOTO LAKU</span>
+      <h2>Kirim Hi-Res &mdash; setelah foto terjual</h2>
+      <p>Yang diunggah VeloDash ke Fotoyu adalah versi kompresi. Begitu foto laku, Fotoyu meminta <b>file resolusi penuhnya</b> untuk diteruskan ke pembeli &mdash; kalau tidak dikirim, transaksinya bisa batal. Menu <b>Kirim Hi-Res</b> mencari file asli itu di komputermu, lalu mengirimkannya.</p>
+
+      <ul class="bullets">
+        <li>Klik <b>Pilih folder original&hellip;</b> dan arahkan ke folder arsip foto aslimu &mdash; semua subfolder ikut dicari.</li>
+        <li>Tiap permintaan tampil satu baris: kiri foto yang <b>dibeli</b>, kanan file yang <b>akan dikirim</b>. Bandingkan sebelum menekan kirim.</li>
+        <li>Tombol <b>Kirim N foto</b> mengirim semua yang cocok sekaligus, setelah ditampilkan sekali lagi untuk diperiksa.</li>
+      </ul>
+
+      <p>Sebagian baris sengaja <b>ditahan</b> dan tidak ikut terkirim otomatis:</p>
+      <ul class="bullets">
+        <li><b>ambigu</b> &mdash; ada lebih dari satu file yang sama-sama mirip (foto burst), atau namanya kembar antar kartu memori. Kamu yang memilih.</li>
+        <li><b>file kecil</b> &mdash; yang ketemu di bawah 1&nbsp;MB. Itu hasil ekspor, bukan original.</li>
+        <li><b>isi beda</b> &mdash; namanya sama tapi isinya lain. Kemungkinan besar salah file.</li>
+      </ul>
+
+      <div class="note">
+        <span class="note-ico">&#9888;</span>
+        <div>Kirim ulang <b>menimpa</b> foto asli di server Fotoyu dan tidak bisa dibatalkan. Karena itu apa pun yang meragukan tidak pernah dikirim sendiri &mdash; harus kamu putuskan.</div>
+      </div>
+
+      <p>Untuk foto yang diunggah lewat VeloDash versi ini ke atas, file aslinya dikenali <b>otomatis dan pasti</b> &mdash; walaupun sudah kamu pindah folder atau ganti nama. Foto lama tetap dicocokkan lewat nama file dan kemiripan gambar.</p>
+
+      <p>Di panel kanan ada <b>Inbox</b>: chat pembeli dari Fotoyu, lengkap dengan foto yang dia beli. Balas langsung dari sini, atau nyalakan <b>pesan otomatis</b> untuk menanyakan revisi dan meminta rating setelah hi-res terkirim.</p>
+    </section>
+
+    <!-- 11 -->
     <section class="step" id="dashboard">
-      <span class="step-num">LANGKAH 10 · PENDAPATAN</span>
-      <h2>Dashboard — lihat uang masuk</h2>
-      <p>Menu <b>Dashboard</b> menarik data penjualan dari akun Fotoyu-mu dan merangkumnya jadi satu layar: total pendapatan, jumlah foto terjual, harga rata-rata, tren harian, event paling laku, dan transaksi terbaru.</p>
+      <span class="step-num">LANGKAH 11 · PENDAPATAN</span>
+      <h2>Ringkasan — lihat uang masuk</h2>
+      <p>Menu <b>Ringkasan</b> menarik data penjualan dari akun Fotoyu-mu dan merangkumnya jadi satu layar: total pendapatan, jumlah foto terjual, harga rata-rata, tren harian, event paling laku, dan transaksi terbaru.</p>
 
       <figure class="shot">
-        <img src="assets/panduan/06-dashboard.png" alt="Dashboard Performa VeloDash: kartu ringkasan pendapatan, grafik tren, ranking event, dan transaksi terbaru" loading="lazy">
-        <figcaption>Dashboard Performa — angka pada contoh ini diambil dari akun sungguhan</figcaption>
+        <img src="assets/panduan/06-dashboard.png" alt="Ringkasan Performa VeloDash: kartu ringkasan pendapatan, grafik tren, ranking event, dan transaksi terbaru" loading="lazy">
+        <figcaption>Ringkasan Performa — angka pada contoh ini diambil dari akun sungguhan</figcaption>
       </figure>
 
       <ul class="bullets">
@@ -687,19 +717,19 @@
 
       <div class="note">
         <span class="note-ico">ℹ</span>
-        <div>Dashboard, Tree Analyzer, dan Analytics termasuk paket <b>Pro</b>. Paket <b>Lite</b> fokus ke uploader saja; saat <b>Trial</b> ketiganya bisa dilihat tapi terbatas 7 hari terakhir.</div>
+        <div>Menu analisa (Ringkasan, Event, Foto Saya) terbuka penuh untuk semua lisensi berbayar &mdash; termasuk pembeli <b>Lite</b> lama. Saat <b>Trial</b> ketiganya bisa dilihat tapi rentang datanya dibatasi.</div>
       </div>
     </section>
 
     <!-- 11 -->
     <section class="step" id="tree">
-      <span class="step-num">LANGKAH 11 · RISET</span>
-      <h2>Tree Analyzer — intip potensi sebuah event</h2>
+      <span class="step-num">LANGKAH 12 · RISET</span>
+      <h2>Event — intip potensi sebuah event</h2>
       <p>Sebelum berangkat ke sebuah event, cek dulu seberapa ramai pasarnya. Ketik nama event di kolom pencarian, klik <b>Detail</b>, dan VeloDash memindai FotoTree tersebut.</p>
 
       <figure class="shot">
-        <img src="assets/panduan/07-tree.png" alt="FotoTree Analyzer VeloDash: hasil pencarian event dengan jumlah foto tersedia" loading="lazy">
-        <figcaption>Tree Analyzer — hasil scan tersimpan, bisa dibuka lagi lewat <b>Riwayat</b></figcaption>
+        <img src="assets/panduan/07-tree.png" alt="Menu Event VeloDash: hasil pencarian event dengan jumlah foto tersedia" loading="lazy">
+        <figcaption>Event — hasil scan tersimpan, bisa dibuka lagi lewat <b>Riwayat</b></figcaption>
       </figure>
 
       <ul class="bullets">
@@ -710,13 +740,13 @@
 
     <!-- 12 -->
     <section class="step" id="analytics">
-      <span class="step-num">LANGKAH 12 · ANALITIK</span>
-      <h2>Analytics — foto mana yang laku</h2>
-      <p>Menu <b>Analytics</b> membedah galerimu per tanggal: berapa foto total, berapa yang masih tersedia, dan mana yang perlu ditindaklanjuti.</p>
+      <span class="step-num">LANGKAH 13 · ANALITIK</span>
+      <h2>Foto Saya — foto mana yang laku</h2>
+      <p>Menu <b>Foto Saya</b> membedah galerimu per tanggal: berapa foto total, berapa yang masih tersedia, dan mana yang perlu ditindaklanjuti.</p>
 
       <figure class="shot">
-        <img src="assets/panduan/08-analytics.jpg" alt="Halaman Analytics VeloDash: grid foto per tanggal dengan jumlah total dan tersedia" loading="lazy">
-        <figcaption>Analytics — klik satu tanggal untuk menganalisis galerinya</figcaption>
+        <img src="assets/panduan/08-analytics.jpg" alt="Menu Foto Saya VeloDash: grid foto per tanggal dengan jumlah total dan tersedia" loading="lazy">
+        <figcaption>Foto Saya — klik satu tanggal untuk menganalisis galerinya</figcaption>
       </figure>
 
       <ul class="bullets">
@@ -727,7 +757,7 @@
 
     <!-- 13 -->
     <section class="step" id="kendala">
-      <span class="step-num">LANGKAH 13 · BANTUAN</span>
+      <span class="step-num">LANGKAH 14 · BANTUAN</span>
       <h2>Kendala umum</h2>
       <p>Sebagian besar masalah selesai dengan langkah di bawah. Kalau tetap mentok, chat admin — biasanya dibalas cepat.</p>
 
@@ -737,7 +767,7 @@
       </div>
       <div class="tr-item">
         <button class="tr-q" onclick="toggleTr(this)">Upload sering gagal atau timeout</button>
-        <div class="tr-a">Buka <b>Settings</b> → turunkan mode performa ke <b>Seimbang</b> atau <b>Hemat</b>. Mode Ngebut mengirim banyak file bersamaan; kalau koneksi tidak kuat, justru lebih banyak yang gagal. File gagal tetap diulang otomatis di akhir batch.</div>
+        <div class="tr-a">Buka <b>Setelan</b> → turunkan mode performa ke <b>Seimbang</b> atau <b>Hemat</b>. Mode Ngebut mengirim banyak file bersamaan; kalau koneksi tidak kuat, justru lebih banyak yang gagal. File gagal tetap diulang otomatis di akhir batch.</div>
       </div>
       <div class="tr-item">
         <button class="tr-q" onclick="toggleTr(this)">Banyak file berstatus “Dup”</button>
@@ -748,8 +778,8 @@
         <div class="tr-a">Satu serial terikat ke perangkat yang diaktifkan. Chat admin untuk melepas seat lama, lalu aktivasi ulang di perangkat baru. Tidak ada biaya tambahan.</div>
       </div>
       <div class="tr-item">
-        <button class="tr-q" onclick="toggleTr(this)">Dashboard / Analytics minta login</button>
-        <div class="tr-a">Fitur ini butuh sesi akun Fotoyu yang aktif. Buka menu <b>Accounts</b>, pastikan salah satu akun berstatus <b>Aktif</b> — kalau tidak, klik <b>Pakai</b> atau login ulang.</div>
+        <button class="tr-q" onclick="toggleTr(this)">Ringkasan / Foto Saya minta login</button>
+        <div class="tr-a">Fitur ini butuh sesi akun Fotoyu yang aktif. Buka menu <b>Akun</b>, pastikan salah satu akun berstatus <b>Aktif</b> — kalau tidak, klik <b>Pakai</b> atau login ulang.</div>
       </div>
       <div class="tr-item">
         <button class="tr-q" onclick="toggleTr(this)">Aplikasi ditolak Windows SmartScreen / macOS Gatekeeper</button>
