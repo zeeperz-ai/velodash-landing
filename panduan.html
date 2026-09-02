@@ -404,9 +404,13 @@
         <div>
           <b>Muncul peringatan saat pertama dibuka?</b> Itu normal untuk aplikasi baru yang belum dikenal sistem.<br>
           <b>Windows:</b> kalau muncul “Windows protected your PC”, klik <b>More info</b> → <b>Run anyway</b>.<br>
-          <b>macOS:</b> kalau muncul “tidak dapat dibuka”, <b>klik kanan</b> ikon VeloDash → <b>Open</b> → <b>Open</b>.
-          Harus klik kanan; klik dua kali biasa akan tetap ditolak. Cukup sekali saja, buka berikutnya sudah normal.
-          Alternatif: <b>System Settings → Privacy &amp; Security</b> → tombol <b>Open Anyway</b>.
+          <b>macOS 15 Sequoia ke atas:</b> buka VeloDash sekali — muncul “Apple could not verify…”, klik <b>Done</b>.
+          Lalu <b>System Settings → Privacy &amp; Security</b>, gulir ke bagian <b>Security</b>, klik
+          <b>Open Anyway</b>, masukkan Touch ID/password, lalu klik <b>Open Anyway</b> sekali lagi.
+          Kalau tombolnya belum kelihatan, berarti kamu belum mencoba membukanya — tombol itu baru muncul
+          setelah percobaan buka yang ditolak.<br>
+          <b>macOS 12–14:</b> cukup <b>klik kanan</b> ikon VeloDash → <b>Open</b> → <b>Open</b>. Harus klik kanan;
+          klik dua kali biasa akan tetap ditolak. Cara ini sudah dihapus Apple mulai macOS 15.
         </div>
       </div>
     </section>
@@ -783,7 +787,7 @@
       </div>
       <div class="tr-item">
         <button class="tr-q" onclick="toggleTr(this)">Aplikasi ditolak Windows SmartScreen / macOS Gatekeeper</button>
-        <div class="tr-a"><b>Windows:</b> klik <b>More info</b> → <b>Run anyway</b>. <b>macOS:</b> klik kanan ikon VeloDash → <b>Open</b> → <b>Open</b>, atau buka <b>System Settings → Privacy &amp; Security</b> lalu klik <b>Open Anyway</b>. Ini muncul karena aplikasi masih baru, bukan karena berbahaya.</div>
+        <div class="tr-a"><b>Windows:</b> klik <b>More info</b> → <b>Run anyway</b>. <b>macOS 15 ke atas:</b> coba buka sekali (klik <b>Done</b> di peringatannya), lalu <b>System Settings → Privacy &amp; Security</b> → bagian <b>Security</b> → <b>Open Anyway</b>. <b>macOS 12–14:</b> klik kanan ikon VeloDash → <b>Open</b> → <b>Open</b>. Ini muncul karena aplikasinya belum bersertifikat berbayar Apple, bukan karena berbahaya.</div>
       </div>
     </section>
 
