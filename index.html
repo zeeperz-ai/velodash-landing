@@ -384,7 +384,9 @@
   }
   .plan-opt[aria-selected="true"] .save-pill { color: #24331c; background: rgba(255,255,255,0.6); }
   .plan-sub {
-    font-size: 12px; color: var(--text-dim); margin: -18px 0 26px;
+    /* Jarak bawah lebih lega: badge "Semua fitur" menempel di tepi atas kartu
+       dan nyaris menabrak baris ini kalau cuma 26px. */
+    font-size: 12px; color: var(--text-sec); margin: -18px 0 38px;
     text-align: center;
   }
   .pricing-lead { font-size: 13px; color: var(--text-sec); margin: -6px 0 18px; min-height: 34px; }
@@ -413,6 +415,33 @@
     color: var(--text-pri); letter-spacing: -0.6px; line-height: 1.15; margin-top: 2px;
   }
   .seat-per { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+  /* Satu paket = satu kartu. Grid dua kolom warisan Lite/Pro menyisakan
+     satu kolom kurus di tengah halaman lebar, dan daftar fiturnya jadi
+     memanjang ke bawah sampai harus digulir. Kartunya sekarang melebar:
+     identitas + harga di kiri, fitur dua kolom di kanan. */
+  .pricing-grid.single { grid-template-columns: 1fr; max-width: 920px; }
+  .pricing-card.wide { padding: 40px 38px 36px; }
+  .pricing-body {
+    display: grid; grid-template-columns: minmax(260px, 320px) 1fr;
+    gap: 36px; align-items: stretch;
+  }
+  .pricing-side { display: flex; flex-direction: column; }
+  /* Tombol menempel ke dasar kolom kiri supaya sejajar dengan ujung daftar
+     fitur -- tanpa ini dia menggantung di tengah kartu. */
+  .pricing-side .btn-pricing { margin-top: auto; }
+  .pricing-main { border-left: 1px solid var(--border); padding-left: 36px; }
+  .pricing-main .pricing-features {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 15px 28px; margin-bottom: 0;
+  }
+  @media (max-width: 900px) {
+    .pricing-card.wide { padding: 34px 24px 30px; }
+    .pricing-body { grid-template-columns: 1fr; gap: 26px; }
+    .pricing-main { border-left: none; border-top: 1px solid var(--border);
+                    padding-left: 0; padding-top: 24px; }
+  }
+  @media (max-width: 560px) {
+    .pricing-main .pricing-features { grid-template-columns: 1fr; }
+  }
   .pricing-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -475,6 +504,24 @@
     box-shadow: 0 4px 24px rgba(136,192,208,0.4);
   }
   .btn-pricing.solid:hover { background: var(--accent-lt); box-shadow: 0 8px 32px rgba(136,192,208,0.5); transform: translateY(-1px); }
+
+  /* Kanal beta di halaman Download. */
+  .beta-card {
+    max-width: 1060px; margin: 18px auto 0;
+    background: var(--bg-card); border: 1px dashed var(--border-bright);
+    border-radius: 16px; padding: 22px 26px;
+  }
+  .beta-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .beta-head h3 { font-size: 17px; color: var(--text-pri); margin: 0; }
+  .beta-pill {
+    font-family: var(--mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent-lt); background: var(--accent-glow);
+    border: 1px solid var(--border-bright); border-radius: 999px; padding: 3px 10px;
+  }
+  .beta-desc { color: var(--text-sec); font-size: 13.5px; line-height: 1.75; margin: 0 0 16px; }
+  .beta-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+  .beta-note { color: var(--text-dim); font-size: 12.5px; }
 
   /* ── COMPARISON TABLE ── */
   .comparison { background: var(--bg); }
@@ -1102,10 +1149,12 @@
     </div>
     <p class="plan-sub" data-d="Untuk satu hari turun lapangan. Sekali pakai, tanpa langganan." data-w="Untuk minggu yang padat event." data-m="Dibayar sekali untuk 30 hari pemakaian." data-y="Dibayar sekali untuk 12 bulan — jauh lebih murah per bulannya.">Dibayar sekali untuk 30 hari pemakaian.</p>
 
-    <div class="pricing-grid" style="max-width:520px; margin:0 auto;">
+    <div class="pricing-grid single">
 
-      <div class="pricing-card featured reveal">
+      <div class="pricing-card featured wide reveal">
         <div class="pricing-badge">Semua fitur</div>
+        <div class="pricing-body">
+        <div class="pricing-side">
         <div class="pricing-tier">VELODASH</div>
         <div class="pricing-lead">Satu paket, semua fitur. Yang membedakan cuma masa aktif &amp; jumlah device.</div>
         <div class="seat-grid">
@@ -1120,7 +1169,9 @@
             <div class="seat-per" data-d="mulai 30 hari" data-w="mulai 30 hari" data-m="/ 30 hari" data-y="/ tahun">/ 30 hari</div>
           </div>
         </div>
-        <div class="pricing-divider"></div>
+        <a href="#cara-beli" class="btn-pricing solid">Beli via WhatsApp</a>
+        </div>
+        <div class="pricing-main">
         <ul class="pricing-features">
           <li><span class="check">✓</span><span>Upload foto &amp; video, tanpa batas jumlah</span></li>
           <li><span class="check">✓</span><span>Engine direct (tanpa browser) — cepat &amp; ringan</span></li>
@@ -1132,7 +1183,8 @@
           <li><span class="check">✓</span><span><b>Analytics</b> audit foto Roboyu &amp; akurasi deteksi</span></li>
           <li><span class="check">✓</span><span>Kirim ulang hi-res + upscale AI foto yang hilang</span></li>
         </ul>
-        <a href="#cara-beli" class="btn-pricing solid">Beli via WhatsApp</a>
+        </div>
+        </div>
       </div>
 
     </div>
@@ -1317,7 +1369,7 @@
     <div class="section-header reveal">
       <div class="tag">Download</div>
       <h2>Unduh VeloDash v2.0.1</h2>
-      <p>Gratis dicoba <b>1 hari penuh</b> tanpa serial. Install, buka, pilih Trial — semua fitur terbuka.</p>
+      <p>Gratis dicoba <b>2 hari penuh</b> tanpa serial. Install, buka, pilih Trial — upload foto &amp; video tanpa batas jumlah.</p>
     </div>
 
     <div style="max-width:1060px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px;">
@@ -1353,6 +1405,21 @@
         <a href="https://github.com/zeeperz-ai/velodash-landing/releases/latest/download/VeloDash-2.0.1-macOS-Intel.dmg" class="btn-primary" style="width:100%; box-sizing:border-box;">Download</a>
       </div>
 
+    </div>
+
+    <!-- Kanal beta. Sengaja DI BAWAH dan terpisah dari tiga kartu di atas:
+         yang stabil harus tetap jadi pilihan bawaan, dan yang mau versi baru
+         memilihnya sendiri dengan sadar. -->
+    <div class="reveal beta-card">
+      <div class="beta-head">
+        <span class="beta-pill">Beta</span>
+        <h3>VeloDash 2.1.1 beta</h3>
+      </div>
+      <p class="beta-desc">Versi uji coba dengan fitur terbaru: <b>Inbox pembeli</b> (baca &amp; balas chat FotoYu langsung dari aplikasi), <b>kirim ulang hi-res</b> yang mencocokkan file aslimu sendiri, dan <b>salin file untuk di edit</b>. Boleh dipasang berdampingan &mdash; kalau ada yang aneh, kembali saja ke versi stabil di atas.</p>
+      <div class="beta-actions">
+        <a href="https://github.com/zeeperz-ai/velodash-landing/releases/download/v2.1.1-beta/VeloDash-2.1.1-Windows-x64-Setup.exe" class="btn-pricing outlined" style="width:auto; padding:11px 22px;">Unduh beta &mdash; Windows</a>
+        <span class="beta-note">Installer (.exe) &middot; versi Mac menyusul.</span>
+      </div>
     </div>
 
     <div class="reveal" style="max-width:1060px; margin:14px auto 0; text-align:center; color:var(--text-sec); font-size:13px;">
