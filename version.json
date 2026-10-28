@@ -1,5 +1,5 @@
 {
-  "latest": "2.2.1",
+  "latest": "2.3.0",
   "url": "https://velodash.my.id/#download",
-  "notes": "Kirim Hi-Res tampil lebih ringkas (grid, foto yang perlu dicek dikelompokkan) dan Inbox jadi halaman sendiri. Baru: notifikasi semua akun tanpa ganti akun, saringan pembeli paket yang belum checkout, foto yang disebut pembeli langsung tampil di samping chat, cari foto, jam di tiap pesan, dan peringatan foto yang diminta edit. Mac sudah tersedia; versi Windows menyusul."
+  "notes": "Upload lebih cepat: data foto dikirim berkelompok ke FotoYu. Halaman Unggah sekarang dua kolom, popup penyebab kalau ada foto gagal, dan kotak harga/tanggal tidak lagi berubah sendiri saat menggulir. Baru: LUT warna + watermark di pratinjau, salin kartu SD langsung ke antrean, tema terang, pilihan bahasa English, dan logo baru. Mac sudah tersedia; versi Windows menyusul."
 }
