@@ -1,0 +1,35 @@
+{
+    "name": "VeloDash",
+    "short_name": "VeloDash",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#090E13",
+    "theme_color": "#090E13",
+    "description": "Penjualan, pesan pembeli, dan analisa FotoYu \u2014 versi browser VeloDash.",
+    "orientation": "any",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
