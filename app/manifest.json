@@ -5,7 +5,7 @@
     "display": "standalone",
     "background_color": "#090E13",
     "theme_color": "#090E13",
-    "description": "Penjualan, pesan pembeli, dan analisa FotoYu \u2014 versi browser VeloDash.",
+    "description": "Unggah foto, penjualan, pesan pembeli, dan analisa FotoYu \u2014 versi browser VeloDash.",
     "orientation": "any",
     "prefer_related_applications": false,
     "icons": [
