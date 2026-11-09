@@ -1,5 +1,5 @@
 {
-  "latest": "2.3.0",
+  "latest": "2.3.1",
   "url": "https://velodash.my.id/#download",
-  "notes": "Upload lebih cepat: data foto dikirim berkelompok ke FotoYu. Halaman Unggah sekarang dua kolom, popup penyebab kalau ada foto gagal, dan kotak harga/tanggal tidak lagi berubah sendiri saat menggulir. Baru: LUT warna + watermark di pratinjau, salin kartu SD langsung ke antrean, tema terang, pilihan bahasa English, dan logo baru. Mac sudah tersedia; versi Windows menyusul."
+  "notes": "Perbaikan: upload besar tidak lagi berhenti setelah sekitar 2 GB, dan foto yang sudah pernah naik dari folder lain (mis. salinan kartu) langsung dilewati. Baru: anti dobel dengan HP, foto yang sudah diunggah dari VeloDash Mobile tidak diunggah ulang. Mac sudah tersedia; versi Windows menyusul."
 }
