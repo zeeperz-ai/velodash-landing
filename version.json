@@ -1,5 +1,5 @@
 {
-  "latest": "2.3.1",
+  "latest": "2.4.0",
   "url": "https://velodash.my.id/#download",
-  "notes": "Perbaikan: upload besar tidak lagi berhenti setelah sekitar 2 GB, dan foto yang sudah pernah naik dari folder lain (mis. salinan kartu) langsung dilewati. Baru: anti dobel dengan HP, foto yang sudah diunggah dari VeloDash Mobile tidak diunggah ulang. Tersedia untuk Windows dan Mac."
+  "notes": "Baru: Foto Saya dibedah ulang. Scan lebih cepat dan jalan otomatis saat tanggal dibuka, bisa disaring foto/video dan dikelompokkan per FotoTree. Klik foto untuk melihat utuh, ubah harga dan FotoTree satu foto, atau ubah banyak foto sekaligus lewat Ubah Konten. Video bisa diputar langsung di app. Sesi yang habis langsung memunculkan login ulang. Tersedia untuk Windows dan Mac."
 }
