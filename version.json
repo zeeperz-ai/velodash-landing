@@ -1,5 +1,5 @@
 {
-  "latest": "2.4.1",
+  "latest": "2.4.2",
   "url": "https://velodash.my.id/#download",
-  "notes": "Mac dulu, Windows menyusul. Upload lebih cepat: cek foto dobel tak lagi mengunduh ulang preview yang sama. Scan Event besar (di atas 30.000 foto) kini bisa selesai, dibaca per fotografer. Halaman Event tak lagi bikin app tertutup sendiri, dan foto yang dikonfirmasi bisa dilihat tanpa scan."
+  "notes": "Mac dulu, Windows menyusul. Di Mac, VeloDash yang disembunyikan ke tray kini muncul lagi saat ikon Dock diklik (dulu terlihat stuck sampai harus Force Quit). Tetap membawa semua perbaikan 2.4.1: upload lebih cepat dan scan Event besar bisa selesai."
 }
